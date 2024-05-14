@@ -5,14 +5,16 @@ import SearchClient from './search.vue';
 import { RouterView } from 'vue-router';
 </script>
 <template>
-    <div class="header h-5rem">
+    <div class="header h-5rem w-full">
         <header-client></header-client>
     </div>
     <div>
         <search-client></search-client>
     </div>
-    <div class="content">
+    <div class="content w-full">
         <RouterView></RouterView>
     </div>
-    <footer-client></footer-client>
+    <div class="w-full">
+        <footer-client></footer-client>
+    </div>
 </template>
