@@ -119,6 +119,10 @@ const router = createRouter({
                     component: () => import('@/views/client/pages/cart/index.vue')
                 }
             ]
+        },
+        {
+            path: '/login',
+            component: () => import('@/views/client/pages/login/index.vue')
         }
     ]
 });

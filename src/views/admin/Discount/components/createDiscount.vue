@@ -1,13 +1,24 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 const value = ref(null);
 const cities = ref([
     { name: 'Việt Nam đồng', code: 'đ' },
     { name: 'Đô La đồng', code: '$' }
 ]);
 const selectedCity = ref([]);
-const minCondition = ref('');
+
 const applyProduct = ref('');
+
+const objDiscount = reactive({
+    discountName: 'DiscountName',
+    discountDesc: 'DiscountDesc',
+    startDate: '22/12/2024',
+    endDate: '25/2/2025',
+    reducelv: Number,
+    minCondition: '',
+    discountType: '',
+    productApply: ''
+});
 </script>
 
 <template>
@@ -20,9 +31,9 @@ const applyProduct = ref('');
             <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
                 <div class="card h-23rem">
                     <label class="mb-3 text-xl font-bold">Tên chương trình khuyến mãi</label>
-                    <InputText class="w-full my-3" type="text" placeholder="Nhập tên chương trình khuyến mãi" />
+                    <InputText class="w-full my-3" type="text" placeholder="Nhập tên chương trình khuyến mãi" v-model="objDiscount.discountName" />
                     <label class="font-bold">Mô tả</label>
-                    <Textarea class="w-full my-3" type="text" placeholder="Nhập mô tả" rows="7" cols="30" />
+                    <Textarea class="w-full my-3" type="text" placeholder="Nhập mô tả" rows="7" cols="30" v-model="objDiscount.discountDesc" />
                 </div>
             </div>
             <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
@@ -60,14 +71,14 @@ const applyProduct = ref('');
                             <div class="mb-3">
                                 <label for="">Thời gian bắt đầu</label>
                             </div>
-                            <Calendar showIcon iconDisplay="input" />
+                            <Calendar showIcon iconDisplay="input" v-model="objDiscount.startDate" />
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <TriStateCheckbox v-model="value" />
                                 <span class="ml-3">Có thời gian kết thúc</span>
                             </div>
-                            <Calendar showIcon iconDisplay="input" />
+                            <Calendar showIcon iconDisplay="input" v-model="objDiscount.endDate" />
                         </div>
                     </div>
                 </div>

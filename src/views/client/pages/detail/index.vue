@@ -1,8 +1,18 @@
 <script setup>
 import { ref } from 'vue';
 
-const value = ref(null);
+const value = ref(3);
+
 const count = ref(1);
+// const objProduct = reactive({
+//     name: 'SP FORCE 4T',
+//     rate: 2,
+//     numbRates: 120,
+//     price: 329,
+//     status: true,
+//     desc: 'Lorem pricepric epricepricepricepricepricepricepriceprice pricepricepricepr icepricepricepricepricepri',
+//     quantity: 4
+// });
 </script>
 
 <template>
@@ -61,14 +71,14 @@ const count = ref(1);
                             <div class="col-1 text-center align-content-center"><i class="fa-solid fa-truck"></i></div>
                             <div class="col-10">
                                 <div>Miễn phí vận chuyển</div>
-                                <div class="text-xs mt-2 underline">Enter your postal code for Delivery Availability</div>
+                                <div class="text-xs mt-2 underline cursor-pointer">Enter your postal code for Delivery Availability</div>
                             </div>
                         </div>
                         <div class="flex border-1 font-medium" style="border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
                             <div class="col-1 text-center align-content-center"><i class="fa-solid fa-rotate"></i></div>
                             <div class="col-10">
                                 <div>Dễ dàng hoàn trả</div>
-                                <div class="text-xs mt-2">Free 30 Days Delivery Returns. <a href="#" class="underline">Detail</a></div>
+                                <div class="text-xs mt-2">Free 30 Days Delivery Returns. <a href="#" class="underline cursor-pointer">Detail</a></div>
                             </div>
                         </div>
                     </div>
