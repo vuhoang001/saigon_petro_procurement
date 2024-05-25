@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
 import Default from '../views/client/layout/default.vue';
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -107,24 +108,72 @@ const router = createRouter({
                     path: 'detail',
                     name: 'detail',
                     component: () => import('@/views/client/pages/detail/index.vue')
+                    // meta: {
+                    //     middleware: [auth]
+                    // }
                 },
                 {
                     path: 'home',
                     name: 'home',
                     component: () => import('@/views/client/pages/home/index.vue')
+                    // meta: {
+                    //     middleware: [auth]
+                    // }
                 },
                 {
                     path: 'cart',
                     name: 'cart',
                     component: () => import('@/views/client/pages/cart/index.vue')
+                    // meta: {
+                    //     middleware: [auth]
+                    // }
+                },
+                {
+                    path: 'order',
+                    name: 'order',
+                    component: () => import('@/views/client/pages/order/index.vue')
                 }
             ]
         },
         {
             path: '/login',
+            name: 'login',
             component: () => import('@/views/client/pages/login/index.vue')
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: () => import('@/views/pages/NotFound.vue')
         }
     ]
 });
+
+// function nextFactory(context, middleware, index) {
+//     const subsequentMiddleware = middleware[index];
+//     if (!subsequentMiddleware) return context.next;
+//     return (...parameters) => {
+//         context.next(...parameters);
+
+//         const nextMiddleware = nextFactory(context, middleware, index + 1);
+//         subsequentMiddleware({ ...context, next: nextMiddleware });
+//     };
+// }
+
+// router.beforeEach((to, from, next) => {
+//     if (to.meta.middleware) {
+//         const middleware = Array.isArray(to.meta.middleware) ? to.meta.middleware : [to.meta.middleware];
+
+//         const context = {
+//             from,
+//             next,
+//             router,
+//             to
+//         };
+//         const nextMiddleware = nextFactory(context, middleware, 1);
+
+//         return middleware[0]({ ...context, next: nextMiddleware });
+//     }
+//     return next();
+// });
 
 export default router;

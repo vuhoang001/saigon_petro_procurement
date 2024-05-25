@@ -1,22 +1,25 @@
 <script setup>
 import { ref, reactive } from 'vue';
-const value = ref(null);
-const cities = ref([
-    { name: 'Việt Nam đồng', code: 'đ' },
-    { name: 'Đô La đồng', code: '$' }
-]);
-const selectedCity = ref([]);
+// import format from '../../../../helpers/format-date.helper';
 
-const applyProduct = ref('');
-
+const value = ref(true);
+const discountType = ref([{ name: 'Giảm giá sản phẩm' }, { name: 'Đồng giá sản phẩm' }]);
 const objDiscount = reactive({
-    discountName: 'DiscountName',
-    discountDesc: 'DiscountDesc',
-    startDate: '22/12/2024',
-    endDate: '25/2/2025',
-    reducelv: Number,
-    minCondition: '',
+    discountName: {
+        type: String,
+        default: ''
+    },
+    discountDesc: {
+        type: String
+    },
+    startDate: new Date(),
+    endDate: new Date(),
+    reducelv: {
+        type: Number,
+        default: 5
+    },
     discountType: '',
+    minCondition: '',
     productApply: ''
 });
 </script>
@@ -31,9 +34,9 @@ const objDiscount = reactive({
             <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
                 <div class="card h-23rem">
                     <label class="mb-3 text-xl font-bold">Tên chương trình khuyến mãi</label>
-                    <InputText class="w-full my-3" type="text" placeholder="Nhập tên chương trình khuyến mãi" v-model="objDiscount.discountName" />
+                    <InputText v-model="objDiscount.discountName.default" class="w-full my-3" type="text" placeholder="Nhập tên chương trình khuyến mãi" />
                     <label class="font-bold">Mô tả</label>
-                    <Textarea class="w-full my-3" type="text" placeholder="Nhập mô tả" rows="7" cols="30" v-model="objDiscount.discountDesc" />
+                    <Textarea v-model="objDiscount.discountDesc.default" class="w-full my-3" type="text" placeholder="Nhập mô tả" rows="7" cols="30" />
                 </div>
             </div>
             <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
@@ -43,7 +46,7 @@ const objDiscount = reactive({
                         <div class="mt-3">
                             <label for="" class="text-base font-bold">Loại khuyến mãi</label>
                             <ul>
-                                <li>Giảm giá sản phẩm</li>
+                                <li>{{ objDiscount.discountType.name }}</li>
                             </ul>
                         </div>
                         <div class="mt-3">
@@ -51,15 +54,18 @@ const objDiscount = reactive({
                             <br />
                             <label>....</label>
                         </div>
-                        <div class="mt-3 mb-3">
+                        <div class="mt-3">
                             <label class="text-base font-bold">Thời hạn</label>
                             <ul>
                                 <li>Áp dụng cho</li>
-                                <li>Có hiệu lực từ: ../.. ../../.... đến ../.. ../../....</li>
+                                <li>
+                                    Có hiệu lực từ:
+                                    <p v-if="value" class="inline-block">đến {{}}</p>
+                                </li>
                             </ul>
                         </div>
                         <Divider></Divider>
-                        <span class="text-base">Chương trình khuyến mãi được tạo bảo Admin vào ngày 24/4/2024</span>
+                        <span class="text-base">Chương trình khuyến mãi được tạo bảo Admin vào ngày {{}}</span>
                     </div>
                 </div>
             </div>
@@ -71,14 +77,14 @@ const objDiscount = reactive({
                             <div class="mb-3">
                                 <label for="">Thời gian bắt đầu</label>
                             </div>
-                            <Calendar showIcon iconDisplay="input" v-model="objDiscount.startDate" />
+                            <Calendar dateFormat="dd/mm/yy" showIcon iconDisplay="input" v-model="objDiscount.startDate" />
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <TriStateCheckbox v-model="value" />
+                                <Checkbox v-model="value" :binary="true" />
                                 <span class="ml-3">Có thời gian kết thúc</span>
                             </div>
-                            <Calendar showIcon iconDisplay="input" v-model="objDiscount.endDate" />
+                            <Calendar dateFormat="dd/mm/yy" v-if="value" showIcon iconDisplay="input" v-model="objDiscount.endDate" />
                         </div>
                     </div>
                 </div>
@@ -87,7 +93,7 @@ const objDiscount = reactive({
                 <div class="card h-11rem">
                     <label for="" class="text-xl font-bold">Loại khuyến mãi</label>
                     <div class="mt-5">
-                        <Dropdown v-model="selectedCity" optionLabel="name" placeholder="Chọn loại khuyến mãi" class="w-full" />
+                        <Dropdown :options="discountType" v-model="objDiscount.discountType" optionLabel="name" placeholder="Chọn loại khuyến mãi" class="w-full" />
                     </div>
                 </div>
             </div>
@@ -98,8 +104,8 @@ const objDiscount = reactive({
                         <label for="" class="mt-3 text-base">Mức giảm</label>
                     </div>
                     <div class="mt-3">
-                        <InputNumber placeholder="0" class="mr-3 w-16rem ml-auto" />
-                        <Dropdown v-model="selectedCity" :options="cities" optionLabel="code" class="w-6rem" />
+                        <InputNumber placeholder="0" class="mr-3 w-16rem ml-auto" v-model="objDiscount.reducelv.default" />
+                        <Dropdown optionLabel="code" class="w-6rem" />
                     </div>
                 </div>
             </div>
@@ -109,11 +115,11 @@ const objDiscount = reactive({
                     <div class="mt-2">
                         <div class="flex flex-column pt-2">
                             <div>
-                                <RadioButton v-model="applyProduct" inputId="applyProduct" name="applyProduct" value="productGrp"></RadioButton>
+                                <RadioButton inputId="applyProduct" name="applyProduct" value="productGrp"></RadioButton>
                                 <label for="applyProduct" class="ml-2">Nhóm sản phẩm</label>
                             </div>
                             <div class="mt-2">
-                                <RadioButton v-model="applyProduct" inputId="applyProduct" name="applyProduct" value="product"></RadioButton>
+                                <RadioButton inputId="applyProduct" name="applyProduct" value="product"></RadioButton>
                                 <label for="applyProduct" class="ml-2">Sản phẩm</label>
                             </div>
                         </div>
@@ -130,16 +136,16 @@ const objDiscount = reactive({
                     <div>
                         <div class="flex flex-column mt-3">
                             <div>
-                                <RadioButton v-model="minCondition" inputId="minCondition1" name="minCondition" value="notRequired"></RadioButton>
+                                <RadioButton inputId="minCondition1" name="minCondition" value="notRequired"></RadioButton>
                                 <label for="minCondition1" class="ml-2">Không yêu cầu</label>
                             </div>
                             <div class="mt-2">
-                                <RadioButton v-model="minCondition" inputId="minCondition2" name="minCondition" value="minPurchase"></RadioButton>
+                                <RadioButton inputId="minCondition2" name="minCondition" value="minPurchase"></RadioButton>
                                 <label for="minCondition2" class="ml-2">Giá trị mua tối thiểu</label>
                             </div>
-                            <InputText type="text" v-model="value" class="mt-2" placeholder="0 đ" />
+                            <InputText type="text" class="mt-2" placeholder="0 đ" />
                             <div class="mt-2">
-                                <RadioButton v-model="minCondition" inputId="minCondition3" name="minCondition" value="minProduct"></RadioButton>
+                                <RadioButton inputId="minCondition3" name="minCondition" value="minProduct"></RadioButton>
                                 <label for="minCondition3" class="ml-2">Số lượng sản phẩm tối thiểu</label>
                             </div>
                         </div>

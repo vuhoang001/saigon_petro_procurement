@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import store from './store';
 
 import PrimeVue from 'primevue/config';
 import AutoComplete from 'primevue/autocomplete';
@@ -112,9 +113,11 @@ import BlockViewer from '@/components/BlockViewer.vue';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import '@/assets/styles.scss';
+import '@/assets/main.css';
 const app = createApp(App);
 
 app.use(router);
+app.use(store);
 
 app.use(PrimeVue, { ripple: true });
 app.use(ToastService);

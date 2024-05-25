@@ -7,20 +7,20 @@ class API {
         return await axios.get(API_URL + api, { headers: authHeader() });
     }
 
-    get_data(api, data) {
-        return axios.get(API_URL + api, { params: data.data, headers: authHeader() });
+    async get_data(api, data) {
+        return await axios.get(API_URL + api, { params: data.data, headers: authHeader() });
     }
 
-    add_new_v2(data, api) {
-        return axios.post(API_URL + api, data, { headers: authHeader() });
+    async add_new_v2(data, api) {
+        return await axios.post(API_URL + api, data, { headers: authHeader() });
     }
 
-    update_v2(data, api) {
-        return axios.put(API_URL + api, data, { headers: authHeader() });
+    async update_v2(data, api) {
+        return await axios.put(API_URL + api, data, { headers: authHeader() });
     }
 
-    delete_v2(id, api) {
-        return axios.delete(API_URL + api, { headers: authHeader(), data: id });
+    async delete_v2(id, api) {
+        return await axios.delete(API_URL + api, { headers: authHeader(), data: id });
     }
 }
 
