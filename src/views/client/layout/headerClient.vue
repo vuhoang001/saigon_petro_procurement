@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <div class="border-bottom-1 border-300"></div>
+        <hr class="style-six" />
 
         <div class="container flex justify-content-between mx-auto py-4">
             <div class="flex align-items-center text-white">
@@ -239,10 +239,11 @@
                     />
                 </svg>
 
-                <span class="mx-2"> 1900 0104 </span>
+                <span class="mx-2 text-xl"> 1900 0104 </span>
             </div>
         </div>
     </div>
+    <hr class="style-six" />
 </template>
 
 <style scoped></style>
