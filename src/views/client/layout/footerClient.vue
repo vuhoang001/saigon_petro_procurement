@@ -1,5 +1,5 @@
 <template>
-    <div class="green-bg text-white">
+    <div class="green-bg text-white mt-8">
         <div class="flex justify-content-between container mx-auto py-7">
             <div class="flex flex-column w-20rem">
                 <div class="flex">
