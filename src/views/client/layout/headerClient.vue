@@ -152,7 +152,7 @@
     </div>
     <div class="container mx-auto flex align-items-center justify-content-between">
         <div class="flex my-3 pr-0">
-            <div class="h-3rem flex align-items-center px-3 mx-2 bg-gray-200">
+            <div class="h-3rem flex align-items-center px-3 mr-2 bg-gray-200">
                 <span class="mx-2">Danh mục </span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 6L8 11L3 6" stroke="#191C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -243,7 +243,7 @@
             </div>
         </div>
     </div>
-    <hr class="style-six" />
+    <hr class="style-six mb-6" />
 </template>
 
 <style scoped></style>
