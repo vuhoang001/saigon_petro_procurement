@@ -1,8 +1,87 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 
 const activeIndex = ref(null);
 const items = ref([{ name: 'Ngày' }, { name: 'Tuần' }, { name: 'Tháng' }, { name: 'Năm' }]);
+
+const sellingProducts = reactive([
+    {
+        productName: 'SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ',
+        image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png',
+        productId: '#123523',
+        quantity: 123512
+    },
+    {
+        productName: 'SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ',
+        image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png',
+        productId: '#123523',
+        quantity: 123512
+    },
+    {
+        productName: 'SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ',
+        image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png',
+        productId: '#123523',
+        quantity: 123512
+    },
+    {
+        productName: 'SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ',
+        image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png',
+        productId: '#123523',
+        quantity: 123512
+    },
+    {
+        productName: 'SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ',
+        image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png',
+        productId: '#123523',
+        quantity: 123512
+    },
+    {
+        productName: 'SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ',
+        image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png',
+        productId: '#123523',
+        quantity: 123512
+    }
+]);
+
+const recentOrder = reactive([
+    {
+        orderId: 'PO00003',
+        orderName: 'Đơn đặt hàng 2404',
+        quantity: 4,
+        totalPrice: '1.799.000',
+        startDate: '20/02/2024',
+        endDate: '20/02/2024',
+        status: 'Chờ duyệt'
+    },
+    {
+        orderId: 'PO00002',
+        orderName: 'Đơn đặt hàng 2404',
+        quantity: 3,
+        totalPrice: '4.799.000',
+        startDate: '20/02/2024',
+        endDate: '20/02/2024',
+        status: 'Đã duyệt'
+    }
+]);
+
+const overview = reactive({
+    revenue: {
+        rate: '35 %',
+        quantity: 122345
+    },
+    orders: {
+        rate: '4 %',
+        quantity: 245
+    },
+    totalAgents: {
+        rate: '10 %',
+        quantity: 1452
+    },
+    newRegister: {
+        rate: '12 %',
+        quantity: '25'
+    }
+});
 
 const handleClick = (item) => {
     activeIndex.value = item;
@@ -95,11 +174,11 @@ const setChartOptions = () => {
                         <div class="flex justify-content-between">
                             <div class="mt-3 text-lg font-bold text-gray-400">Doanh thu</div>
                             <div>
-                                <div class="py-1 px-3 text-xs" style="background-color: #e2e6da">+ 4%</div>
+                                <div class="py-1 px-3 text-xs" style="background-color: #e2e6da">+ {{ overview.revenue.rate }}</div>
                             </div>
                         </div>
                         <div class="flex align-items-center mt-3">
-                            <div class="text-2xl font-bold">$45800</div>
+                            <div class="text-2xl font-bold">${{ overview.revenue.quantity }}</div>
                             <div class="text-base ml-2">Tháng này</div>
                         </div>
                     </div>
@@ -118,11 +197,11 @@ const setChartOptions = () => {
                         <div class="flex justify-content-between">
                             <div class="mt-3 text-lg font-bold text-gray-400">Đơn đặt hàng</div>
                             <div>
-                                <div class="py-1 px-3 text-xs" style="background-color: #f3e8f1">+ 4%</div>
+                                <div class="py-1 px-3 text-xs" style="background-color: #f3e8f1">+ {{ overview.orders.rate }}</div>
                             </div>
                         </div>
                         <div class="flex align-items-center mt-3">
-                            <div class="text-2xl font-bold">245</div>
+                            <div class="text-2xl font-bold">{{ overview.orders.quantity }}</div>
                             <div class="text-base ml-2">Tháng này</div>
                         </div>
                     </div>
@@ -141,11 +220,11 @@ const setChartOptions = () => {
                         <div class="flex justify-content-between">
                             <div class="mt-3 text-lg font-bold text-gray-400">Tổng số đại lý</div>
                             <div>
-                                <div class="py-1 px-3 text-xs" style="background-color: #c5ddfa">+ 4%</div>
+                                <div class="py-1 px-3 text-xs" style="background-color: #c5ddfa">+ {{ overview.totalAgents.rate }}</div>
                             </div>
                         </div>
                         <div class="flex align-items-center mt-3">
-                            <div class="text-2xl font-bold">1500</div>
+                            <div class="text-2xl font-bold">{{ overview.totalAgents.quantity }}</div>
                             <div class="text-base ml-2">Tháng này</div>
                         </div>
                     </div>
@@ -164,11 +243,11 @@ const setChartOptions = () => {
                         <div class="flex justify-content-between">
                             <div class="mt-3 text-lg font-bold text-gray-400">Đăng ký mới</div>
                             <div>
-                                <div class="py-1 px-3 text-xs" style="background-color: #f2e9fd">+ 4%</div>
+                                <div class="py-1 px-3 text-xs" style="background-color: #f2e9fd">+ {{ overview.newRegister.rate }}</div>
                             </div>
                         </div>
                         <div class="flex align-items-center mt-3">
-                            <div class="text-2xl font-bold">25</div>
+                            <div class="text-2xl font-bold">{{ overview.newRegister.quantity }}</div>
                             <div class="text-base ml-2">Tháng này</div>
                         </div>
                     </div>
@@ -197,7 +276,7 @@ const setChartOptions = () => {
                 <Chart type="bar" :data="chartData" :options="chartOptions" class="h-30rem" />
             </div>
         </div>
-        <div class="col-4 pl-3">
+        <div class="col-4 pl-3 overflow-auto" style="max-height: 514px">
             <div class="bg-white pl-3 pr-4 align-items-center pb-1 border-round-md">
                 <div class="flex align-items-center">
                     <div class="col-9">
@@ -208,51 +287,15 @@ const setChartOptions = () => {
                         <a href="#">Chi tiết</a>
                     </div>
                 </div>
-                <div class="flex align-items-center mb-2">
+                <div class="flex align-items-center mb-2" v-for="(item, index) in sellingProducts" :key="index">
                     <div class="col-3 flex justify-content-center align-items-center bg-gray-200 border-round-md">
-                        <image src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png" alt="Image" width="100%" />
+                        <image :src="item.image" :alt="item.productName" width="100%" />
                     </div>
                     <div class="col-9">
-                        <div class="font-bold text-lg">SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ</div>
+                        <div class="font-bold text-lg">{{ item.productName }}</div>
                         <div class="flex mt-2">
-                            <div class="bg-green-300 px-1 py-1 border-round-lg text-white">#124557</div>
-                            <div class="px-1 py-1 ml-3">18240 chai</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex align-items-center mb-2">
-                    <div class="col-3 bg-gray-200 border-round-md">
-                        <Image src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png" alt="Image" width="100%" />
-                    </div>
-                    <div class="col-9">
-                        <div class="font-bold text-lg">Dầu động cơ xe số 4T cao cấp</div>
-                        <div class="flex mt-2">
-                            <div class="bg-green-300 px-1 py-1 border-round-lg text-white">#124557</div>
-                            <div class="px-1 py-1 ml-3">18240 chai</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex align-items-center mb-2">
-                    <div class="col-3 flex justify-content-center align-items-center bg-gray-200 border-round-md">
-                        <image src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xe-cong-nghe-scooter-4786.png" alt="Image" width="100%" />
-                    </div>
-                    <div class="col-9">
-                        <div class="font-bold text-lg">SP GREEN POWER PLUS SN 10W-40 XE CÔNG NGHỆ</div>
-                        <div class="flex mt-2">
-                            <div class="bg-green-300 px-1 py-1 border-round-lg text-white">#124557</div>
-                            <div class="px-1 py-1 ml-3">18240 chai</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex align-items-center mb-2">
-                    <div class="col-3 bg-gray-200 border-round-md">
-                        <Image src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png" alt="Image" width="100%" />
-                    </div>
-                    <div class="col-9">
-                        <div class="font-bold text-lg">Dầu động cơ xe số 4T cao cấp</div>
-                        <div class="flex mt-2">
-                            <div class="bg-green-300 px-1 py-1 border-round-lg text-white">#124557</div>
-                            <div class="px-1 py-1 ml-3">18240 chai</div>
+                            <div class="bg-green-300 px-1 py-1 border-round-lg text-white">{{ item.productId }}</div>
+                            <div class="px-1 py-1 ml-3">{{ item.quantity }} chai</div>
                         </div>
                     </div>
                 </div>
@@ -272,22 +315,25 @@ const setChartOptions = () => {
                 <th class="border-bottom-1 border-500 p-2">Ngày đặt hàng</th>
                 <th class="border-bottom-1 border-500 p-2">Trạng thái</th>
             </tr>
-            <tr>
-                <td><div class="mt-1 p-2">PO00003</div></td>
-                <td><div class="mt-1 p-2">Đơn đặt hàng 2404</div></td>
-                <td><div class="mt-1 p-2">04</div></td>
-                <td><div class="mt-1 p-2">1.7999.000đ</div></td>
-                <td><div class="mt-1 p-2">20/4/2024</div></td>
-                <td><div class="mt-1 pending">Chờ duyệt</div></td>
-            </tr>
-
-            <tr>
-                <td><div class="mt-1 p-2">PO00003</div></td>
-                <td><div class="mt-1 p-2">Đơn đặt hàng 2404</div></td>
-                <td><div class="mt-1 p-2">04</div></td>
-                <td><div class="mt-1 p-2">1.7999.000đ</div></td>
-                <td><div class="mt-1 p-2">20/4/2024</div></td>
-                <td><div class="mt-1 appoved">Đã duyệt</div></td>
+            <tr v-for="(item, index) in recentOrder" :key="index">
+                <td>
+                    <div class="mt-1 p-2">{{ item.orderId }}</div>
+                </td>
+                <td>
+                    <div class="mt-1 p-2">{{ item.orderName }}</div>
+                </td>
+                <td>
+                    <div class="mt-1 p-2">{{ item.quantity }}</div>
+                </td>
+                <td>
+                    <div class="mt-1 p-2">{{ item.totalPrice }}đ</div>
+                </td>
+                <td>
+                    <div class="mt-1 p-2">{{ item.startDate }}</div>
+                </td>
+                <td>
+                    <div :class="{ pending: item.status === 'Chờ duyệt', appoved: item.status === 'Đã duyệt' }" class="mt-1 pending">{{ item.status }}</div>
+                </td>
             </tr>
         </table>
     </div>

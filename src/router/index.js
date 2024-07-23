@@ -132,6 +132,11 @@ const router = createRouter({
                     path: 'order',
                     name: 'order',
                     component: () => import('@/views/client/pages/order/index.vue')
+                },
+                {
+                    path: 'menu',
+                    name: 'menu',
+                    component: () => import('@/views/client/pages/categories/index.vue')
                 }
             ]
         },

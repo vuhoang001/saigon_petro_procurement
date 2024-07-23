@@ -25,6 +25,12 @@ const objCart = reactive([
     }
 ]);
 
+const infoBuyer = reactive({
+    address: '31 Thái Hà, Đống Đa, Hà Nội',
+    receiver: 'Đại lý Hùng Lâm',
+    dateNeeded: '30/4/2024'
+});
+
 const increaseQuantity = (index) => {
     objCart[index].quantity++;
 };
@@ -100,15 +106,15 @@ const confirmCart = () => {
                     <div class="font-bold text-lg">Thông tin tóm tắt</div>
                     <div class="mt-2">
                         <label class="">Địa điểm giao hàng:</label>
-                        <div class="mt-1">31 Thái Hà, Đống Đa, Hà Nội</div>
+                        <div class="mt-1">{{ infoBuyer.address }}</div>
                     </div>
                     <div class="mt-2">
                         <label class="">Người nhận hàng:</label>
-                        <div class="mt-1">Đại lý Hùng Lâm</div>
+                        <div class="mt-1">{{ infoBuyer.receiver }}</div>
                     </div>
                     <div class="mt-2">
                         <label class="">Ngày cần hàng:</label>
-                        <div class="mt-1">30/4/2024</div>
+                        <div class="mt-1">{{ infoBuyer.dateNeeded }}</div>
                     </div>
                     <div class="flex justify-content-between font-bold text-lg mt-5">
                         <label for="">Tổng cộng: </label>
