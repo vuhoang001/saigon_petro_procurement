@@ -20,6 +20,10 @@
     color: #77878f;
 }
 
+.gray-color-4 {
+    color: #475156;
+}
+
 .blue-color {
     color: #2da5f3;
 }
@@ -36,8 +40,19 @@
     color: #fa8232;
 }
 
+.orange-color-bg {
+    background: #fa8232;
+}
 .size-46px {
     font-size: 46px;
+}
+
+.size-32px {
+    font-size: 32px;
+}
+
+.size-24px {
+    font-size: 24px;
 }
 
 .size-18px {
@@ -48,8 +63,12 @@
     font-size: 16px;
 }
 
+.size-12px {
+    font-size: 12px;
+}
+
 .container {
-    width: 1320px;
+    width: 1325px;
 }
 
 hr.style-six {

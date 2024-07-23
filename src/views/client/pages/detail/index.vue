@@ -1,35 +1,42 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
-const value = ref(3);
+const product = reactive({
+    productName: 'SP FORCE 4T',
+    rating: 3,
+    voted: 123.213,
+    status: 'Còn hàng',
+    price: 3124.123,
+    description: 'Lorem is the default icon library of PrimeVue with over 250 open source icons developed by PrimeTek. PrimeIcons library is optional as PrimeVue components can use any icon',
+    quantity: 5,
+    productInfor: 'is the default icon library of PrimeVue with over 250 open source icons developed by PrimeTek. PrimeIcons library is optional as PrimeVue components can use any icon',
+    warrantyPolicy:
+        'is the default icon library of PrimeVue with over 250 open source icons developed by PrimeTek. PrimeIcons library is optional as PrimeVue components can use any icon is the default icon library of PrimeVue with over 250 open source icons developed by PrimeTek. PrimeIcons library is optional as PrimeVue components can use any icon is the default icon library of PrimeVue with over 250 open source icons developed by PrimeTek. PrimeIcons library is optional as PrimeVue components can use any icon is the default icon library of PrimeVue with over 250 open source icons developed by PrimeTek. PrimeIcons library is optional as PrimeVue components can use any icon',
+    image: 'https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png'
+});
 
-const count = ref(1);
-// const objProduct = reactive({
-//     name: 'SP FORCE 4T',
-//     rate: 2,
-//     numbRates: 120,
-//     price: 329,
-//     status: true,
-//     desc: 'Lorem pricepric epricepricepricepricepricepricepriceprice pricepricepricepr icepricepricepricepricepri',
-//     quantity: 4
-// });
+const decrementQuantity = () => {
+    if (product.quantity > 0) {
+        product.quantity--;
+    }
+};
 </script>
 
 <template>
     <div class="grid nested-grid mt-5">
         <div class="col-4 px-7">
             <div class="text-center bg-white border-round-md">
-                <img class="w-auto h-26rem py-5 my-3" src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png" alt="img" />
+                <img class="w-auto h-26rem py-5 my-3" :src="product.image" :alt="product.productName" />
             </div>
             <div class="grid mt-2">
                 <div class="col-4">
                     <div class="bg-white py-3 text-center border-round-md">
-                        <img class="w-full h-auto" src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png" alt="img" />
+                        <img class="w-full h-auto" :src="product.image" :alt="product.productName" />
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="bg-white py-3 text-center border-round-md">
-                        <img class="w-full h-auto" src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png" alt="img" />
+                        <img class="w-full h-auto" :src="product.image" :alt="product.productName" />
                     </div>
                 </div>
                 <div class="col-4">
@@ -43,23 +50,23 @@ const count = ref(1);
             <div class="grid">
                 <div class="col-6 px-5" style="word-wrap: break-word">
                     <div>
-                        <div class="font-bold text-3xl">SP FORCE 4T</div>
+                        <div class="font-bold text-3xl">{{ product.productName }}</div>
                         <div class="flex mt-3">
-                            <Rating v-model="value" :cancel="false" />
-                            <div class="ml-3 text-gray-400">(150 nhận xét)</div>
+                            <Rating v-model="product.rating" :cancel="false" />
+                            <div class="ml-3 text-gray-400">({{ product.voted }} nhận xét)</div>
                             <div class="mx-3">|</div>
-                            <div style="color: #00ff66">Còn hàng</div>
+                            <div style="color: #00ff66">{{ product.status }}</div>
                         </div>
-                        <div class="mt-3 text-2xl font-medium">329.000 đ</div>
-                        <div class="font-medium mt-3 line-height-3">pricepric epricepricepricepricepricepricepriceprice pricepricepricepr icepricepricepricepricepricepricepricep ricepricepr icepricepricepricepricepriceprice</div>
+                        <div class="mt-3 text-2xl font-medium">{{ product.price }} đ</div>
+                        <div class="font-medium mt-3 line-height-3">{{ product.description }}</div>
                     </div>
                     <div class="w-full bg-gray-400 my-3" style="height: 1px"></div>
                     <div class="flex">
                         <div class="w-10rem">
                             <InputGroup class="h-3rem">
-                                <Button icon="fa-solid fa-minus" style="background-color: white; color: black" @click="count--" />
-                                <InputText v-model="count"></InputText>
-                                <Button icon="fa-solid fa-plus" style="background-color: #0d733b" @click="count++" />
+                                <Button icon="fa-solid fa-minus" style="background-color: white; color: black" @click="decrementQuantity" />
+                                <InputText v-model="product.quantity"></InputText>
+                                <Button icon="fa-solid fa-plus" style="background-color: #0d733b" @click="product.quantity++" />
                             </InputGroup>
                         </div>
                         <div class="ml-4"><Button class="btn">Thêm vào giỏ</Button></div>
@@ -87,15 +94,12 @@ const count = ref(1);
                     <TabView>
                         <TabPanel header="Thông tin sản phẩm">
                             <p class="m-0">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                                id est laborum.
+                                {{ product.productInfor }}
                             </p>
                         </TabPanel>
                         <TabPanel header="Chính sách bảo hành">
                             <p class="m-0">
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                                {{ product.warrantyPolicy }}
                             </p>
                         </TabPanel>
                     </TabView>
