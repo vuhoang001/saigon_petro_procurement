@@ -105,6 +105,27 @@ const router = createRouter({
             component: Default,
             children: [
                 {
+                    path: 'setup',
+                    component: () => import('@/views/client/pages/userInfor/index.vue'),
+                    children: [
+                        {
+                            path: 'user',
+                            name: 'user',
+                            component: () => import('@/views/client/pages/userInfor/components/setupAccount.vue')
+                        },
+                        {
+                            path: 'hisPur',
+                            name: 'hisPur',
+                            component: () => import('@/views/client/pages/userInfor/components/historyPurchases.vue')
+                        },
+                        {
+                            path: 'boardSetup',
+                            name: 'boardSetup', 
+                            component: () => import('@/views/client/pages/userInfor/components/boardSetup.vue')
+                        }
+                    ]
+                },
+                {
                     path: 'detail',
                     name: 'detail',
                     component: () => import('@/views/client/pages/detail/index.vue')

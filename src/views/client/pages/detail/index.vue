@@ -24,7 +24,7 @@ const decrementQuantity = () => {
 
 <template>
     <div class="grid nested-grid mt-5">
-        <div class="col-4 px-7">
+        <div class="lg:col-4 md:col-12 col-12 px-7">
             <div class="text-center bg-white border-round-md">
                 <img class="w-auto h-26rem py-5 my-3" :src="product.image" :alt="product.productName" />
             </div>
@@ -41,14 +41,16 @@ const decrementQuantity = () => {
                 </div>
                 <div class="col-4">
                     <div class="bg-white py-3 text-center border-round-md">
-                        <img class="w-full h-auto" src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png" alt="img" />
+                        <img class="w-full h-auto"
+                            src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png"
+                            alt="img" />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-8">
+        <div class="lg:col-8 md:col-12 col-12">
             <div class="grid">
-                <div class="col-6 px-5" style="word-wrap: break-word">
+                <div class="lg:col-6 md:col-12 px-5" style="word-wrap: break-word">
                     <div>
                         <div class="font-bold text-3xl">{{ product.productName }}</div>
                         <div class="flex mt-3">
@@ -64,28 +66,34 @@ const decrementQuantity = () => {
                     <div class="flex">
                         <div class="w-10rem">
                             <InputGroup class="h-3rem">
-                                <Button icon="fa-solid fa-minus" style="background-color: white; color: black" @click="decrementQuantity" />
+                                <Button icon="fa-solid fa-minus" style="background-color: white; color: black"
+                                    @click="decrementQuantity" />
                                 <InputText v-model="product.quantity"></InputText>
-                                <Button icon="fa-solid fa-plus" style="background-color: #0d733b" @click="product.quantity++" />
+                                <Button icon="fa-solid fa-plus" style="background-color: #0d733b"
+                                    @click="product.quantity++" />
                             </InputGroup>
                         </div>
                         <div class="ml-4"><Button class="btn">Thêm vào giỏ</Button></div>
                     </div>
                 </div>
-                <div class="col-6 px-5 mt-6" style="word-wrap: break-word">
+                <div class="lg:col-6 md:col-12 px-5 mt-6" style="word-wrap: break-word">
                     <div class="w-28rem ml-7">
-                        <div class="flex border-1 font-medium" style="border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 0px">
+                        <div class="flex border-1 font-medium"
+                            style="border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom: 0px">
                             <div class="col-1 text-center align-content-center"><i class="fa-solid fa-truck"></i></div>
                             <div class="col-10">
                                 <div>Miễn phí vận chuyển</div>
-                                <div class="text-xs mt-2 underline cursor-pointer">Enter your postal code for Delivery Availability</div>
+                                <div class="text-xs mt-2 underline cursor-pointer">Enter your postal code for Delivery
+                                    Availability</div>
                             </div>
                         </div>
-                        <div class="flex border-1 font-medium" style="border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
+                        <div class="flex border-1 font-medium"
+                            style="border-bottom-left-radius: 4px; border-bottom-right-radius: 4px">
                             <div class="col-1 text-center align-content-center"><i class="fa-solid fa-rotate"></i></div>
                             <div class="col-10">
                                 <div>Dễ dàng hoàn trả</div>
-                                <div class="text-xs mt-2">Free 30 Days Delivery Returns. <a href="#" class="underline cursor-pointer">Detail</a></div>
+                                <div class="text-xs mt-2">Free 30 Days Delivery Returns. <a href="#"
+                                        class="underline cursor-pointer">Detail</a></div>
                             </div>
                         </div>
                     </div>

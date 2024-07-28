@@ -239,10 +239,11 @@ const filteredSubProductMainFS = computed(() => {
 </script>
 
 <template>
+
     <div class="container mx-auto">
         <div class="grid mx-0 my-0 border-round-sm">
-            <div class="col-8 bg-gray-200">
-                <div class="flex mx-6" style="height: 500px">
+            <div class="col-12 md:col-6 lg:col-8 bg-gray-200">
+                <div class="flex mx-6">
                     <div class="flex align-items-start flex-column justify-content-center">
                         <span class="flex align-items-center">
                             <svg class="mr-2" width="24" height="2" viewBox="0 0 24 2" fill="none"
@@ -274,8 +275,8 @@ const filteredSubProductMainFS = computed(() => {
                     </div>
                 </div>
             </div>
-            <div class="col-4 px-0 py-0 flex flex-column">
-                <div class="flex-1 mb-2 ml-3 border-round-sm" style="background-color: #5c9c78">
+            <div class="col-12 md:col-6 lg:col-4 px-0 py-0 flex flex-column">
+                <div class="flex-1 mb-2 lg:ml-3  border-round-sm" style="background-color: #5c9c78">
                     <div class="mx-5 flex relative h-full align-items-center">
                         <div class="">
                             <div class="flex flex-column">
@@ -305,7 +306,7 @@ const filteredSubProductMainFS = computed(() => {
                     </div>
                     <div></div>
                 </div>
-                <div class="bg-gray-200 ml-3 flex-1 mt-2 border-round-sm">
+                <div class="bg-gray-200 lg:ml-3  flex-1 mt-2 border-round-sm">
                     <div class="flex mx-4 align-items-center h-full">
                         <div>
                             <img class="mx-2" src="@/assets/images/image-11.png" alt="" />
