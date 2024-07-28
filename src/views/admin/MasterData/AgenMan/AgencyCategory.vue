@@ -1,111 +1,266 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
-const dialogAgency = ref(false);
-const dataEdit = ref({
-  submited: false,
-});
+const dialogOnOff = ref(false);
+const selectedProducts = ref()
+const nameDialog = ref('')
+
+watch(dialogOnOff, (newValue) => {
+  if (newValue == false) {
+    clearProduct()
+  }
+})
+
+const product = ref({
+  vendorCode: "",
+  vendorName: '',
+  email: '',
+  phone: '',
+  status: true,
+  statusSelected: true,
+}
+)
+
+
+const openDialog = (value) => {
+  dialogOnOff.value = true
+  nameDialog.value = "CHỈNH SỬA NHÀ CUNG CẤP"
+  product.value.vendorCode = value.id
+  product.value.vendorName = value.distrName
+  product.value.email = value.email
+  product.value.phone = value.phone
+  product.value.status = value.status
+  product.value.statusSelected = value.activeStatus
+}
+
+const newProduct = () => {
+  dialogOnOff.value = true
+  nameDialog.value = "THÊM MỚI NHÀ CUNG CẤP"
+}
+
+const clearProduct = () => {
+  dialogOnOff.value = false
+  product.value.vendorCode = "",
+    product.value.vendorName = "",
+    product.value.email = "",
+    product.value.phone = "",
+    product.value.status = "",
+    product.value.statusSelected = ""
+}
+
 const products = ref([
   {
-    id: "001",
-    distrCode: "Product 1",
-    distrName: "Category 1",
-    distrGroup: 10,
+    id: "NPP0000001",
+    distrName: "Công ty TNHH Đức Phượng",
+    email: 'info@ducphuongpetro.com',
+    phone: '0987654321',
+    status: true,
+    activeStatus: true
   },
   {
-    id: "002",
-    distrCode: "Product 2",
-    distrName: "Category 2",
-    distrGroup: 20,
+    id: "NPP0000002",
+    distrName: "Công ty Cổ phần thương mại Nhân Hòa",
+    email: 'contact@nhanhoa.com.vn',
+    phone: '0988776655',
+    status: false,
+    activeStatus: false
   },
   {
-    id: "003",
-    distrCode: "Product 3",
-    distrName: "Category 3",
-    distrGroup: 15,
+    id: "NPP0000003",
+    distrName: "Công ty TNHH HBG",
+    email: 'hbggroup@gmail.com',
+    phone: '0988776655',
+    status: true,
+    activeStatus: false
   },
+  {
+    id: "NPP0000004",
+    distrName: "Công ty Cổ phần Xăng dầu An Phước",
+    email: 'lienhe@xangdauanphuoc.com',
+    phone: '02412345678',
+    status: false,
+    activeStatus: true
+  },
+  {
+    id: "NPP0000005",
+    distrName: "Công ty Cổ phần Xăng dầu Nhơn Trạch 1",
+    email: 'kinhdoanh@xangdaunhontrach.vn',
+    phone: '02413478568',
+    status: false,
+    activeStatus: true
+  },
+  {
+    id: "0NPP0000006",
+    distrName: "Công ty TNHH Alimex",
+    email: 'lienhe@alimex.vn',
+    phone: '02498475824',
+    status: false,
+    activeStatus: true
+  },
+  {
+    id: "NPP0000007",
+    distrName: "Công ty Thương mại cổ phần xăng dầu Tuấn Tú",
+    email: 'tuantupetro@gmail.com',
+    phone: '0989123321',
+    status: false,
+    activeStatus: false
+  },
+  {
+    id: "NPP0000008",
+    distrName: "Công ty TNHH Thành Phát",
+    email: 'thanhphatgroup@gmail.com',
+    phone: '0834523756',
+    status: false,
+    activeStatus: false
+  },
+  {
+    id: "NPP0000009",
+    distrName: "Công ty TNHH Xăng dầu Thủ đô",
+    email: 'thudopetro@gmail.com',
+    phone: '0989123321',
+    status: false,
+    activeStatus: false
+  },
+  {
+    id: "NPP0000010",
+    distrName: "Công ty Cổ phần APS",
+    email: 'info@aps.com.vn',
+    phone: '0989123321',
+    status: false,
+    activeStatus: false
+  }
 ]);
 
-const NewAgency = () => {
-  dialogAgency.value = true;
-};
+
+const saveEditProduct = (event) => {
+  console.log(event)
+}
+
+
+
+const styleActiveStatus = (value) => {
+  switch (value) {
+    case true:
+      return "text-green-400"
+    case false:
+      return "text-red-400"
+    default: return null
+  }
+}
+
 </script>
 
 <template>
   <div class="flex justify-content-between align-items-center mb-4">
     <div class="text-2xl font-semibold uppercase">Danh mục nhà phân phối</div>
     <div class="flex gap-3">
-      <Button
-        label="Thêm mới"
-        icon="fa-solid fa-plus"
-        class="bg-info-700"
-        @click="NewAgency"
-      ></Button>
-      <Button
-        label="Cập nhật"
-        icon="fa-solid fa-rotate-right"
-        class="bg-green-700"
-      ></Button>
+      <Button label="Thêm mới" icon="fa-solid fa-plus" class="bg-info-700" @click="newProduct"></Button>
+      <Button label="Cập nhật" icon="fa-solid fa-rotate-right" class="bg-green-700"></Button>
     </div>
   </div>
 
   <div class="grid mt-3">
     <div class="col-12 h-screen bg-white">
-      <DataTable :value="products" tableStyle="min-width: 50rem;" header="surface-200">
-        <Column field="id" header="#" :style="{ width: '5%' }"></Column>
-        <Column
-          field="distrCode"
-          header="Mã nhà phân phối"
-          :style="{ width: '15%' }"
-        ></Column>
-        <Column
-          field="distrName"
-          header="Tên nhà phân phối"
-          :style="{ width: '35%' }"
-        ></Column>
-        <Column
-          field="distrGroup"
-          header="Nhóm nhà phân phối"
-          :style="{ width: '45%' }"
-        ></Column>
+      <DataTable :value="products" :paginator="true" :rows="10" header="surface-200" v-model="selectedProducts">
+        <Column selectionMode="multiple"></Column>
+        <Column field="id" header="Mã nhà phân phối"></Column>
+        <Column field="distrName" header="Tên nhà phân phối"></Column>
+        <Column field="email" header="Email"></Column>
+        <Column field="phone" header="Số điện thoại"></Column>
+        <Column field="status" header="Trạng thái">
+          <template #body="slotProps">
+            <span>{{ slotProps.data.status ? "Đang hoạt động" : "Không hoạt động" }}</span>
+          </template>
+        </Column>
+        <Column field="activeStatus" header="Trạng thái kích hoạt">
+          <template #body="slotProps">
+            <span :class="styleActiveStatus(slotProps.data.activeStatus)">
+              {{ slotProps.data.activeStatus ? "Đã kích hoạt" : "Chưa kích hoạt" }}</span>
+          </template>
+        </Column>
+        <Column field="action" header="Hành động">
+          <template #body="slotProps">
+            <div class="flex justify-content-around">
+              <i class="cursor-pointer fa-solid fa-pen" @click="openDialog(slotProps.data)"></i>
+              <i class="cursor-pointer fa-solid fa-trash"></i>
+            </div>
+          </template>
+        </Column>
       </DataTable>
     </div>
   </div>
 
-  <Dialog
-    v-model:visible="dialogAgency"
-    modal
-    position="top"
-    :draggable="false"
-    header="Thêm mới nhà phân phối"
-    :style="{ width: '45rem' }"
-    class="p-fluid"
-  >
+  <Dialog v-model:visible="dialogOnOff" modal :header="nameDialog" :style="{ width: '45rem' }" class="p-fluid">
     <div class="card">
-      <div class="field">
-        <label for="code">Mã nhà phân phối</label>
-        <InputText id="code" v-model="value" aria-describedby="code-help" />
-        <small class="text-red-300" v-if="dataEdit.submited" id="code-help"
-          >Vui lòng nhập mãnhaf phân phối.</small
-        >
-      </div>
-      <div class="field">
-        <label for="name">Tên nhà nhà phân phối</label>
-        <InputText id="name" v-model="value" aria-describedby="name-help" />
-        <small v-if="dataEdit.submited" class="text-red-300" id="name-help"
-          >Vui lòng nhập tên nhà phân phối.</small
-        >
+      <div class="grid">
+        <div class="col-6 mt-2">
+          <span class="block mb-2">Mã số thuế</span>
+          <div class="flex align-items-center">
+            <InputText id="code" style="width: 55%;" placeholder="_____" aria-describedby="code-help"
+              :value="product.vendorCode" />
+            <span class="text-center font-semibold" style="width: 10%;">-</span>
+            <InputText id="code" style="width: 35%;" placeholder="xxx" aria-describedby="code-help" />
+          </div>
+        </div>
+        <div class="col-6 mt-2">
+          <div class="field">
+            <label for="name">Tên nhà nhà phân phối</label>
+            <InputText placeholder="Nhập tên nhà phân phối" aria-describedby="name-help" :value="product.vendorName" />
+
+          </div>
+        </div>
+
+        <div class="col-12 pt-0 mt-2">
+          <div class="flex justify-content-between mb-2">
+            <span>Email</span>
+            <span class="text-gray-400 font-italic underline">(Tài khoản và mật khẩu sẽ được gửi tới email này)</span>
+          </div>
+          <InputText placeholder="Nhập email" :value="product.email" aria-describedby="name-help" />
+        </div>
+
+        <div class="col-12 pt-0 mt-2">
+          <div>
+            <span class="block mb-2">Số điện thoại</span>
+            <InputText placeholder="Nhập số điện thoại" aria-describedby="name-help" :value="product.phone" />
+          </div>
+        </div>
+
+        <div class="col-12 pt-0 mt-2">
+          <span class="block mb-2">Trạng thái</span>
+          <div class="flex justify-content-around">
+            <div class="flex align-items-center">
+              <RadioButton inputId="ingredient1" name="status" v-model="product.status" :value="true" />
+              <label for="ingredient1" class="ml-2">Đang kích hoạt</label>
+            </div>
+            <div class="flex align-items-center">
+              <RadioButton inputId="ingredient2" name="status" v-model="product.status" :value="false" />
+              <label for="ingredient2" class="ml-2">Không kích hoạt</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 pt-0 mt-2">
+          <span class="block mb-2">Trạng thái kích hoạt</span>
+          <div class="flex justify-content-around">
+            <div class="flex align-items-center">
+              <RadioButton v-model="product.statusSelected" inputId="statusSelected1" name="statusSelected"
+                :value="true" />
+              <label for="statusSelected1" class="ml-2">Đã kích hoạt</label>
+            </div>
+            <div class="flex align-items-center">
+              <RadioButton v-model="product.statusSelected" inputId="statusSelected2" name="statusSelected"
+                :value="false" />
+              <label for="statusSelected2" class="ml-2">Chưa kích hoạt</label>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
     <template #footer>
       <div class="flex justify-end gap-2">
-        <Button
-          type="button"
-          label="Huỷ"
-          severity="secondary"
-          @click="dialogAgency = false"
-        ></Button>
-        <Button type="button" label="Lưu" @click="visible = false"></Button>
+        <Button type="button" label="Huỷ" severity="secondary" @click="clearProduct()"></Button>
+        <Button type="button" label="Lưu" @click="saveEditProduct()"></Button>
       </div>
     </template>
   </Dialog>
