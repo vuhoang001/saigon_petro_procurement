@@ -106,6 +106,7 @@ import TreeSelect from 'primevue/treeselect';
 import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import VirtualScroller from 'primevue/virtualscroller';
+import Editor from 'primevue/editor';
 
 import BlockViewer from '@/components/BlockViewer.vue';
 
@@ -116,7 +117,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import '@/assets/styles.scss';
 import '@/assets/main.css';
-
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 
 
@@ -134,6 +135,7 @@ app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(DialogService);
 app.use(ConfirmationService);
+app.use(CKEditor);
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
@@ -143,6 +145,7 @@ app.directive('styleclass', StyleClass);
 app.component('BlockViewer', BlockViewer);
 
 app.component('Accordion', Accordion);
+app.component('Editor', Editor);
 app.component('AccordionTab', AccordionTab);
 app.component('AutoComplete', AutoComplete);
 app.component('Avatar', Avatar);

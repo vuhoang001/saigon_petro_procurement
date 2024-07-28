@@ -1,6 +1,8 @@
 <template>
   <div class="flex justify-content-between align-items-center mb-4">
-    <div class="text-2xl font-semibold uppercase">Tạo khuyến mãi</div>
+    <div class="text-2xl font-semibold uppercase">
+      {{ dataEdit.status == "Fix" ? "Cập nhật khuyến mãi" : "Tạo khuyến mãi" }}
+    </div>
   </div>
 
   <form>
@@ -204,7 +206,10 @@
     <router-link to="/admin/discount">
       <Button type="button" label="Huỷ" severity="secondary" />
     </router-link>
-    <Button label="Thêm mới" @click="SavePromotion" />
+    <Button
+      :label="dataEdit.status == 'Fix' ? 'Cập nhật' : 'Thêm mới'"
+      @click="SavePromotion"
+    />
   </div>
 </template>
 
@@ -218,10 +223,11 @@ ul li {
 }
 </style>
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onBeforeMount } from "vue";
 import { format } from "date-fns";
 import { useGlobal } from "@/services/useGlobal";
 import { useRouter, useRoute } from "vue-router";
+import merge from "lodash/merge";
 
 const router = useRouter();
 const route = useRoute();
@@ -229,7 +235,7 @@ const route = useRoute();
 const { toast, FunctionGlobal } = useGlobal();
 const value = ref(true);
 const discountType = ref([{ name: "Giảm giá sản phẩm" }, { name: "Đồng giá sản phẩm" }]);
-const objDiscount = reactive({
+const objDiscount = ref({
   discountName: "",
   discountDesc: "",
   startDate: new Date(),
@@ -242,13 +248,36 @@ const objDiscount = reactive({
   minCondition: "",
   productApply: "",
 });
+const dataEdit = reactive({});
+
+onBeforeMount(() => {
+  if (route.params.q != "new") {
+    dataEdit.status = "Fix";
+    dataEdit.id = route.params.q;
+    dataEdit.data = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
+    dataEdit.dataUpdate = dataEdit.data.filter((val) => {
+      return val.id == dataEdit.id;
+    })[0];
+    objDiscount.value = merge({}, objDiscount.value, dataEdit.dataUpdate);
+    objDiscount.value.startDate = new Date(objDiscount.value.startDate);
+    objDiscount.value.endDate = new Date(objDiscount.value.endDate);
+  }
+});
 
 const SavePromotion = () => {
-  objDiscount.id = createId();
   const existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
-  existingData.push(objDiscount);
-  localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
-  FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
+  if (dataEdit.status != "Fix") {
+    objDiscount.value.id = createId();
+    existingData.push(objDiscount.value);
+    localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
+    FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
+  } else {
+    existingData[findIndexById(dataEdit.id, existingData)] = objDiscount.value;
+    console.log(existingData);
+    localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
+    FunctionGlobal.$notify("S", "Cập nhật thành công", toast);
+  }
+
   router.replace("/admin/discount");
 };
 
@@ -263,5 +292,16 @@ const createId = () => {
     id += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return id;
+};
+
+const findIndexById = (id, data) => {
+  let index = -1;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].id === id) {
+      index = i;
+      break;
+    }
+  }
+  return index;
 };
 </script>
