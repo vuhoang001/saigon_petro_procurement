@@ -109,15 +109,26 @@ import VirtualScroller from 'primevue/virtualscroller';
 
 import BlockViewer from '@/components/BlockViewer.vue';
 
+import notificationPlugin  from './services/Notification';
+
 // Add fontawesome
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import '@/assets/styles.scss';
 import '@/assets/main.css';
+
+
+
+
 const app = createApp(App);
+
+app.config.globalProperties.$myFunction = function() {
+    console.log('This is a global function');
+  };
 
 app.use(router);
 app.use(store);
+app.use(notificationPlugin);
 
 app.use(PrimeVue, { ripple: true });
 app.use(ToastService);

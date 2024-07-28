@@ -78,6 +78,11 @@ const router = createRouter({
                     component: () => import('@/views/admin/Discount/Discount.vue')
                 },
                 {
+                    path: 'discount/action/:q',
+                    name: 'discountUpdate',
+                    component: () => import('@/views/admin/Discount/components/createDiscount.vue')
+                },
+                {
                     path: 'purchase-order',
                     name: 'purchaseOrder',
                     children: [
