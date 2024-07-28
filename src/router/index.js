@@ -113,7 +113,7 @@ const router = createRouter({
                     // }
                 },
                 {
-                    path: 'home',
+                    path: '/client',
                     name: 'home',
                     component: () => import('@/views/client/pages/home/index.vue')
                     // meta: {
