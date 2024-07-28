@@ -50,7 +50,7 @@
     modal
     position="top"
     :draggable="false"
-    header="Thêm mới hàng hoá"
+    :header="payload.id ? 'Cập nhật mới sản phẩm' : 'Thêm mới sản phẩm'"
     :style="{ width: '85%' }"
     class="p-fluid"
   >
@@ -72,6 +72,20 @@
               v-model="payload.description"
               aria-describedby="name-help"
             />
+          </div>
+          <div class="grid">
+            <div class="col-6">
+              <div class="field">
+                <label for="name">Giá sản phẩm</label>
+                <InputNumber v-model="payload.price" />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="field">
+                <label for="name">Số lượng trong kho</label>
+                <InputNumber v-model="payload.stock" />
+              </div>
+            </div>
           </div>
           <div class="field">
             <label for="name">Ảnh sản phẩm</label>
@@ -195,18 +209,23 @@ const UpdateData = (data) => {
 };
 const UploadFile = (event) => {
   const file = event.target.files[0];
-  console.log(file);
 };
 const SaveItem = async () => {
+  const FUNAPI = payload.value.id
+    ? API.update(`products/${payload.value.id}`)
+    : API.add("products", payload.value);
   try {
-    const res = await API.add("products", payload.value);
+    const res = await FUNAPI;
     if (res.data) {
       FunctionGlobal.$notify("S", res.data.message, toast);
       GetItem();
     }
+  } catch (error) {
+    FunctionGlobal.$notify("E", error, toast);
+  } finally {
     dialogItem.value = false;
     ClearData();
-  } catch (error) {}
+  }
 };
 const ClearData = () => {
   payload.value = JSON.parse(dataClear);
