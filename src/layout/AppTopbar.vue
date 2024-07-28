@@ -83,7 +83,7 @@ const toggle = (event) => {
 
 <template>
     <div class="layout-topbar bg-green-700">
-        <router-link to="/" class="layout-topbar-logo">
+        <router-link to="/admin" class="layout-topbar-logo">
             <img src="@/assets/images/logo-removebg-preview.png" class="h-4rem" alt="logo" />
             <span class="text-2xl font-bold uppercase ml-4" style="color: #f2ee1b">saigon petro <br />procurement </span>
         </router-link>
