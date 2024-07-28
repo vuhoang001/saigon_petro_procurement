@@ -148,6 +148,9 @@ import API from "../../../../api/api-main";
 import { format } from "date-fns";
 import merge from "lodash/merge";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useGlobal } from "@/services/useGlobal";
+
+const { toast, FunctionGlobal } = useGlobal();
 const editor = ClassicEditor;
 
 const payload = ref({
@@ -165,6 +168,7 @@ const payload = ref({
   specifications: "",
   stock: 0,
 });
+const dataClear = JSON.stringify(payload.value);
 const dialogItem = ref(false);
 const dataEdit = ref({ submited: false, products: [] });
 
@@ -181,6 +185,7 @@ const GetItem = async () => {
   } catch (error) {}
 };
 const NewItem = () => {
+  ClearData();
   dialogItem.value = true;
 };
 const UpdateData = (data) => {
@@ -195,8 +200,15 @@ const UploadFile = (event) => {
 const SaveItem = async () => {
   try {
     const res = await API.add("products", payload.value);
-    console.log(res);
+    if (res.data) {
+      FunctionGlobal.$notify("S", res.data.message, toast);
+      GetItem();
+    }
     dialogItem.value = false;
+    ClearData();
   } catch (error) {}
+};
+const ClearData = () => {
+  payload.value = JSON.parse(dataClear);
 };
 </script>
