@@ -23,37 +23,48 @@
             <span>Order expected arrival <span class="font-semibold">23 Jan, 2021</span></span>
 
             <div class="mt-4 mx-4">
-                <Stepper>
-                    <StepperPanel header="Step 1: Basic Info">
-                        <template
-                            #content="{ index, active, highlighted, clickCallback, prevCallback, nextCallback }">
-                            <div :class="class">
-                                <p>This is the content for Step 1.</p>
-                                <button @click="nextCallback">Go to Step 2</button>
+                <div class="stepper-wrapper">
+                    <div class="stepper-item completed">
+                        <div class="step-counter"><i class="fa-solid fa-check text-white" style="font-size: 10px;"></i>
+                        </div>
+                        <div class="step-name">
+                            <div class="flex flex-column align-items-center">
+                                <i class="fa-solid fa-book text-3xl my-3 block text-green-400"></i>
+                                <span class="text-base font-medium">Order Placed</span>
                             </div>
-                        </template>
-                    </StepperPanel>
-                    <StepperPanel header="Step 2: Details">
-                        <template
-                            #content="{ index, active, highlighted, clickCallback, prevCallback, nextCallback }">
-                            <div :class="class">
-                                <p>This is the content for Step 2.</p>
-                                <button @click="prevCallback">Go to Step 1</button>
-                                <button @click="nextCallback">Go to Step 3</button>
+                        </div>
+                    </div>
+                    <div class="stepper-item ">
+                        <div class="step-counter"><i class="fa-solid fa-check text-white" style="font-size: 10px;"></i>
+                        </div>
+                        <div class="step-name">
+                            <div class="flex flex-column align-items-center">
+                                <i class="fa-solid fa-box-archive text-3xl my-3 block text-orange-400"></i>
+                                <span class="text-base font-medium">Packaging</span>
                             </div>
-                        </template>
-                    </StepperPanel>
-                    <StepperPanel header="Step 3: Confirmation">
-                        <template
-                            #content="{ index, active, highlighted, clickCallback, prevCallback, nextCallback }">
-                            <div :class="class">
-                                <p>This is the content for Step 3.</p>
-                                <button @click="prevCallback">Go to Step 2</button>
-                                <button @click="finishProcess">Finish</button>
+                        </div>
+                    </div>
+                    <div class="stepper-item active">
+                        <div class="step-counter"><i class="fa-solid fa-check text-white" style="font-size: 10px;"></i>
+                        </div>
+                        <div class="step-name">
+                            <div class="flex flex-column align-items-center">
+                                <i class="fa-solid fa-car-side text-3xl my-3 block text-orange-400"></i>
+                                <span class="text-base font-medium">Packaging</span>
                             </div>
-                        </template>
-                    </StepperPanel>
-                </Stepper>
+                        </div>
+                    </div>
+                    <div class="stepper-item">
+                        <div class="step-counter"><i class="fa-solid fa-check text-white" style="font-size: 10px;"></i>
+                        </div>
+                        <div class="step-name">
+                            <div class="flex flex-column align-items-center">
+                                <i class="fa-solid fa-handshake text-3xl my-3 block text-orange-400"></i>
+                                <span class="text-base font-medium">Packaging</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <Divider />
@@ -121,13 +132,86 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import Stepper from 'primevue/stepper';
-import StepperPanel from 'primevue/stepperpanel';
 
-steps: [
-    { label: 'Step 1', content: 'Content for step 1' },
-    { label: 'Step 2', content: 'Content for step 2' },
-    { label: 'Step 3', content: 'Content for step 3' }
-]
 </script>
+
+<style scoped>
+.stepper-wrapper {
+    font-family: Arial;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+}
+
+.stepper-item::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    top: 9px;
+    left: -50%;
+    z-index: 2;
+}
+
+.stepper-item::after {
+    position: absolute;
+    content: "";
+    border-bottom: 8px solid #FFE7D6;
+    width: 100%;
+    top: 9px;
+    left: 50%;
+    z-index: 2;
+}
+
+.stepper-item .step-counter {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #FA8232;
+    margin-bottom: 6px;
+}
+
+.stepper-item.active {
+    font-weight: bold;
+}
+
+.stepper-item.completed .step-counter {
+    background-color: #FA8232;
+}
+
+.stepper-item.completed::after {
+    position: absolute;
+    content: "";
+    border-bottom: 8px solid #FA8232;
+    width: 100%;
+    top: 9px;
+    left: 50%;
+    z-index: 3;
+}
+
+.stepper-item:first-child::before {
+    content: none;
+}
+
+.stepper-item:last-child::after {
+    content: none;
+}
+</style>
