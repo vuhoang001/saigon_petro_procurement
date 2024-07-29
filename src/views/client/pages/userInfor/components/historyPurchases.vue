@@ -1,7 +1,7 @@
 <template>
     <div class="border-1 border-round-md border-solid border-gray-300">
         <div class="font-medium py-3 border-bottom-1 border-gray-300 bg-white">
-            <p class="ml-3">LỊCH SỬ MUA HÀNG</p>
+            <p class="ml-3 font-semibold text-xl">LỊCH SỬ MUA HÀNG</p>
         </div>
 
         <div>
@@ -18,7 +18,10 @@
                 <Column field="total" header="TỔNG TIỀN" style="font-size: 14px;"></Column>
                 <Column field="action" header="HÀNG ĐỘNG" style="font-size: 14px;">
                     <template #body="slotProps">
-                        <div class="text-blue-400 cursor-pointer hover:underline">{{ slotProps.data.action }}<i class="fa-solid fa-arrow-right ml-2"></i></div>
+                        <router-link to="/client/order-detail">
+                            <div class="text-blue-400 cursor-pointer hover:underline">{{ slotProps.data.action }}<i
+                                    class="fa-solid fa-arrow-right ml-2"></i></div>
+                        </router-link>
                     </template>
                 </Column>
             </DataTable>

@@ -137,6 +137,11 @@ const router = createRouter({
                             path: 'boardSetup',
                             name: 'boardSetup',
                             component: () => import('@/views/client/pages/userInfor/components/boardSetup.vue')
+                        },
+                        {
+                            path: 'inventory',
+                            name: 'inventory',
+                            component: () => import('@/views/client/pages/userInfor/components/Inventory.vue')
                         }
                     ]
                 },
@@ -188,8 +193,8 @@ const router = createRouter({
                     // }
                 },
                 {
-                    path: 'order-detail', 
-                    name: 'OrderDetail', 
+                    path: 'order-detail',
+                    name: 'OrderDetail',
                     component: () => import('@/views/client/pages/order/OrderDetail.vue')
                 },
                 {
