@@ -22,10 +22,12 @@
               <i class="ml-4 mr-3 fa-solid fa-location-dot"></i>
               Tra cứu đơn hàng
             </li>
-            <li class="py-3 hover:bg-blue-100 cursor-pointer font-medium">
-              <i class="ml-4 mr-3 fa-solid fa-cart-shopping"></i>
-              Giỏ hàng
-            </li>
+            <router-link to="/client/inventory">
+              <li class="py-3 hover:bg-blue-100 cursor-pointer font-medium">
+                <i class="ml-4 mr-3 fa-solid fa-cart-shopping"></i>
+                Kho & hàng tồn
+              </li>
+            </router-link>
             <li class="py-3 hover:bg-blue-100 cursor-pointer font-medium">
               <i class="ml-4 mr-3 fa-regular fa-heart"></i>
               Yêu thích
