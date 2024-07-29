@@ -14,7 +14,7 @@ export default {
                     toast.add({ severity: "info", summary: "Thông báo", detail: message, life: 3000 });
                     break;
                 case "W":
-                    toast.add({ severity: "warn", summary: "Cảnh báo", detail: message, life: 3000 });
+                    toast.add({ severity: "warning", summary: "Cảnh báo", detail: message, life: 3000 });
                     break;
                 case "E":
                     toast.add({
