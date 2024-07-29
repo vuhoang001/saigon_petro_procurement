@@ -46,16 +46,16 @@ const model = ref([
                 icon: "fa-solid fa-boxes-stacked",
                 to: { name: "itemGroup" },
               },
-              {
-                label: "Đơn vị tính",
-                icon: "fa-solid fa-ruler-combined",
-                to: { name: "unitOfMeasurement" },
-              },
-              {
-                label: "Nhóm đơn vị tính",
-                icon: "fa-solid fa-code-compare",
-                to: { name: "uomGroup" },
-              },
+              // {
+              //   label: "Đơn vị tính",
+              //   icon: "fa-solid fa-ruler-combined",
+              //   to: { name: "unitOfMeasurement" },
+              // },
+              // {
+              //   label: "Nhóm đơn vị tính",
+              //   icon: "fa-solid fa-code-compare",
+              //   to: { name: "uomGroup" },
+              // },
             ],
           },
         ],

@@ -129,7 +129,7 @@ const setChartData = () => {
     labels: ["01/2024", "04/2024", "07/2024"],
     datasets: [
       {
-        label: "Doanh thu thuần",
+        label: "Doanh số",
         data: [10, 59, 90],
         fill: false,
         borderColor: documentStyle.getPropertyValue("--cyan-500"),
