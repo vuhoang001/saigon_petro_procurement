@@ -48,11 +48,11 @@ const GetByIdItem = async (id) => {
       <div class="text-center bg-white border-round-md">
         <img
           class="w-auto h-26rem py-5 my-3"
-          :src="product.image"
+          :src="dataEdit.product.main_image_path"
           :alt="product.productName"
         />
       </div>
-      <div class="grid mt-2">
+      <!-- <div class="grid mt-2">
         <div class="col-4">
           <div class="bg-white py-3 text-center border-round-md">
             <img class="w-full h-auto" :src="product.image" :alt="product.productName" />
@@ -72,7 +72,7 @@ const GetByIdItem = async (id) => {
             />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="lg:col-8 md:col-12 col-12">
       <div class="grid">

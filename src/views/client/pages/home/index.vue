@@ -561,11 +561,12 @@ const filteredSubProductMainFS = computed(() => {
                 </span>
               </div>
             </div>
-            <div class="col-3 pb-0 pl-0" v-for="item in productsFeature" :key="item.name">
+
+            <div class="col-3 pb-0 pl-0" v-for="item in products" :key="item.name">
               <div class="h-full p-1 border-1 border-solid" style="border-color: var(--surface-border)">
                 <div class="flex-item item-container">
                   <div class="mb-2 image-wrapper">
-                    <img class="mx-auto" :src="item.image" alt="" style="height: 158px; width: auto" />
+                    <img class="mx-auto" :src="item.main_image_path" alt="" style="height: 158px; width: auto" />
                     <div class="overlay flex justify-content-center align-items-center">
                       <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
                         style="font-size: 18px"></i>
@@ -573,8 +574,10 @@ const filteredSubProductMainFS = computed(() => {
                         <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
                           style="font-size: 18px"></i>
                       </router-link>
-                      <i class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
-                        style="font-size: 18px"></i>
+                      <router-link :to="`/client/detail/${item.id}`">
+                        <i class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
+                          style="font-size: 18px"></i>
+                      </router-link>
                     </div>
                   </div>
                   <div class="flex flex-column ml-2">
@@ -582,9 +585,9 @@ const filteredSubProductMainFS = computed(() => {
                       <div class="">
                         <Rating v-model="item.rating" :cancel="false" />
                       </div>
-                      <div>({{ item.voted }})</div>
+                      <div>({{ item.stock }})</div>
                     </div>
-                    <span class="my-3">{{ item.name }}</span>
+                    <span class="my-3 hidden-text">{{ item.name }}</span>
                     <span class="mb-2 blue-color">${{ item.price }}</span>
                   </div>
                 </div>
@@ -689,5 +692,4 @@ const filteredSubProductMainFS = computed(() => {
   /* Hiển thị dấu ... khi văn bản bị cắt */
   max-width: 110px;
 }
-
 </style>
