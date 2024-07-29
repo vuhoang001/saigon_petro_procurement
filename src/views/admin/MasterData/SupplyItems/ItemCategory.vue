@@ -17,6 +17,9 @@
         :value="dataEdit.products"
         tableStyle="min-width: 50rem;"
         header="surface-200"
+        :rows="10"
+        :page="1"
+        paginator
       >
         <Column header="#" :style="{ width: '5%' }">
           <template #body="slotProps">
@@ -73,6 +76,7 @@
             <label for="name">Mô tả sản phẩm</label>
             <Textarea
               id="name"
+              rows="5"
               v-model="payload.description"
               aria-describedby="name-help"
             />
@@ -92,6 +96,9 @@
             </div>
           </div>
           <div class="field">
+            <div>
+              <img :src="payload.main_image_path" alt="" srcset="" style="width: 100px" />
+            </div>
             <label for="name">Ảnh sản phẩm</label>
             <input type="file" class="ml-2" id="file-image" @change="UploadFile" />
           </div>
@@ -149,14 +156,12 @@
   font-weight: bold;
 }
 
-:deep(.p-datatable-thead th:nth-child(1) .p-column-header-content),
-:deep(.p-datatable-thead th:nth-child(2) .p-column-header-content) {
+:deep(.p-datatable-thead th:nth-child(1) .p-column-header-content) {
   display: flex;
   justify-content: center;
 }
 
-:deep(.p-datatable-tbody td:nth-child(1)),
-:deep(.p-datatable-tbody td:nth-child(2)) {
+:deep(.p-datatable-tbody td:nth-child(1)) {
   text-align: center;
 }
 </style>
@@ -170,6 +175,7 @@ import { useGlobal } from "@/services/useGlobal";
 
 const { toast, FunctionGlobal } = useGlobal();
 const editor = ClassicEditor;
+const formData = new FormData();
 
 const payload = ref({
   category: "",
@@ -196,7 +202,7 @@ onBeforeMount(() => {
 
 const GetItem = async () => {
   try {
-    const res = await API.get("products?size=10&page=1");
+    const res = await API.get("products?size=100&page=1");
     if (res.data) {
       dataEdit.value.products = res.data.products;
     }
@@ -213,11 +219,14 @@ const UpdateData = (data) => {
 };
 const UploadFile = (event) => {
   const file = event.target.files[0];
+  formData.delete("main-file");
+  formData.append("main-file", file);
 };
 const SaveItem = async () => {
+  formData.append("data", JSON.stringify(payload.value));
   const FUNAPI = payload.value.id
-    ? API.update(`products/${payload.value.id}`)
-    : API.add("products", payload.value);
+    ? API.update(`products/test/${payload.value.id}`, formData)
+    : API.add("products/test", formData);
   try {
     const res = await FUNAPI;
     if (res.data) {
@@ -233,5 +242,7 @@ const SaveItem = async () => {
 };
 const ClearData = () => {
   payload.value = JSON.parse(dataClear);
+  formData.delete("data");
+  formData.delete("main-file");
 };
 </script>
