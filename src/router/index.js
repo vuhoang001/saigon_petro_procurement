@@ -20,6 +20,11 @@ const router = createRouter({
                     component: () => import('@/views/admin/Report/index.vue')
                 },
                 {
+                    path: 'order/:id',
+                    name: 'DetailOrder',
+                    component: () => import('@/views/admin/Orders/DetailOrder.vue')
+                },
+                {
                     path: 'agen-man',
                     component: () => import('@/views/admin/MasterData/AgenMan/Index.vue'),
                     children: [

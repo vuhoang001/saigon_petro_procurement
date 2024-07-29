@@ -3,7 +3,8 @@
     <div class="flex container mx-6 mx-auto">
       <div><i class="pi pi-home mr-2"></i><span>Trang chủ</span></div>
       <div>
-        <i class="pi pi-arrow-right mr-2 ml-2"></i><span class="text-primary">Thanh toán</span>
+        <i class="pi pi-arrow-right mr-2 ml-2"></i
+        ><span class="text-primary">Thanh toán</span>
       </div>
     </div>
   </div>
@@ -81,7 +82,12 @@
           </div>
           <div class="grid align-items-end">
             <div class="col-6 flex items-center">
-              <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
+              <Checkbox
+                v-model="pizza"
+                inputId="ingredient1"
+                name="pizza"
+                value="Cheese"
+              />
               <label for="ingredient1" class="ml-2"> Giao hàng tại địa chỉ khác </label>
             </div>
           </div>
@@ -93,28 +99,44 @@
           <hr />
           <div class="flex">
             <div style="width: 20%" class="p-3">
-              <div class="flex flex-column align-items-center gap-3 border-right-1">
-                <img src="/image/cash-on-delivery.png" alt="" style="width: 32px; height: 32px" />
+              <div
+                class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
+              >
+                <img
+                  src="/image/cash-on-delivery.png"
+                  alt=""
+                  style="width: 32px; height: 32px"
+                />
                 <span>COD</span>
                 <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
               </div>
             </div>
             <div style="width: 20%" class="p-3">
-              <div class="flex flex-column align-items-center gap-3 border-right-1">
-                <img src="/image/MoMo_Logo.png" alt="" style="width: 32px; height: 32px" />
+              <div
+                class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
+              >
+                <img
+                  src="/image/MoMo_Logo.png"
+                  alt=""
+                  style="width: 32px; height: 32px"
+                />
                 <span>Ví Momo</span>
                 <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
               </div>
             </div>
             <div style="width: 20%" class="p-3">
-              <div class="flex flex-column align-items-center gap-3 border-right-1">
+              <div
+                class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
+              >
                 <img src="/image/340.png" alt="" style="width: 32px; height: 32px" />
                 <span>Zalopay</span>
                 <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
               </div>
             </div>
             <div style="width: 20%" class="p-3">
-              <div class="flex flex-column align-items-center gap-3 border-right-1">
+              <div
+                class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
+              >
                 <img src="/image/bank.png" alt="" style="width: 32px; height: 32px" />
                 <span>Chuyển khoản NH</span>
                 <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
@@ -174,8 +196,11 @@
           <div class="p-2">
             <div class="grid">
               <div class="col-3">
-                <img src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xo-sp-6783.png" alt=""
-                  style="width: 70px" />
+                <img
+                  src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xo-sp-6783.png"
+                  alt=""
+                  style="width: 70px"
+                />
               </div>
               <div class="col-9">
                 <div>
@@ -186,8 +211,11 @@
             </div>
             <div class="grid">
               <div class="col-3">
-                <img src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xo-sp-6783.png" alt=""
-                  style="width: 70px" />
+                <img
+                  src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/xo-sp-6783.png"
+                  alt=""
+                  style="width: 70px"
+                />
               </div>
               <div class="col-9">
                 <div>
@@ -222,8 +250,14 @@
               <span>$357.99 USD</span>
             </div>
             <router-link to="/client/success">
-              <Button label="ĐẶT HÀNG" icon="pi pi-arrow-right" class="w-full bg-orange-500 p-3 border-0 mt-2 font-bold"
-                iconPos="right" raised />
+              <Button
+                label="ĐẶT HÀNG"
+                icon="pi pi-arrow-right"
+                severity="warning"
+                class="w-full p-3 mt-2 font-bold"
+                iconPos="right"
+                raised
+              />
             </router-link>
           </div>
         </div>
