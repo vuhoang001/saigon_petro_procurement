@@ -18,7 +18,11 @@
         tableStyle="min-width: 50rem;"
         header="surface-200"
       >
-        <Column field="id" header="#" :style="{ width: '5%' }"></Column>
+        <Column header="#" :style="{ width: '5%' }">
+          <template #body="slotProps">
+            {{ slotProps.index + 1 }}
+          </template>
+        </Column>
         <Column field="sku" header="Mã sản phẩm" :style="{ width: '15%' }"></Column>
         <Column field="name" header="Tên sản phẩm" :style="{ width: '30%' }"></Column>
         <Column field="name" header="Nhóm sản phẩm" :style="{ width: '25%' }"></Column>
