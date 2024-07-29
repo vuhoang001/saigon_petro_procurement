@@ -13,12 +13,12 @@ onMounted(() => {
 });
 
 const activeIndex = ref(null);
-const items = ref([
-  { name: "Ngày" },
-  { name: "Tuần" },
-  { name: "Tháng" },
-  { name: "Năm" },
-]);
+// const items = ref([
+//   { name: "Ngày" },
+//   { name: "Tuần" },
+//   { name: "Tháng" },
+//   { name: "Năm" },
+// ]);
 
 const sellingProducts = reactive([
   {
@@ -198,7 +198,7 @@ const setChartOptions = () => {
           </div>
           <div class="col-9 pl-0">
             <div class="flex justify-content-between">
-              <div class="mt-3 text-lg font-bold text-gray-400">Doanh thu</div>
+              <div class="mt-3 text-lg font-bold text-gray-400">Doanh số</div>
               <div>
                 <div class="py-1 px-3 text-xs" style="background-color: #e2e6da">
                   + {{ overview.revenue.rate }}
@@ -307,7 +307,7 @@ const setChartOptions = () => {
       <div class="p-3">
         <div class="flex align-items-center justify-content-between">
           <div class="text-xl font-bold">Báo cáo mua hàng</div>
-          <ul>
+          <!-- <ul>
             <li
               class="inline-block mr-7 cursor-pointer font-semibold text-lg"
               v-for="(item, index) in items"
@@ -320,7 +320,7 @@ const setChartOptions = () => {
             >
               {{ item.name }}
             </li>
-          </ul>
+          </ul> -->
         </div>
         <Chart type="bar" :data="chartData" :options="chartOptions" class="h-30rem" />
       </div>
