@@ -267,7 +267,7 @@ const products = ref([
 
         <div>
           <div class="grid mt-4">
-            <div class="col-3 p-2"  v-for="(item, index) in data" :key="index">
+            <div class="col-3 p-2" v-for="(item, index) in data" :key="index">
               <div class="p-3 border-1 border-round-md hover:shadow-2 item-container" style="border-color: #cbd5e1">
                 <div class="mb-2 image-wrapper">
                   <img src="/demo/data/images/image-11.png" alt="" style="width: 216px; height: 188px" />
@@ -278,8 +278,10 @@ const products = ref([
                       <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
                         style="font-size: 18px"></i>
                     </router-link>
-                    <i class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
-                      style="font-size: 18px"></i>
+                    <router-link :to="`/client/detail/${item.id}`">
+                      <i class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
+                        style="font-size: 18px"></i>
+                    </router-link>
                   </div>
                 </div>
                 <div class="flex flex-column">
