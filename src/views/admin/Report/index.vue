@@ -6,15 +6,12 @@
       <Button label="Tuỳ chỉnh" outlined icon="pi pi-chevron-down" severity="secondary" />
     </div>
   </div>
-  <div class="card mt-5 flex">
-    <Dropdown
-      :options="[{ name: 'Năm nay' }]"
-      optionLabel="name"
-      v-model="year"
-      class="w-full"
-    ></Dropdown>
+  <div class="card mt-5">
+    
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
+
+const year = ref({ name: "Năm nay" });
 </script>

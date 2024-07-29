@@ -107,7 +107,11 @@ const GetByIdItem = async (id) => {
                 />
               </InputGroup>
             </div>
-            <div class="ml-4"><Button class="btn">Thêm vào giỏ</Button></div>
+            <div class="ml-4">
+              <router-link to="/client/cart"
+                ><Button class="btn">Thêm vào giỏ</Button></router-link
+              >
+            </div>
           </div>
         </div>
         <div class="lg:col-6 md:col-12 px-5 mt-6" style="word-wrap: break-word">
