@@ -70,7 +70,7 @@
             <Divider />
 
             <div>
-                <span class="text-xl font-medium my-4 block">Order Activity</span>
+                <span class="text-xl font-medium my-4 block">Hoạt động Đơn hàng</span>
 
                 <div class="flex flex-col mt-3">
                     <div>

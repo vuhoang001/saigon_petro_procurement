@@ -1,5 +1,16 @@
 <script setup>
 import { ref, onMounted, reactive } from "vue";
+import api from "@/api/api-main";
+const products = ref();
+
+const getData = async () => {
+  const res = await api.get("products?size=10&page=1");
+  products.value = res.data.products;
+};
+
+onMounted(() => {
+  getData();
+});
 
 const activeIndex = ref(null);
 const items = ref([
@@ -113,13 +124,13 @@ const setChartData = () => {
     labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7"],
     datasets: [
       {
-        label: "Doanh số",
+        label: "Đơn hàng hoàn tất",
         backgroundColor: documentStyle.getPropertyValue("--cyan-500"),
         borderColor: documentStyle.getPropertyValue("--cyan-500"),
         data: [65, 59, 80, 81, 56, 55, 40],
       },
       {
-        label: "Đơn hàng",
+        label: "Đơn hàng mới",
         backgroundColor: documentStyle.getPropertyValue("--gray-500"),
         borderColor: documentStyle.getPropertyValue("--gray-500"),
         data: [28, 48, 40, 19, 86, 27, 90],
@@ -327,21 +338,21 @@ const setChartOptions = () => {
         </div>
         <div
           class="flex align-items-center mb-2"
-          v-for="(item, index) in sellingProducts"
+          v-for="(item, index) in products"
           :key="index"
         >
           <div
             class="col-3 flex justify-content-center align-items-center bg-gray-200 border-round-md"
           >
-            <image :src="item.image" :alt="item.productName" width="100%" />
+            <img :src="item.main_image_path" alt="" style="width: 100%" />
           </div>
           <div class="col-9">
-            <div class="font-bold text-lg">{{ item.productName }}</div>
+            <div class="font-bold text-lg">{{ item.name }}</div>
             <div class="flex mt-2">
               <div class="bg-green-300 px-1 py-1 border-round-lg text-white">
-                {{ item.productId }}
+                # {{ item.sku }}
               </div>
-              <div class="px-1 py-1 ml-3">{{ item.quantity }} chai</div>
+              <!-- <div class="px-1 py-1 ml-3">{{ item.quantity }} chai</div> -->
             </div>
           </div>
         </div>
@@ -403,6 +414,7 @@ const setChartOptions = () => {
   width: 6rem;
   text-align: center;
 }
+
 .appoved {
   display: inline-block;
   padding: 0.5rem;
