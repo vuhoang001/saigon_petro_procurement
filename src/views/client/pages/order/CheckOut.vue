@@ -244,7 +244,7 @@
             <Button
               label="ĐẶT HÀNG"
               icon="pi pi-arrow-right"
-              class="w-full bg-orange-500 p-3 border-0 mt-2"
+              class="w-full bg-orange-500 p-3 border-0 mt-2 font-bold"
               iconPos="right"
               raised
             />

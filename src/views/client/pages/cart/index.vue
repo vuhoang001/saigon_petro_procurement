@@ -144,8 +144,11 @@ const confirmCart = () => {
           </div>
           <div style="height: 1px; background-color: black; margin: 10px 0"></div>
           <router-link to="/client/check-out">
-            <Button @click="confirmCart" class="w-full mb-3" style="display: block"
-              >Hoàn tất đặt hàng</Button
+            <Button
+              @click="confirmCart"
+              class="w-full mb-3 uppercase font-bold"
+              style="display: block"
+              >Thanh toán</Button
             >
           </router-link>
         </div>
