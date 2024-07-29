@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <span>Order expected arrival <span class="font-semibold">23 Jan, 2021</span></span>
+            <span>Dự kiến ngày giao hàng <span class="font-semibold">23 tháng 1, 2021.</span></span>
 
             <div class="mt-4 mx-4">
                 <div class="stepper-wrapper">
@@ -79,7 +79,7 @@
                     <div class="flex flex-column justify-content-around ml-3">
                         <span>Đơn hàng của bạn đã được giao. Cảm ơn bạn đã mua sắm tại Clicon!
                         </span>
-                        <span>Ngày 20 tháng 1 năm 2021 lúc 5:32 chiều
+                        <span>Ngày 28 tháng 1 năm 2021 lúc 5:32 chiều
                         </span>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                     <div class="flex flex-column justify-content-around ml-3">
                         <span>Nhân viên giao hàng của chúng tôi (John Wick) đã lấy đơn hàng của bạn để giao.
                         </span>
-                        <span>Ngày 21 tháng 1 năm 2021 lúc 12:22 chiều
+                        <span>Ngày 26 tháng 1 năm 2021 lúc 12:22 chiều
                         </span>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
                         <span>Đơn hàng của bạn đã đến trung tâm phân phối cuối cùng.</span>
-                        <span>Ngày 24 tháng 1 năm 2021 lúc 6:12 sáng
+                        <span>Ngày 20 tháng 1 năm 2021 lúc 6:12 sáng
                         </span>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                     <div class="flex flex-column justify-content-around ml-3">
                         <span>Đơn hàng của bạn đã được xác nhận thành công
                         </span>
-                        <span>Ngày 26 tháng 1 năm 2021 lúc 2:26 chiều
+                        <span>Ngày 18 tháng 1 năm 2021 lúc 2:26 chiều
                         </span>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                     <div class="flex flex-column justify-content-around ml-3">
                         <span>Đơn hàng của bạn đã được xác nhận.
                         </span>
-                        <span>Ngày 28 tháng 1 năm 2021 lúc 4:12 chiều
+                        <span>Ngày 10 tháng 1 năm 2021 lúc 4:12 chiều
                         </span>
                     </div>
                 </div>

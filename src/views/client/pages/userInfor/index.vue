@@ -18,10 +18,6 @@
                 Lịch sử mua hàng
               </li>
             </router-link>
-            <li class="py-3 hover:bg-blue-100 cursor-pointer font-medium">
-              <i class="ml-4 mr-3 fa-solid fa-location-dot"></i>
-              Tra cứu đơn hàng
-            </li>
             <router-link to="/client/setup/inventory">
               <li class="py-3 hover:bg-blue-100 cursor-pointer font-medium">
                 <i class="ml-4 mr-3 fa-solid fa-cart-shopping"></i>

@@ -39,11 +39,10 @@ const brands = ref([
 ]);
 
 const options = ref([
-  { name: "New York", code: "NY" },
-  { name: "Rome", code: "RM" },
-  { name: "London", code: "LDN" },
-  { name: "Istanbul", code: "IST" },
-  { name: "Paris", code: "PRS" },
+  { name: "Giá giảm dần", code: "NY" },
+  { name: "Giá tăng dần", code: "RM" },
+  { name: "Sắp xếp A -> Z", code: "LDN" },
+  { name: "Sắp xếp Z -> A", code: "IST" },
 ]);
 
 const selectedOption = ref(null);
@@ -242,7 +241,7 @@ const products = ref([
           </div>
           <div>
             <span class="mr-3">Sắp xếp:</span>
-            <Dropdown v-model="selectedOption" :options="options" optionLabel="name" placeholder="Select"
+            <Dropdown v-model="selectedOption" :options="options" optionLabel="name" placeholder="Lựa chọn"
               class="w-full md:w-14rem" />
           </div>
         </div>
