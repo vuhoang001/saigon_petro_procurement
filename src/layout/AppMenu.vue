@@ -33,16 +33,16 @@ const model = ref([
             ],
           },
           {
-            label: "Hàng hoá",
+            label: "Sản phẩm",
             icon: "fa-solid fa-box-archive",
             items: [
               {
-                label: "Danh mục hàng hóa",
+                label: "Danh mục sản phẩm",
                 icon: "fa-solid fa-box-archive",
                 to: { name: "itemCategory" },
               },
               {
-                label: "Nhóm hàng hóa",
+                label: "Nhóm sản phẩm",
                 icon: "fa-solid fa-boxes-stacked",
                 to: { name: "itemGroup" },
               },
@@ -58,22 +58,6 @@ const model = ref([
               },
             ],
           },
-          {
-            label: "Thiết lập phê duyệt",
-            icon: "fa-solid fa-clipboard",
-            items: [
-              {
-                label: "Cấp phê duyệt",
-                icon: "fa-solid fa-list-check",
-                to: { name: "approvalLevel" },
-              },
-              {
-                label: "Mẫu phê duyệt",
-                icon: "fa-solid fa-file-circle-check",
-                to: { name: "approvalTemplate" },
-              },
-            ],
-          },
         ],
       },
       {
@@ -82,31 +66,9 @@ const model = ref([
         to: { name: "discount" },
       },
       {
-        label: "Yêu cầu mua hàng",
+        label: "Đơn đặt hàng",
         icon: "fa-solid fa-clipboard-check",
-        items: [
-          {
-            label: "Danh sách yêu cầu",
-            icon: "fa-solid fa-file-lines",
-            to: { name: "purchaseList" },
-          },
-          {
-            label: "Phê duyệt yêu cầu",
-            icon: "fa-solid fa-file-signature",
-            items: [
-              {
-                label: "Trạng thái phê duyệt",
-                icon: "fa-solid fa-file-circle-question",
-                to: { name: "approvalStatus" },
-              },
-              {
-                label: "Quyết định phê duyệt",
-                icon: "fa-solid fa-file-circle-check",
-                to: { name: "approvalDecision" },
-              },
-            ],
-          },
-        ],
+        to: { name: "purchaseList" },
       },
       {
         label: "Báo cáo",

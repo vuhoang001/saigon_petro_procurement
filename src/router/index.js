@@ -154,10 +154,19 @@ const router = createRouter({
                     //     middleware: [auth]
                     // }
                 },
+               
                 {
                     path: 'order',
                     name: 'order',
                     component: () => import('@/views/client/pages/order/index.vue')
+                },
+                {
+                    path: 'check-out',
+                    name: 'CheckOut',
+                    component: () => import('@/views/client/pages/order/CheckOut.vue')
+                    // meta: {
+                    //     middleware: [auth]
+                    // }
                 },
                 {
                     path: 'menu',

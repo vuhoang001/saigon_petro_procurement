@@ -87,7 +87,7 @@ const data = ref([
 <template>
   <div class="">
     <div class="flex justify-content-between align-items-center mb-4">
-      <div class="text-2xl font-semibold uppercase">Báo cáo trạng thái phê duyệt</div>
+      <div class="text-2xl font-semibold uppercase">Danh sách đơn hàng</div>
       <Button
         label="Cập nhật"
         icon="fa-solid fa-rotate-right"
@@ -97,7 +97,7 @@ const data = ref([
 
     <DataTable :value="products" tableStyle="min-width: 50rem;" header="surface-200">
       <Column field="id" header="#" :style="{ width: '3%' }"></Column>
-      <Column field="docCode" header="Mã chứng từ" :style="{ width: '10%' }">
+      <Column field="docCode" header="Mã đơn hàng" :style="{ width: '10%' }">
         <template #body="data">
           <span
             ><i class="pi pi-arrow-right mr-3 text-yellow-500"></i
@@ -105,8 +105,8 @@ const data = ref([
           >
         </template>
       </Column>
-      <Column field="docName" header="Tên chứng từ" :style="{ width: '15%' }"></Column>
-      <Column field="createdBy" header="Người tạo" :style="{ width: '10%' }"></Column>
+      <Column field="docName" header="Tên đơn hàng" :style="{ width: '15%' }"></Column>
+      <Column field="createdBy" header="Khách hàng" :style="{ width: '10%' }"></Column>
       <Column field="status" header="Trạng thái" :style="{ width: '13%' }"></Column>
       <Column field="note" header="Ghi chú" :style="{ width: '20%' }"></Column>
       <Column header="Hành động" :style="{ width: '20%' }">
