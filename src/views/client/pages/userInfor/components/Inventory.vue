@@ -6,7 +6,7 @@
 
         <div>
             <DataTable :value="products" paginator :rows="10" header="Product Inventory" tableStyle="min-width: 50rem">
-                <Column field="sku" header="MÃ SẢN PHẨM" style="font-size: 14px;"></Column>
+                <Column field="skuu" header="MÃ SẢN PHẨM" style="font-size: 14px;"></Column>
                 <Column field="name" header="TÊN SẢN PHẨM" style="font-size: 14px;"></Column>
                 <Column field="stock" header="TỒN KHO" style="font-size: 14px;"></Column>
             </DataTable>
