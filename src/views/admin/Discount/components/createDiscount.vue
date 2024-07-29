@@ -59,6 +59,18 @@
                 </li>
               </ul>
             </div>
+            <div class="mt-3">
+              <label class="text-base font-bold">Điều kiện tối thiểu</label>
+              <div class="p-2">{{ objDiscount.MinCondition }}</div>
+            </div>
+            <div class="mt-3">
+              <label class="text-base font-bold">Sản phẩm áp dụng</label>
+              <div class="p-2">{{ objDiscount.productApprove }}</div>
+            </div>
+            <div class="mt-3">
+              <label class="text-base font-bold">Đối tượng khách hàng</label>
+              <div class="p-2">{{ objDiscount.CustomerAprove }}</div>
+            </div>
             <Divider></Divider>
             <span class="text-base"
               >Chương trình khuyến mãi được tạo bảo Admin vào ngày {{}}</span
@@ -143,16 +155,16 @@
               <div>
                 <RadioButton
                   inputId="applyProduct"
-                  name="applyProduct"
-                  value="productGrp"
+                  v-model="objDiscount.productApprove"
+                  value="Sản phẩm áp dụng"
                 ></RadioButton>
                 <label for="applyProduct" class="ml-2">Nhóm sản phẩm</label>
               </div>
               <div class="mt-2">
                 <RadioButton
                   inputId="applyProduct"
-                  name="applyProduct"
-                  value="product"
+                  v-model="objDiscount.productApprove"
+                  value="Nhóm sản phẩm"
                 ></RadioButton>
                 <label for="applyProduct" class="ml-2">Sản phẩm</label>
               </div>
@@ -171,30 +183,67 @@
             <div class="flex flex-column mt-3">
               <div>
                 <RadioButton
-                  inputId="minCondition1"
-                  name="minCondition"
-                  value="notRequired"
+                  v-model="objDiscount.MinCondition"
+                  value="Không yêu cầu"
                 ></RadioButton>
-                <label for="minCondition1" class="ml-2">Không yêu cầu</label>
+                <label class="ml-2">Không yêu cầu</label>
               </div>
               <div class="mt-2">
                 <RadioButton
                   inputId="minCondition2"
-                  name="minCondition"
-                  value="minPurchase"
+                  v-model="objDiscount.MinCondition"
+                  value="Giá trị mua tối thiểu"
                 ></RadioButton>
                 <label for="minCondition2" class="ml-2">Giá trị mua tối thiểu</label>
               </div>
               <InputText type="text" class="mt-2" placeholder="0 đ" />
               <div class="mt-2">
                 <RadioButton
+                  v-model="objDiscount.MinCondition"
+                  value="Số lượng sản phẩm tối thiểu"
                   inputId="minCondition3"
-                  name="minCondition"
-                  value="minProduct"
                 ></RadioButton>
                 <label for="minCondition3" class="ml-2"
                   >Số lượng sản phẩm tối thiểu</label
                 >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
+        <div class="card h-14rem">
+          <label for="" class="text-xl font-bold">Đối tượng khách hàng</label>
+          <div>
+            <div class="flex flex-column mt-3">
+              <div>
+                <RadioButton
+                  v-model="objDiscount.CustomerAprove"
+                  value="Không giới hạn khách hàng"
+                ></RadioButton>
+                <label class="ml-2">Không giới hạn khách hàng</label>
+              </div>
+              <div class="mt-2">
+                <RadioButton
+                  inputId="minCondition2"
+                  v-model="objDiscount.CustomerAprove"
+                  value="Nhóm khách hàng"
+                ></RadioButton>
+                <label for="minCondition2" class="ml-2">Nhóm khách hàng</label>
+              </div>
+              <div class="mt-2">
+                <RadioButton
+                  inputId="minCondition3"
+                  v-model="objDiscount.CustomerAprove"
+                  value="Tuỳ chọn khách hàng"
+                ></RadioButton>
+                <label for="minCondition3" class="ml-2">Tuỳ chọn khách hàng</label>
+              </div>
+              <div class="mt-1">
+                <IconField iconPosition="left" class="mt-3">
+                  <InputIcon class="pi pi-search"> </InputIcon>
+                  <InputText placeholder="Tìm kiếm" class="w-full" />
+                </IconField>
               </div>
             </div>
           </div>
@@ -247,6 +296,10 @@ const objDiscount = ref({
   discountType: [],
   minCondition: "",
   productApply: "",
+  productApprove: "Nhóm sản phẩm",
+  CustomerAprove: "Không giới hạn khách hàng",
+  MinCondition: "Không yêu cầu",
+  MinConditionValue: 0,
 });
 const dataEdit = reactive({});
 

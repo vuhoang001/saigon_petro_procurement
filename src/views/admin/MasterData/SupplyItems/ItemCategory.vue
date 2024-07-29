@@ -225,8 +225,8 @@ const UploadFile = (event) => {
 const SaveItem = async () => {
   formData.append("data", JSON.stringify(payload.value));
   const FUNAPI = payload.value.id
-    ? API.update(`products/test/${payload.value.id}`, formData)
-    : API.add("products/test", formData);
+    ? API.update(`products/${payload.value.id}`, formData)
+    : API.add("products", formData);
   try {
     const res = await FUNAPI;
     if (res.data) {
