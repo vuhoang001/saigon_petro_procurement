@@ -175,12 +175,22 @@ const router = createRouter({
                     component: () => import('@/views/client/pages/order/index.vue')
                 },
                 {
+                    path: 'search-order',
+                    name: 'SearchOrder',
+                    component: () => import('@/views/client/pages/order/SearchOrder.vue')
+                },
+                {
                     path: 'check-out',
                     name: 'CheckOut',
                     component: () => import('@/views/client/pages/order/CheckOut.vue')
                     // meta: {
                     //     middleware: [auth]
                     // }
+                },
+                {
+                    path: 'order-detail', 
+                    name: 'OrderDetail', 
+                    component: () => import('@/views/client/pages/order/OrderDetail.vue')
                 },
                 {
                     path: 'menu',
