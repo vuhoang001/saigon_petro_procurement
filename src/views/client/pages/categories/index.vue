@@ -1,6 +1,6 @@
 <script setup>
-import { reactive, ref } from "vue";
-
+import { ref, onBeforeMount } from "vue";
+import api from "@/api/api-main"
 const categoryChecked = ref(null);
 const sliderValue = ref([0, 19000]);
 const priceRangeChecked = ref(null);
@@ -59,6 +59,18 @@ const selectedTest = ref([
     name: "Sino",
   },
 ]);
+
+const data = ref()
+
+const getData = async () => {
+  const res = await api.get("products?size=10&page=1")
+  data.value = res.data.products
+}
+
+onBeforeMount(() => {
+  getData()
+})
+
 const updateChecked = (index) => {
   const brand = brands.value[index];
   if (brandsChecked.value.includes(brand)) {
@@ -136,17 +148,10 @@ const products = ref([
           <h1 class="size-16px">DANH MỤC</h1>
           <div v-for="(item, index) in categories" :key="index">
             <div class="mb-3">
-              <RadioButton
-                v-model="categoryChecked"
-                :inputId="`categoryChecked${index + 1}`"
-                name="category"
-                :value="item"
-              />
-              <label
-                :for="`categoryChecked${index + 1}`"
-                class="ml-2 gray-color-4 hover:text-green-600"
-                >{{ item }}</label
-              >
+              <RadioButton v-model="categoryChecked" :inputId="`categoryChecked${index + 1}`" name="category"
+                :value="item" />
+              <label :for="`categoryChecked${index + 1}`" class="ml-2 gray-color-4 hover:text-green-600">{{ item
+                }}</label>
             </div>
           </div>
         </div>
@@ -155,26 +160,17 @@ const products = ref([
         </div>
         <div>
           <h1 class="size-16px">GIÁ</h1>
-          <Slider
-            v-model="sliderValue"
-            range
-            class="max-w-full"
-            pt:range:class="orange-color-bg"
-          />
+          <Slider v-model="sliderValue" range class="max-w-full" pt:range:class="orange-color-bg" />
           <InputText v-model.number="sliderValue" class="w-full mt-4" />
         </div>
 
         <div class="flex justify-content-between mt-3">
-          <button
-            class="px-5 py-2 bg-white border-1 border-round-sm gray-color-2 hover:text-orange-500"
-            style="border-color: #cbd5e1"
-          >
+          <button class="px-5 py-2 bg-white border-1 border-round-sm gray-color-2 hover:text-orange-500"
+            style="border-color: #cbd5e1">
             <span class="text-base">Giá thấp nhất</span>
           </button>
-          <button
-            class="px-5 py-2 bg-white border-1 border-round-sm gray-color-2 hover:text-orange-500"
-            style="border-color: #cbd5e1"
-          >
+          <button class="px-5 py-2 bg-white border-1 border-round-sm gray-color-2 hover:text-orange-500"
+            style="border-color: #cbd5e1">
             <span class="text-base">Giá cao nhất</span>
           </button>
         </div>
@@ -182,18 +178,10 @@ const products = ref([
         <div class="mt-4">
           <div v-for="(item, index) in priceRange" :key="index">
             <div class="mb-2">
-              <RadioButton
-                v-model="priceRangeChecked"
-                :inputId="`priceRangeChecked${index + 1}`"
-                name="priceRange"
-                :value="item"
-                pt:input:class="bg-orange-500"
-              />
-              <label
-                :for="`priceRangeChecked${index + 1}`"
-                class="ml-2 gray-color-4 hover:text-green-600"
-                >{{ item }}</label
-              >
+              <RadioButton v-model="priceRangeChecked" :inputId="`priceRangeChecked${index + 1}`" name="priceRange"
+                :value="item" pt:input:class="bg-orange-500" />
+              <label :for="`priceRangeChecked${index + 1}`" class="ml-2 gray-color-4 hover:text-green-600">{{ item
+                }}</label>
             </div>
           </div>
         </div>
@@ -205,11 +193,7 @@ const products = ref([
           <h1 class="size-16px">THƯƠNG HIỆU</h1>
           <div class="" v-for="(item, index) in brands" :key="index">
             <div class="mt-2">
-              <TriStateCheckbox
-                :model="brandsChecked.includes(item)"
-                @change="updateChecked(index)"
-                variant="filled"
-              />
+              <TriStateCheckbox :model="brandsChecked.includes(item)" @change="updateChecked(index)" variant="filled" />
               <span class="ml-2">{{ item }}</span>
             </div>
           </div>
@@ -221,37 +205,26 @@ const products = ref([
 
         <div class="p-3 border-3" style="border-color: #ffe7d6">
           <div class="flex flex-column justify-content-center align-items-center mb-2">
-            <img
-              src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png"
-              alt=""
-              style="width: 180px; height: 180px"
-            />
+            <img src="https://apsaigonpetro.com/watermark/product/560x560x2/upload/product/sp-force-4t-sl-1739.png"
+              alt="" style="width: 180px; height: 180px" />
           </div>
           <div class="flex flex-column justify-content-center align-items-center">
             <span class="size-24px font-semibold flex text-center mt-3">
               Heavy on Features. <br />
               Light on Price.
             </span>
-            <span class="mt-3"
-              >Only for:
-              <button
-                class="font-semibold py-2 px-3 border-none border-round-sm ml-1"
-                style="background-color: #f3de6d"
-              >
+            <span class="mt-3">Only for:
+              <button class="font-semibold py-2 px-3 border-none border-round-sm ml-1"
+                style="background-color: #f3de6d">
                 $299 USD
-              </button></span
-            >
-            <button
-              class="w-full text-white py-3 border-none mt-3 border-round-xs font-bold"
-              style="background-color: #fa8232"
-            >
+              </button></span>
+            <button class="w-full text-white py-3 border-none mt-3 border-round-xs font-bold"
+              style="background-color: #fa8232">
               <i class="fa-solid fa-cart-shopping"></i>
               THÊM VÀO GIỎ
             </button>
-            <button
-              class="w-full text-white py-3 border-2 mt-3 border-round-xs font-bold"
-              style="border-color: #fa8232"
-            >
+            <button class="w-full text-white py-3 border-2 mt-3 border-round-xs font-bold"
+              style="border-color: #fa8232">
               <span style="color: #fa8232">XEM CHI TIẾT</span>
 
               <i class="fa-solid fa-arrow-right ml-2" style="color: #fa8232"></i>
@@ -264,30 +237,18 @@ const products = ref([
           <div class="w-30rem">
             <IconField iconPosition="right">
               <InputIcon class="pi pi-search"> </InputIcon>
-              <InputText
-                class="w-30rem"
-                v-model="value1"
-                placeholder="Tìm kiếm sản phẩm..."
-              />
+              <InputText class="w-30rem" placeholder="Tìm kiếm sản phẩm..." />
             </IconField>
           </div>
           <div>
             <span class="mr-3">Sắp xếp:</span>
-            <Dropdown
-              v-model="selectedOption"
-              :options="options"
-              optionLabel="name"
-              placeholder="Select"
-              class="w-full md:w-14rem"
-            />
+            <Dropdown v-model="selectedOption" :options="options" optionLabel="name" placeholder="Select"
+              class="w-full md:w-14rem" />
           </div>
         </div>
 
         <div class="mt-4">
-          <div
-            class="flex align-items-center justify-content-between p-3"
-            style="background-color: #f2f4f5"
-          >
+          <div class="flex align-items-center justify-content-between p-3" style="background-color: #f2f4f5">
             <div class="border-round-md">
               <span>Bộ lọc: </span>
 
@@ -306,37 +267,30 @@ const products = ref([
 
         <div>
           <div class="grid mt-4">
-            <div class="col-3 p-2" v-for="(item, index) in products" :key="index">
-              <div
-                class="p-3 border-1 border-round-md hover:shadow-2 item-container"
-                style="border-color: #cbd5e1"
-              >
+            <div class="col-3 p-2" v-for="(item, index) in data" :key="index">
+              <div class="p-3 border-1 border-round-md hover:shadow-2 item-container" style="border-color: #cbd5e1">
                 <div class="mb-2 image-wrapper">
-                  <img :src="item.image" alt="" style="width: 216px; height: 188px" />
+                  <img src="/demo/data/images/image-11.png" alt="" style="width: 216px; height: 188px" />
                   <div class="overlay flex justify-content-center align-items-center">
-                    <i
-                      class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
-                      style="font-size: 18px"
-                    ></i>
+                    <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
+                      style="font-size: 18px"></i>
                     <router-link to="/client/cart">
-                      <i
-                        class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
-                        style="font-size: 18px"
-                      ></i>
+                      <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
+                        style="font-size: 18px"></i>
                     </router-link>
-                    <i
-                      class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
-                      style="font-size: 18px"
-                    ></i>
+                    <router-link :to="`/client/detail/${item.id}`">
+                      <i class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
+                        style="font-size: 18px"></i>
+                    </router-link>
                   </div>
                 </div>
                 <div class="flex flex-column">
                   <span class="flex size-12px my-2">
                     <Rating v-model="item.rating" :cancel="false" />
-                    <span class="ml-2">({{ item.voted }})</span>
+                    <span class="ml-2">({{ item.stock }})</span>
                   </span>
-                  <span class="my-2">{{ item.title }}</span>
-                  <span class="my-2" style="color: #2da5f3">{{ item.price }}</span>
+                  <span class="my-2 h-3rem">{{ item.name }}</span>
+                  <span class="my-2" style="color: #2da5f3">$ {{ item.price }}</span>
                 </div>
               </div>
             </div>
