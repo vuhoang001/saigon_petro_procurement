@@ -3,9 +3,9 @@ import { ref } from "vue";
 const products = ref([
   {
     id: "001",
-    docName: "Yêu cầu đặt hàng 001",
+    docName: "Yêu cầu đặt hàng",
     docCode: "YCDHxxx",
-    createdBy: "Đại lý Trường an",
+    createdBy: "Công ty TNHH Đức Phượng",
     startDate: "21312",
     tmpForm: "Phê duyệt 3 cấp",
     status: "Chờ phê duyệt",
@@ -13,53 +13,53 @@ const products = ref([
   },
   {
     id: "002",
-    docName: "Yêu cầu đặt hàng 002",
+    docName: "Yêu cầu đặt hàng",
     docCode: "YCDHxxx",
-    createdBy: "Đại lý Trường an",
+    createdBy: "Công ty Cổ phần thương mại Nhân Hòa",
     startDate: "21312",
     tmpForm: "Phê duyệt 3 cấp",
     status: "Chờ phê duyệt",
-    note: "Đơn đặt hàng 04/2024 - Đợt 2",
+    note: "Đơn đặt hàng 04/2024 - Đợt 3",
   },
   {
     id: "003",
-    docName: "Yêu cầu đặt hàng 003",
+    docName: "Yêu cầu đặt hàng",
     docCode: "YCDHxxx",
     createdBy: "Đại lý Trường an",
     startDate: "21312",
     tmpForm: "Phê duyệt 3 cấp",
     status: "Chờ phê duyệt",
-    note: "Đơn đặt hàng 04/2024 - Đợt 2",
+    note: "Đơn đặt hàng 07/2024 - Đợt 1",
   },
   {
     id: "003",
-    docName: "Yêu cầu đặt hàng 003",
+    docName: "Yêu cầu đặt hàng",
     docCode: "YCDHxxx",
-    createdBy: "Đại lý Trường an",
+    createdBy: "Công ty TNHH HBG",
     startDate: "21312",
     tmpForm: "Phê duyệt 3 cấp",
     status: "Chờ phê duyệt",
-    note: "Đơn đặt hàng 04/2024 - Đợt 2",
+    note: "Đơn đặt hàng 06/2024 - Đợt 3",
   },
   {
     id: "003",
-    docName: "Yêu cầu đặt hàng 003",
+    docName: "Yêu cầu đặt hàng",
     docCode: "YCDHxxx",
-    createdBy: "Đại lý Trường an",
+    createdBy: "Công ty Cổ phần Xăng dầu An Phước",
     startDate: "21312",
     tmpForm: "Phê duyệt 3 cấp",
     status: "Chờ phê duyệt",
-    note: "Đơn đặt hàng 04/2024 - Đợt 2",
+    note: "Đơn đặt hàng 04/2024 - Đợt 5",
   },
   {
     id: "003",
-    docName: "Yêu cầu đặt hàng 003",
+    docName: "Yêu cầu đặt hàng",
     docCode: "YCDHxxx",
-    createdBy: "Đại lý Trường an",
+    createdBy: "Công ty TNHH Alimex",
     startDate: "21312",
     tmpForm: "Phê duyệt 3 cấp",
     status: "Chờ phê duyệt",
-    note: "Đơn đặt hàng 04/2024 - Đợt 2",
+    note: "Đơn đặt hàng 04/2024 - Đợt 4",
   },
 ]);
 
@@ -83,6 +83,15 @@ const data = ref([
     approvalDate: "16/04-2024",
   },
 ]);
+function generateRandomString(length) {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 </script>
 <template>
   <div class="">
@@ -96,20 +105,29 @@ const data = ref([
     </div>
 
     <DataTable :value="products" tableStyle="min-width: 50rem;" header="surface-200">
-      <Column field="id" header="#" :style="{ width: '3%' }"></Column>
+      <Column field="id" header="#" :style="{ width: '3%' }">
+        <template #body="slotProps">
+          {{ slotProps.index + 1 }}
+        </template>
+      </Column>
       <Column field="docCode" header="Mã đơn hàng" :style="{ width: '10%' }">
-        <template #body="data">
+        <template #body>
           <span
-            ><i class="pi pi-arrow-right mr-3 text-yellow-500"></i
-            >{{ data.data.docCode }}</span
+            ><router-link to="/admin/order/1"
+              ><i class="pi pi-arrow-right mr-3 text-yellow-500"></i></router-link
+            >{{ generateRandomString(6) }}</span
           >
         </template>
       </Column>
-      <Column field="docName" header="Tên đơn hàng" :style="{ width: '15%' }"></Column>
-      <Column field="createdBy" header="Khách hàng" :style="{ width: '10%' }"></Column>
-      <Column field="status" header="Trạng thái" :style="{ width: '13%' }"></Column>
-      <Column field="note" header="Ghi chú" :style="{ width: '20%' }"></Column>
-      <Column header="Hành động" :style="{ width: '20%' }">
+      <Column field="docName" header="Tên đơn hàng" :style="{ width: '15%' }">
+        <template #body="slotProps">
+          {{ slotProps.data.docName + " " + generateRandomString(3) }}
+        </template>
+      </Column>
+      <Column field="createdBy" header="Khách hàng" :style="{ width: '23%' }"></Column>
+      <Column field="status" header="Trạng thái" :style="{ width: '10%' }"></Column>
+      <Column field="note" header="Ghi chú" :style="{ width: '18%' }"></Column>
+      <Column header="Hành động" :style="{ width: '10%' }">
         <template #body> <Button label="Phê duyệt" text outlined /> </template
       ></Column>
     </DataTable>

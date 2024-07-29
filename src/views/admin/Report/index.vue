@@ -55,7 +55,7 @@
       </div>
       <div class="col-3">
         <div class="card">
-          <h6 class="m-0 mb-2">Doanh thu thuần</h6>
+          <h6 class="m-0 mb-2">Doanh số</h6>
           <h5 class="m-0 mb-2">98,334,233đ</h5>
           <div class="text-green-500">
             <i class="pi pi-caret-up"></i> <span>134,67%</span>
