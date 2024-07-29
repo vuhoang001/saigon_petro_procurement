@@ -185,7 +185,7 @@
                 />
               </div>
               <div class="w-10">
-                <InputText class="w-full" />
+                <InputText class="w-full" placeholder="Thêm nội dung ghi chú" />
               </div>
               <div class="w-1">
                 <Button icon="pi pi-send" severity="secondary" outlined raised />
@@ -209,9 +209,14 @@
                     </div>
                   </div>
                   <div class="flex justify-content-between mb-6">
-                    <div class="flex gap-2 align-items-center">
-                      <i class="pi pi-circle-fill"></i>
-                      <span>Email xác nhận đơn hàng đã được gửi đến khách hàng</span>
+                    <div>
+                      <div class="flex gap-2 align-items-center">
+                        <i class="pi pi-circle-fill"></i>
+                        <span>Email xác nhận đơn hàng đã được gửi đến khách hàng</span>
+                      </div>
+                      <div class="ml-4 mt-3">
+                        <Button label="Gửi lại" />
+                      </div>
                     </div>
                     <div>
                       <span> 07:00 SA</span>
@@ -232,13 +237,48 @@
                         <i class="pi pi-circle-fill"></i>
                         <span
                           >Thanh toán 589,000 ₫ đang chờ xử lý
-                          <i class="pi pi-angle-right"></i
+                          <i
+                            @click="ViewDetail"
+                            v-if="!extent"
+                            class="pi pi-angle-right"
+                          ></i>
+                          <i
+                            @click="ViewDetail"
+                            v-if="extent"
+                            class="pi pi-angle-down"
+                          ></i
                         ></span>
                       </div>
-                      <div class="ml-5 mt-3">
-                        <div class="flex justify-content-between">
+                      <div class="ml-5 mt-3" v-if="extent">
+                        <div class="flex justify-content-between mb-3">
                           <span class="font-bold">Mã đơn hàng</span>
-                          <span> #NGOO104338</span>
+                          <span class="text-primary"> #NGOO104338</span>
+                        </div>
+                        <div class="flex justify-content-between mb-3">
+                          <span class="font-bold">Thông tin</span>
+                          <span
+                            >Trì hoãn Thanh toán khi giao hàng (COD) từ người mua</span
+                          >
+                        </div>
+                        <div class="flex justify-content-between mb-3">
+                          <span class="font-bold">Giá trị</span>
+                          <span>589,000 ₫</span>
+                        </div>
+                        <div class="flex justify-content-between mb-3">
+                          <span class="font-bold">Cổng thanh toán</span>
+                          <span>Thanh toán khi giao hàng (COD)</span>
+                        </div>
+                        <div class="flex justify-content-between mb-3">
+                          <span class="font-bold">Tình trạng</span>
+                          <span>Chờ xử lý</span>
+                        </div>
+                        <div class="flex justify-content-between mb-3">
+                          <span class="font-bold">Loại</span>
+                          <span>Chờ xử lý</span>
+                        </div>
+                        <div class="flex justify-content-between mb-3">
+                          <span class="font-bold">Ngày tạo</span>
+                          <span>20/05/2024 07:00 SA</span>
                         </div>
                       </div>
                     </div>
@@ -261,8 +301,101 @@
           </div>
         </div>
       </div>
-      <div class="col-2"></div>
+      <div class="col-3">
+        <div class="card">
+          <div>
+            <h6>Xác Thực Đơn Hàng</h6>
+          </div>
+          <hr />
+          <div class="mt-3">
+            <span>Vui lòng xác thực đơn hàng</span>
+            <div class="mt-3">
+              <Button label="Xác Thực Đơn Hàng" class="w-full" />
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="card">
+          <div>
+            <h6>Thông Tin Người Mua</h6>
+          </div>
+          <hr />
+          <div class="mt-3 flex flex-column">
+            <span class="text-primary mb-3">võ văn quốc thịnh</span>
+            <span class="mb-3">quocthinh661986@gmail.com</span>
+            <div>
+              <div class="flex gap-1 align-items-center mb-2">
+                <i class="pi pi-circle-fill" style="font-size: 8px"></i>
+                <div class="flex justify-content-between w-full">
+                  <span>Đã đặt</span> <span>1 Đơn hàng</span>
+                </div>
+              </div>
+              <div class="flex gap-1 align-items-center mb-2">
+                <i class="pi pi-circle-fill" style="font-size: 8px"></i>
+                <div class="flex justify-content-between w-full">
+                  <span>Doanh thu tích lũy</span> <span>0 ₫</span>
+                </div>
+              </div>
+              <div class="flex gap-1 align-items-center mb-2">
+                <i class="pi pi-circle-fill" style="font-size: 8px"></i>
+                <div class="flex justify-content-between w-full">
+                  <span>Khách nợ</span> <span class="text-primary">0 ₫</span>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+        <!--  -->
+        <div class="card hidden">
+          <div>
+            <h6>Xác Thực Đơn Hàng</h6>
+          </div>
+          <hr />
+          <div class="mt-3">
+            <span>Vui lòng xác thực đơn hàng</span>
+            <div class="mt-3">
+              <Button label="Xác Thực Đơn Hàng" class="w-full" />
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div class="card hidden">
+          <div>
+            <h6>Xác Thực Đơn Hàng</h6>
+          </div>
+          <hr />
+          <div class="mt-3">
+            <span>Vui lòng xác thực đơn hàng</span>
+            <div class="mt-3">
+              <Button label="Xác Thực Đơn Hàng" class="w-full" />
+            </div>
+          </div>
+        </div>
+        <!--  -->
+
+        <div class="card hidden">
+          <div>
+            <h6>Xác Thực Đơn Hàng</h6>
+          </div>
+          <hr />
+          <div class="mt-3">
+            <span>Vui lòng xác thực đơn hàng</span>
+            <div class="mt-3">
+              <Button label="Xác Thực Đơn Hàng" class="w-full" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const extent = ref(false);
+
+const ViewDetail = () => {
+  extent.value = !extent.value;
+};
+</script>
