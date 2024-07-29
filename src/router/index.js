@@ -130,7 +130,7 @@ const router = createRouter({
                         },
                         {
                             path: 'boardSetup',
-                            name: 'boardSetup', 
+                            name: 'boardSetup',
                             component: () => import('@/views/client/pages/userInfor/components/boardSetup.vue')
                         }
                     ]
@@ -159,7 +159,11 @@ const router = createRouter({
                     //     middleware: [auth]
                     // }
                 },
-               
+                {
+                    path: 'success',
+                    name: 'success',
+                    component: () => import('@/views/client/pages/userInfor/components/SuccessPage.vue')
+                },
                 {
                     path: 'order',
                     name: 'order',
