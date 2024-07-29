@@ -1,7 +1,7 @@
 <template>
     <div class="border-1 border-round-md border-solid border-gray-300">
         <div class="font-medium py-3 border-bottom-1 border-gray-300 bg-white">
-            <p class="ml-3">LỊCH SỬ MUA HÀNG</p>
+            <p class="ml-3 font-semibold text-xl">LỊCH SỬ MUA HÀNG</p>
         </div>
 
         <div>
