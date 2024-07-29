@@ -721,10 +721,12 @@ const filteredSubProductMainFS = computed(() => {
                     class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
                     style="font-size: 18px"
                   ></i>
-                  <i
-                    class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
-                    style="font-size: 18px"
-                  ></i>
+                  <router-link to="/client/cart">
+                    <i
+                      class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
+                      style="font-size: 18px"
+                    ></i>
+                  </router-link>
                   <router-link :to="`/client/detail/${item.id}`">
                     <i
                       class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
@@ -842,10 +844,12 @@ const filteredSubProductMainFS = computed(() => {
                         class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
                         style="font-size: 18px"
                       ></i>
-                      <i
-                        class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
-                        style="font-size: 18px"
-                      ></i>
+                      <router-link to="/client/cart">
+                        <i
+                          class="cursor-pointer bg-white p-3 border-circle mx-2 fa-solid fa-cart-shopping"
+                          style="font-size: 18px"
+                        ></i>
+                      </router-link>
                       <i
                         class="cursor-pointer bg-orange-400 text-white p-3 border-circle mx-2 fa-regular fa-eye"
                         style="font-size: 18px"
