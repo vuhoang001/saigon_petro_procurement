@@ -15,6 +15,11 @@ const router = createRouter({
                     component: () => import('@/views/admin/Dashboard/Dashboard.vue')
                 },
                 {
+                    path: 'report',
+                    name: 'Report',
+                    component: () => import('@/views/admin/Report/index.vue')
+                },
+                {
                     path: 'agen-man',
                     component: () => import('@/views/admin/MasterData/AgenMan/Index.vue'),
                     children: [

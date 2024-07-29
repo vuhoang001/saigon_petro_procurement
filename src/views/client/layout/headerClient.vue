@@ -337,7 +337,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <span class="mx-2"> Track Order </span>
+        <span class="mx-2"> Tra cứu đơn hàng </span>
       </div>
       <div class="h-3rem flex align-items-center px-3 mx-2">
         <svg
@@ -376,7 +376,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <span class="mx-2"> Compare </span>
+        <span class="mx-2"> Yêu cầu đổi trả </span>
       </div>
       <div class="h-3rem flex align-items-center px-3 mx-2">
         <svg
@@ -394,7 +394,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <span class="mx-2"> Customer Suport </span>
+        <span class="mx-2"> Phản hồi khiếu nại </span>
       </div>
       <div class="h-3rem flex align-items-center px-3 mx-2">
         <svg
@@ -425,7 +425,7 @@
             stroke-width="1.5"
           />
         </svg>
-        <span class="mx-2"> Need help </span>
+        <span class="mx-2"> Hỗ trợ khách hàng</span>
       </div>
     </div>
     <div class="flex">
