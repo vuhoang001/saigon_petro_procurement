@@ -7,10 +7,10 @@
                 <div>
                     <span class="block text-xl font-semibold mb-2">#9217234</span>
                     <span>
-                        4 products
+                        4 sản phẩm.
                     </span>
                     <span>
-                        Order placed in 17 Jan, 2021 at 7:32 PM
+                        Đơn hàng được đặt vào ngày 17 tháng 1 năm 2021 lúc 7:32 chiều.
                     </span>
                 </div>
                 <div class="flex align-items-center">
@@ -30,7 +30,7 @@
                         <div class="step-name">
                             <div class="flex flex-column align-items-center">
                                 <i class="fa-solid fa-book text-3xl my-3 block text-green-400"></i>
-                                <span class="text-base font-medium">Order Placed</span>
+                                <span class="text-base font-medium">Đơn hàng đã được thực hiện.</span>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="step-name">
                             <div class="flex flex-column align-items-center">
                                 <i class="fa-solid fa-box-archive text-3xl my-3 block text-orange-400"></i>
-                                <span class="text-base font-medium">Packaging</span>
+                                <span class="text-base font-medium">Đóng gói</span>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="step-name">
                             <div class="flex flex-column align-items-center">
                                 <i class="fa-solid fa-car-side text-3xl my-3 block text-orange-400"></i>
-                                <span class="text-base font-medium">Packaging</span>
+                                <span class="text-base font-medium">Đang trên đường</span>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="step-name">
                             <div class="flex flex-column align-items-center">
                                 <i class="fa-solid fa-handshake text-3xl my-3 block text-orange-400"></i>
-                                <span class="text-base font-medium">Packaging</span>
+                                <span class="text-base font-medium">Đã giao</span>
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,10 @@
                         <i class="fa-solid fa-check-double p-3 bg-green-200 text-green-600 border-round-sm"></i>
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
-                        <span>Your order has been delivered. Thank you for shopping at Clicon!</span>
-                        <span>23 Jan, 2021 at 7:32 PM</span>
+                        <span>Đơn hàng của bạn đã được giao. Cảm ơn bạn đã mua sắm tại Clicon!
+                        </span>
+                        <span>Ngày 20 tháng 1 năm 2021 lúc 5:32 chiều
+                        </span>
                     </div>
                 </div>
                 <div class="flex flex-col mt-3">
@@ -86,8 +88,10 @@
                         <i class="fa-regular fa-user p-3 bg-blue-100 text-blue-600 border-round-sm"></i>
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
-                        <span>Our delivery man (John Wick) has picked-up your order for delivery.</span>
-                        <span>23 Jan, 2021 at 7:32 PM</span>
+                        <span>Nhân viên giao hàng của chúng tôi (John Wick) đã lấy đơn hàng của bạn để giao.
+                        </span>
+                        <span>Ngày 21 tháng 1 năm 2021 lúc 12:22 chiều
+                        </span>
                     </div>
                 </div>
                 <div class="flex flex-col mt-3">
@@ -95,8 +99,10 @@
                         <i class="fa-solid fa-location-dot p-3 bg-blue-100 text-blue-600 border-round-sm"></i>
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
-                        <span>Your order has reached at last mile hub.</span>
-                        <span>23 Jan, 2021 at 7:32 PM</span>
+                        <span>Đơn hàng của bạn đang đến trung tâm phân phối cuối cùng.
+                        </span>
+                        <span>Ngày 22 tháng 1 năm 2021 lúc 12:31 chiều
+                        </span>
                     </div>
                 </div>
                 <div class="flex flex-col mt-3">
@@ -104,8 +110,9 @@
                         <i class="fa-regular fa-map p-3 bg-blue-100 text-blue-600 border-round-sm"></i>
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
-                        <span>Your order on the way to (last mile) hub.</span>
-                        <span>23 Jan, 2021 at 7:32 PM</span>
+                        <span>Đơn hàng của bạn đã đến trung tâm phân phối cuối cùng.</span>
+                        <span>Ngày 24 tháng 1 năm 2021 lúc 6:12 sáng
+                        </span>
                     </div>
                 </div>
                 <div class="flex flex-col mt-3">
@@ -113,8 +120,10 @@
                         <i class="fa-regular fa-circle-check p-3 bg-green-200 border-round-sm"></i>
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
-                        <span>Your order is successfully verified</span>
-                        <span>23 Jan, 2021 at 7:32 PM</span>
+                        <span>Đơn hàng của bạn đã được xác nhận thành công
+                        </span>
+                        <span>Ngày 26 tháng 1 năm 2021 lúc 2:26 chiều
+                        </span>
                     </div>
                 </div>
                 <div class="flex flex-col mt-3">
@@ -122,8 +131,10 @@
                         <i class="fa-regular fa-calendar p-3 bg-blue-100 text-blue-600 border-round-sm"></i>
                     </div>
                     <div class="flex flex-column justify-content-around ml-3">
-                        <span>Your order has been comfirmed.</span>
-                        <span>23 Jan, 2021 at 7:32 PM</span>
+                        <span>Đơn hàng của bạn đã được xác nhận.
+                        </span>
+                        <span>Ngày 28 tháng 1 năm 2021 lúc 4:12 chiều
+                        </span>
                     </div>
                 </div>
             </div>
