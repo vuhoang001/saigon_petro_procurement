@@ -83,10 +83,10 @@
           <div class="grid align-items-end">
             <div class="col-6 flex items-center">
               <Checkbox
-                v-model="pizza"
                 inputId="ingredient1"
                 name="pizza"
-                value="Cheese"
+                v-model="methodPay"
+                value="1"
               />
               <label for="ingredient1" class="ml-2"> Giao hàng tại địa chỉ khác </label>
             </div>
@@ -108,7 +108,12 @@
                   style="width: 32px; height: 32px"
                 />
                 <span>COD</span>
-                <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
+                <RadioButton
+                  inputId="ingredient1"
+                  name="pizza"
+                  v-model="methodPay"
+                  value="1"
+                />
               </div>
             </div>
             <div style="width: 20%" class="p-3">
@@ -121,32 +126,53 @@
                   style="width: 32px; height: 32px"
                 />
                 <span>Ví Momo</span>
-                <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
+                <RadioButton
+                  inputId="ingredient1"
+                  name="pizza"
+                  v-model="methodPay"
+                  value="3"
+                />
               </div>
             </div>
-            <div style="width: 20%" class="p-3">
-              <div
-                class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
-              >
-                <img src="/image/340.png" alt="" style="width: 32px; height: 32px" />
-                <span>Zalopay</span>
-                <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
-              </div>
-            </div>
+
             <div style="width: 20%" class="p-3">
               <div
                 class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
               >
                 <img src="/image/bank.png" alt="" style="width: 32px; height: 32px" />
                 <span>Chuyển khoản NH</span>
-                <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
+                <RadioButton
+                  inputId="ingredient1"
+                  name="pizza"
+                  v-model="methodPay"
+                  value="4"
+                />
               </div>
             </div>
             <div style="width: 20%" class="p-3">
               <div class="flex flex-column align-items-center gap-3">
                 <img src="/image/atm-card.png" alt="" style="width: 32px; height: 32px" />
                 <span>Debit/Credit Card</span>
-                <RadioButton inputId="ingredient1" name="pizza" value="Cheese" />
+                <RadioButton
+                  inputId="ingredient1"
+                  name="pizza"
+                  v-model="methodPay"
+                  value="5"
+                />
+              </div>
+            </div>
+            <div style="width: 20%" class="p-3">
+              <div
+                class="flex flex-column align-items-center gap-3 border-right-1 border-bluegray-200"
+              >
+                <img src="/image/calendar.png" alt="" style="width: 32px; height: 32px" />
+                <span>Phương thức khác</span>
+                <RadioButton
+                  inputId="ingredient1"
+                  name="pizza"
+                  v-model="methodPay"
+                  value="6"
+                />
               </div>
             </div>
           </div>
@@ -267,4 +293,6 @@
 </template>
 <script setup>
 import { reactive, ref } from "vue";
+
+const methodPay = ref("1");
 </script>

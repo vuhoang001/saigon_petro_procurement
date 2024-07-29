@@ -113,7 +113,7 @@ const setChartData = () => {
     labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7"],
     datasets: [
       {
-        label: "Danh số",
+        label: "Doanh số",
         backgroundColor: documentStyle.getPropertyValue("--cyan-500"),
         borderColor: documentStyle.getPropertyValue("--cyan-500"),
         data: [65, 59, 80, 81, 56, 55, 40],
