@@ -108,7 +108,7 @@
               class="fa-regular fa-newspaper p-3 bg-white border-round-sm text-3xl mr-3 text-orange-300"
             ></i>
             <div class="flex flex-column justify-content-around">
-              <label for="" class="text-2xl font-bold">154</label>
+              <label for="" class="text-2xl font-bold">05</label>
               <label for="">Đơn hàng chưa hoàn tất</label>
             </div>
           </div>
@@ -119,7 +119,7 @@
               class="fa-solid fa-box-archive p-3 bg-white border-round-sm text-3xl mr-3 text-green-300"
             ></i>
             <div class="flex flex-column justify-content-around">
-              <label for="" class="text-2xl font-bold">154</label>
+              <label for="" class="text-2xl font-bold">149</label>
               <label for="">Đơn hàng đã hoàn tất</label>
             </div>
           </div>
@@ -224,33 +224,48 @@ import { ref } from "vue";
 
 const products = ref([
   {
-    productCode: "#712413",
+    productCode: "#96459761",
+    status: "ĐANG GIAO HÀNG",
+    orderDate: "05/07/20024 05:18",
+    total: "10.500.000đ (5 sản phẩm)",
+    action: "Xem chi tiết",
+  },
+  {
+    productCode: "#712123",
+    status: "ĐÃ HOÀN TẤT",
+    orderDate: "02/25/20024 19:28",
+    total: "25.000.000đ (11 sản phẩm)",
+    action: "Xem chi tiết",
+  },
+  {
+    productCode: "#712625",
     status: "HỦY",
-    orderDate: "2/06/20024 07:52",
-    total: "15.500.000đ (5 sản phẩm)",
+    orderDate: "20/04/20024 23:55",
+    total: "1.500.000đ (3 sản phẩm)",
     action: "Xem chi tiết",
   },
   {
-    productCode: "#712413",
-    status: "ĐÃ GIAO HÀNG",
-    orderDate: "2/06/20024 07:52",
-    total: "15.500.000đ (5 sản phẩm)",
+    productCode: "#712970",
+    status: "ĐÃ HOÀN TẤT",
+    orderDate: "24/03/20024 19:28",
+    total: "500.000đ (1 sản phẩm)",
     action: "Xem chi tiết",
   },
   {
-    productCode: "#712413",
-    status: "ĐANG GIAO HÀNG",
-    orderDate: "2/06/20024 07:52",
-    total: "15.500.000đ (5 sản phẩm)",
+    productCode: "#712970",
+    status: "HỦY",
+    orderDate: "11/02/20024 22:12",
+    total: "450.000đ (1 sản phẩm)",
     action: "Xem chi tiết",
   },
   {
-    productCode: "#712413",
-    status: "ĐANG GIAO HÀNG",
-    orderDate: "2/06/20024 07:52",
-    total: "15.500.000đ (5 sản phẩm)",
+    productCode: "#712970",
+    status: "ĐÃ HOÀN TẤT",
+    orderDate: "07/12/20024 22:12",
+    total: "690.000đ (1 sản phẩm)",
     action: "Xem chi tiết",
   },
+  
 ]);
 
 const searchProducts = ref([
@@ -289,7 +304,7 @@ const getSeverity = (status) => {
     case "HỦY":
       return "danger";
 
-    case "ĐÃ GIAO HÀNG":
+    case "ĐÃ HOÀN TẤT":
       return "success";
 
     case "ĐANG GIAO HÀNG":

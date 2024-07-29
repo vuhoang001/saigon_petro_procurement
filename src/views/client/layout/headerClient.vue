@@ -155,7 +155,7 @@
           </svg>
         </div>
       </router-link>
-      <router-link to="/client/setup/hisPur">
+      <router-link to="/client/search-order">
         <div class="h-3rem flex align-items-center px-3 mx-2">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.25 21.75H18.75" stroke="#5F6C72" stroke-width="1.5" stroke-linecap="round"
