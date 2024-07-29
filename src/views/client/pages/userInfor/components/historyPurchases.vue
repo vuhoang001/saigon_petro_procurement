@@ -18,7 +18,10 @@
                 <Column field="total" header="TỔNG TIỀN" style="font-size: 14px;"></Column>
                 <Column field="action" header="HÀNG ĐỘNG" style="font-size: 14px;">
                     <template #body="slotProps">
-                        <div class="text-blue-400 cursor-pointer hover:underline">{{ slotProps.data.action }}<i class="fa-solid fa-arrow-right ml-2"></i></div>
+                        <router-link to="/client/order-detail">
+                            <div class="text-blue-400 cursor-pointer hover:underline">{{ slotProps.data.action }}<i
+                                    class="fa-solid fa-arrow-right ml-2"></i></div>
+                        </router-link>
                     </template>
                 </Column>
             </DataTable>

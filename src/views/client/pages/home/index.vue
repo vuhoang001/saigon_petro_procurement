@@ -476,7 +476,7 @@ const filteredSubProductMainFS = computed(() => {
             <div v-for="(item, index) in products" :key="index" class="col-3 border-1 border-round-xs item-container"
               style="border-color: var(--surface-border)">
               <div class="image-wrapper">
-                <img class="img-container" src="/demo/data/images/image-8.png" :alt="item.description"
+                <img class="img-container" :src="item.main_image_path" :alt="item.description"
                   style="width: 216px; height: 188px" />
                 <div class="overlay flex justify-content-center align-items-center">
                   <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
