@@ -73,20 +73,7 @@ const model = ref([
       {
         label: "Báo cáo",
         icon: "fas fa-chart-column",
-        items: [
-          {
-            label: "Tiến độ thực hiện",
-            icon: "fa-solid fa-stairs",
-          },
-          {
-            label: "Lịch sử mua hàng",
-            icon: "fa-solid fa-clock-rotate-left",
-          },
-          {
-            label: "Thứ hạng đại lý",
-            icon: "fa-solid fa-ranking-star",
-          },
-        ],
+        to: { name: "Report" },
       },
       {
         label: "Thiết lập hệ thống",
