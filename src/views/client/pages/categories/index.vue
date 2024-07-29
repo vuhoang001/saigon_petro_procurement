@@ -264,13 +264,12 @@ const products = ref([
             </div>
           </div>
         </div>
-
         <div>
           <div class="grid mt-4">
             <div class="col-3 p-2" v-for="(item, index) in data" :key="index">
               <div class="p-3 border-1 border-round-md hover:shadow-2 item-container" style="border-color: #cbd5e1">
                 <div class="mb-2 image-wrapper">
-                  <img src="/demo/data/images/image-11.png" alt="" style="width: 216px; height: 188px" />
+                  <img :src="item.main_image_path" alt="" style="width: 216px; height: 188px" />
                   <div class="overlay flex justify-content-center align-items-center">
                     <i class="cursor-pointer bg-white p-3 border-circle mx-2 fa-regular fa-heart"
                       style="font-size: 18px"></i>
