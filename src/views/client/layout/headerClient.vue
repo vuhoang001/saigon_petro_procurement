@@ -1,4 +1,23 @@
-<script setup></script>
+<script setup>
+import { onBeforeMount, ref, watch } from "vue";
+import API from "@/api/api-main";
+
+const count = ref(0);
+
+onBeforeMount(() => {
+  getCartCount();
+});
+
+const getCartCount = async () => {
+  try {
+    const res = await API.get(`carts/1`);
+    if (res.data) count.value = res.data.length;
+  } catch (error) {}
+};
+setInterval(function () {
+  getCartCount();
+}, 1000);
+</script>
 
 <template>
   <div class="green-bg">
@@ -214,7 +233,7 @@
       </div>
 
       <div class="flex align-items-center">
-        <router-link :to="`/client/cart`">
+        <router-link :to="`/client/cart/1`" class="relative">
           <svg
             class="ml-3"
             width="32"
@@ -239,6 +258,11 @@
               stroke-linejoin="round"
             />
           </svg>
+          <i
+            class="absolute bg-red-500 border-circle w-1rem h-1rem text-xs text-white text-center"
+            style="right: -2px"
+            >{{ count }}</i
+          >
         </router-link>
 
         <svg

@@ -162,7 +162,7 @@ const router = createRouter({
                     // }
                 },
                 {
-                    path: 'cart',
+                    path: 'cart/:id',
                     name: 'cart',
                     component: () => import('@/views/client/pages/cart/index.vue')
                     // meta: {
