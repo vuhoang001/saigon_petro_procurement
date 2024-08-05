@@ -3,24 +3,13 @@
     <div class="flex justify-content-between align-items-center mb-4">
       <div class="text-2xl font-semibold uppercase">Danh sách khuyến mãi</div>
       <router-link to="discount/action/new">
-        <Button
-          label="Tạo khuyến mãi"
-          icon="fa-solid fa-plus"
-          class="bg-green-700"
-          @click="pageTransition"
-        ></Button>
+        <Button label="Tạo khuyến mãi" icon="fa-solid fa-plus" class="bg-green-700"></Button>
       </router-link>
     </div>
 
     <div class="grid mt-3">
       <div class="col-12 h-screen bg-white">
-        <DataTable
-          v-model:selection="selectedDiscount"
-          :value="existingData"
-          tableStyle="min-width: 50rem;"
-          header="surface-200"
-          dataKey="id"
-        >
+        <DataTable :value="existingData" tableStyle="min-width: 50rem;" header="surface-200" dataKey="id">
           <Column selectionMode="multiple" :style="{ width: '5%' }"></Column>
           <Column header="Tên khuyến mãi" :style="{ width: '20%' }">
             <template #body="slotProps">
@@ -48,8 +37,7 @@
             <template #body="slotProps">
               <div>
                 {{
-                  new Date(slotProps.data.startDate) <= new Date() &&
-                  new Date(slotProps.data.endDate) >= new Date()
+                  new Date(slotProps.data.startDate) <= new Date() && new Date(slotProps.data.endDate) >= new Date()
                     ? "Đang hoạt động"
                     : "Chưa hoạt động"
                 }}
@@ -60,12 +48,7 @@
             <template #body="slotProps">
               <div>
                 <Button class="mr-1" icon="fa-regular fa-eye" text />
-                <Button
-                  class="ml-1"
-                  icon="fa-regular fa-pen-to-square"
-                  text
-                  @click="UpdateData(slotProps.data.id)"
-                />
+                <Button class="ml-1" icon="fa-regular fa-pen-to-square" text @click="UpdateData(slotProps.data.id)" />
               </div>
             </template>
           </Column>
@@ -122,7 +105,7 @@ watch(() => {
     existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
   }
 });
-const getData = () => {};
+const getData = () => { };
 
 const UpdateData = (id) => {
   router.push("/admin/discount/action/" + id);
