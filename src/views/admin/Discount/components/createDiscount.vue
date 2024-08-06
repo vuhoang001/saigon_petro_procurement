@@ -32,7 +32,7 @@
             <div class="mt-3">
               <label class="text-base font-bold">Loại khuyến mãi</label>
               <div class="mt-3 ml-2">{{ dataEdit2.discountType }}</div>
-              
+
             </div>
             <div class="mt-3">
               <label class="text-base font-bold">Thời hạn</label>
@@ -78,7 +78,6 @@
                 <span class="font-semibold w-5 white-space-nowrap">Khuyến mãi theo</span>
               </div>
 
-              {{ dataEdit2.discountType }}
               <Dropdown class="w-full" :options="saleOffData.promo" optionLabel="name" optionValue="id"
                 v-model="dataEdit2.discountType" @change="changeSubType()"></Dropdown>
             </div>
@@ -93,9 +92,7 @@
               <div class="flex gap-2">
                 <Dropdown class="w-full" :options="checkCondition()" optionLabel="name" optionValue="id"
                   v-model="dataEdit2.discountSubType"></Dropdown>
-                {{ dataEdit2.discountSubType }}
-                {{ checkCondition() }}
-                <!-- <div v-if="['2-1', '2-2', '2-4'].includes(dataEdit2.discountSubType)"
+                <div v-if="['2-1', '2-2', '2-4'].includes(dataEdit2.discountSubType)"
                   class="w-full flex align-items-center ">
                   <Checkbox v-model="checkCondition().filter((val) => {
                     return val.id == dataEdit2.discountSubType
@@ -105,19 +102,149 @@
                       ? "Hàng giảm giá không nhân theo SL mua." : dataEdit2.discountSubType == "2-2" ?
                         "Hàng tặng không nhận theo số lượng mua." : "Số lượng voucher không nhận theo SL mua."
                   }}</span>
-                </div> -->
+                </div>
               </div>
 
             </div>
             <div class="col-12" v-if="checkFormality()">
-              <DataTable :value="checkFormality()" tableStyle="min-width: 50rem">
-                <Column v-if="['1-1', '1-2', '1-3', '1-4', '3-1', '3-2', '3-3'].includes(dataEdit2.discountSubType)"
-                  header="Tổng tiền hàng">
+              <DataTable :value="checkFormality().condition" tableStyle="min-width: 50rem">
+                <Column header="Tổng tiền hàng" headerStyle="min-width:10rem" v-if="
+                  ['1-1', '1-2', '1-3', '1-4', '3-1', '3-2', '3-3'].includes(
+                    dataEdit2.discountSubType
+                  )
+                ">
+                  <template #body="slotProps">
+                    <div class="flex align-items-center gap-2">
+                      <span>Từ</span>
+                      <InputNumber class="w-3" id="inputNumber1" v-model="slotProps.data.amount">
+                      </InputNumber>
+                    </div>
+                  </template>
                 </Column>
 
+                <Column header="Giá trị khuyến mãi"
+                  v-if="['1-1', '1-3', '2-1', '3-1', '3-3'].includes(dataEdit2.discountSubType)">
+                  <template #body="slotProps">
+                    <div class="flex gap-2">
+                      <InputNumber class="w-4" v-if="slotProps.data.typeDiscount == 1" v-model="slotProps.data.discount"
+                        inputId="integeronly" />
+                      <InputNumber class="w-4" v-if="slotProps.data.typeDiscount != 1"
+                        v-model="slotProps.data.discountAmount" inputId="integeronly" />
+                      <div class="flex gap-2">
+                        <Button label="VND" @click="slotProps.data.typeDiscount = 1"
+                          :severity="slotProps.data.typeDiscount == 1 ? 'primary' : 'secondary'" />
+                        <Button label="%" @click="slotProps.data.typeDiscount = 2"
+                          :severity="slotProps.data.typeDiscount == 2 ? 'primary' : 'secondary'" />
+                      </div>
+                    </div>
+                  </template>
+                </Column>
+
+                <Column :header="getLabelItem(dataEdit2.discountSubType, 1)" v-if="
+                  ['1-2', '1-3', '2-2', '2-1', '2-4', '3-1', '3-2', '3-3'].includes(
+                    dataEdit2.discountSubType
+                  )
+                ">
+                  <template #body="slotProps">
+                    <div class="flex gap-1">
+                      <InputNumber class="w-2" v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 1)[0]]">
+                        <template #body="slotProps">
+
+                        </template>
+                      </InputNumber>
+                      <IconField>
+                        <InputIcon class="pi pi-align-justify"> </InputIcon>
+                        <InputText v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 1)[1]]"
+                          placeholder="Chọn hàng mua" />
+                      </IconField>
+                    </div>
+                  </template>
+                </Column>
+
+                <Column :header="getLabelItem(dataEdit2.discountSubType, 2)"
+                  v-if="['2-1', '2-2', '3-2', '3-3'].includes(dataEdit2.discountSubType)">
+                  <template #body="slotProps">
+                    <div class="flex gap-1">
+                      <InputNumber class="w-2" v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 2)[0]]">
+                      </InputNumber>
+                      <IconField>
+                        <InputIcon class="pi pi-align-justify"> </InputIcon>
+                        <InputText v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 2)[1]]"
+                          placeholder="Chọn hàng mua" />
+                      </IconField>
+                    </div>
+                  </template>
+                </Column>
+
+                <Column header="Tặng tổng" v-if="['1-4', '2-4'].includes(dataEdit2.discountSubType)">
+                  <template #body="slotProps">
+                    <InputNumber class="w-6" v-model="slotProps.data.quantityAdd"></InputNumber>
+                  </template>
+                </Column>
+
+                <Column header=""></Column>
+
+                <Column header="Voucher" v-if="['1-4', '2-4'].includes(dataEdit2.discountSubType)">
+                  <template #body="slotProps">
+                    <AutoComplete class="w-full" dropdown placeholder="Chọn đợt phát hành"
+                      v-model="slotProps.data.promotionVoucherLine"></AutoComplete>
+                  </template>
+                </Column>
+                <Column v-if="dataEdit2.discountSubType == '2-3'">
+                  <template #body="slotProps">
+                    <div class="card">
+                      <div class="grid">
+                        <div class="col-2">
+                          <span>
+                            Khi mua
+                          </span>
+                        </div>
+                        <div class="col-10">
+                          <IconField>
+                            <InputIcon class="pi pi-align-justify"> </InputIcon>
+                            <InputText v-model="slotProps.data.discountSubType" class="w-full"
+                              placeholder="Chọn hàng mua" />
+                          </IconField>
+
+                          <div class="flex gap-2 align-items-center mt-3"
+                            v-for="(item, index) in slotProps.data.promotionDiscountLine.filter((val) => { return val.status != 'D' })"
+                            :key="index">
+                            <span>Số lượng</span>
+                            <InputNumber v-model="item.quantity"></InputNumber>
+                            <Dropdown v-model="item.type" optionValue="code" optionLabel="name" :options="dataPrice"
+                              class="w-2" />
+                            <InputNumber v-model="item.price" v-if="item.type == 'GB'"></InputNumber>
+                            <InputNumber v-model="item.discountAmount"
+                              v-if="item.type == 'GG' && item.typeDiscount == 1"></InputNumber>
+                            <InputNumber v-model="item.discount" v-if="item.type == 'GG' && item.typeDiscount != 1">
+                            </InputNumber>
+                            <div class="flex gap-2" v-if="item.type == 'GG'">
+                              <Button label="VND" @click="item.typeDiscount = 1"
+                                :severity="item.typeDiscount == 1 ? 'primary' : 'secondary'" />
+                              <Button label="%" @click="item.typeDiscount = 2"
+                                :severity="item.typeDiscount == 2 ? 'primary' : 'secondary'" />
+                            </div>
+                            <Button icon="pi pi-times cursor-pointer" text severity="danger"
+                              @click="RemoveSubCondition(item)"></Button>
+                          </div>
+                          <a class="mt-3 block cursor-pointer "
+                            @click="AddSubCondition(slotProps.data.promotionDiscountLine)"><i
+                              class="pi pi-plus mr-2 hover:color-green-500"></i>Thêm dòng</a>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </Column>
+                <Column>
+                  <template #body="slotProps">
+                    <Button text icon="pi pi-trash" @click="RemoveCondition(slotProps.data)"></Button>
+                  </template>
+                </Column>
               </DataTable>
             </div>
-
+            <div class="flex align-items-center justify-content-start">
+              <Button text icon="pi pi-plus-circle" label="Thêm điều kiện" @click="addCondition()"></Button>
+            </div>
           </div>
         </div>
       </div>
@@ -318,6 +445,16 @@ const { toast, FunctionGlobal } = useGlobal();
 
 const value = ref(true);
 const limitTime = ref(false)
+
+const dataPrice = ref([
+  {
+    code: "GB",
+    name: 'Giá bán'
+  }, {
+    code: "GG",
+    name: 'Giảm giá'
+  }
+])
 const weekDays = ref(['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật']);
 const showFullDay = ref(Array(weekDays.value.length).fill(true));
 const showDays = ref(Array(weekDays.value.length).fill(false))
@@ -348,8 +485,8 @@ const saleOffData = ref({
           condition: [
             {
               amount: 0,
-              discount: 0,
-              discountAmount: 0,
+              discount: 11,
+              discountAmount: 22,
               typeDiscount: 1,
             },
           ],
@@ -436,8 +573,8 @@ const saleOffData = ref({
                   quantity: 0,
                   type: "GB",
                   price: 0,
-                  discount: 0,
-                  discountAmount: 0,
+                  discount: 11,
+                  discountAmount: 22,
                   typeDiscount: 1,
                 },
               ],
@@ -512,6 +649,42 @@ const saleOffData = ref({
   ],
 });
 
+const getLabelItem = (id, index) => {
+  const labels = {
+    "1-2_1": "Hàng/Nhóm hàng tặng",
+    "1-3_1": "Hàng/Nhóm hàng được giảm giá",
+    "2-1_1": "Hàng/Nhóm hàng mua",
+    "2-1_2": "Hàng/Nhóm hàng được giảm giá",
+    "2-2_1": "Hàng/Nhóm hàng mua",
+    "2-2_2": "Hàng/Nhóm hàng tặng",
+    "2-4_1": "Hàng/Nhóm hàng mua",
+    "3-1_1": "Kèm hàng/nhóm hàng mua",
+    "3-2_1": "Kèm hàng/nhóm hàng mua",
+    "3-2_2": "Hàng/Nhóm hàng tặng",
+    "3-3_1": "Kèm hàng/nhóm hàng mua",
+    "3-3_2": "Hàng/Nhóm hàng được giảm giá",
+  };
+  return labels[`${id}_${index}`];
+};
+
+const setValueField = (id, index) => {
+  const field = {
+    "1-2_1": ["quantityAdd", "promotionLineItem"],
+    "1-3_1": ["quantityAdd", "promotionLineItem"],
+    "2-1_1": ["quantity", "promotionLineItem"],
+    "2-1_2": ["quantityAdd", "promotionLineItemBonus"],
+    "2-2_1": ["quantity", "promotionLineItem"],
+    "2-2_2": ["quantityAdd", "promotionLineItemBonus"],
+    "2-4_1": ["quantity", "promotionLineItem"],
+    "3-1_1": ["quantityAdd", "promotionLineItem"],
+    "3-2_1": ["quantity", "promotionLineItem"],
+    "3-2_2": ["quantityAdd", "promotionLineItemBonus"],
+    "3-3_1": ["quantity", "promotionLineItem"],
+    "3-3_2": ["quantityAdd", "promotionLineItemBonus"],
+  };
+  return field[`${id}_${index}`];
+};
+
 let futureDate = new Date()
 futureDate.setMonth(futureDate.getMonth() + 6)
 const dataEdit2 = ref({
@@ -533,6 +706,117 @@ const dataEdit2 = ref({
   discountCondition: [],
   discountProductApply: []
 })
+
+const AddSubCondition = (data) => {
+  data.push({
+    quantity: 0,
+    type: "GB",
+    price: 0,
+    discount: 0,
+    discountAmount: 0,
+    typeDiscount: 1,
+    status: "A",
+  })
+}
+
+const RemoveSubCondition = (item) => {
+  item.status = 'D'
+}
+
+const RemoveCondition = (data) => {
+  // checkFormality().condition = checkFormality().condition.filter((val) => {
+  //   return val != data;
+  // });
+  data.status = "D";
+}
+
+
+const getConditionData = (id) => {
+  const conditions = {
+    "1-1": { amount: 0, discount: 0, discountAmount: 0, typeDiscount: 1 },
+    "1-2": { amount: 0, quantityAdd: 0, promotionLineItem: [] },
+    "1-3": {
+      amount: 0,
+      discount: 0,
+      discountAmount: 0,
+      typeDiscount: 1,
+      quantityAdd: 0,
+      promotionLineItem: [],
+    },
+    "1-4": { amount: 0, quantityAdd: 0, promotionVoucherLine: [] },
+    "2-1": {
+      quantity: 0,
+      quantityAdd: 0,
+      discount: 0,
+      discountAmount: 0,
+      typeDiscount: 1,
+      promotionLineItem: [],
+      promotionLineItemBonus: [],
+    },
+    "2-2": {
+      quantity: 0,
+      promotionLineItem: [],
+      quantityAdd: 0,
+      promotionLineItemBonus: [],
+    },
+    "2-3": {
+      promotionLineItem: [],
+      promotionDiscountLine: [
+        {
+          quantity: 0,
+          type: "GB",
+          price: 0,
+          discount: 0,
+          discountAmount: 0,
+          typeDiscount: 1,
+        },
+      ],
+    },
+    "2-4": {
+      quantity: 0,
+      promotionLineItem: [],
+      quantityAdd: 0,
+      promotionVoucherLine: [],
+    },
+    "3-1": {
+      amount: 0,
+      quantityAdd: 0,
+      discount: 0,
+      discountAmount: 0,
+      typeDiscount: 1,
+      promotionLineItem: [],
+    },
+    "3-2": {
+      discount: 0,
+      discountAmount: 0,
+      typeDiscount: 1,
+      amount: 0,
+      quantity: 0,
+      promotionLineItem: [],
+      quantityAdd: 0,
+      promotionLineItemBonus: [],
+    },
+    "3-3": {
+      amount: 0,
+      quantity: 0,
+      promotionLineItem: [],
+      quantityAdd: 0,
+      promotionLineItemBonus: [],
+    },
+  };
+
+  return conditions[id] || {};
+};
+
+const addCondition = () => {
+  const formality = checkFormality();
+  const conditionData = getConditionData(formality.id);
+
+  if (Object.keys(conditionData).length) {
+    conditionData.status = "A";
+    formality.condition.push(conditionData);
+  }
+};
 
 const discountType = ref([{ name: "Giảm giá sản phẩm" }, { name: "Đồng giá sản phẩm" }]);
 const objDiscount = ref({
@@ -598,6 +882,15 @@ onBeforeMount(() => {
     objDiscount.value = merge({}, objDiscount.value, dataEdit.dataUpdate);
     objDiscount.value.startDate = new Date(objDiscount.value.startDate);
     objDiscount.value.endDate = new Date(objDiscount.value.endDate);
+
+    ///
+
+    // dataEdit2.status = "Fix"
+    // dataEdit2.id = route.params.q
+    // dataEdit2.data = JSON.parse(localStorage.getItem("dataTest") || "[]")
+    // dataEdit2.updateData = dataEdit2.data.filter((val) => {
+    //   return val.id == dataEdit2.id
+    // })
   }
 });
 
@@ -605,7 +898,6 @@ const SavePromotion = () => {
   const existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
   if (dataEdit.status != "Fix") {
     objDiscount.value.id = createId();
-    objDiscount.value.proxyArray = items.value
     existingData.push(objDiscount.value);
     localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
     FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
@@ -613,6 +905,17 @@ const SavePromotion = () => {
     existingData[findIndexById(dataEdit.id, existingData)] = objDiscount.value;
     localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
     FunctionGlobal.$notify("S", "Cập nhật thành công", toast);
+  }
+
+
+  const exitData = JSON.parse(localStorage.getItem("dataTest") || "[]")
+  if (exitData.status != "Fix") {
+    dataEdit2.value.id = createId()
+    exitData.push(dataEdit2.value)
+    localStorage.setItem("dataTest", JSON.stringify(exitData))
+    FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
+  } else {
+    exitData[findIndexById()]
   }
 
   router.replace("/admin/discount");
@@ -651,11 +954,10 @@ const findIndexById = (id, data) => {
   align-items: center;
   width: 23rem;
 }
-</style>
-/* :deep(.p-dropdown-items-wrapper) {
-max-width: 100px;
-}
 
-ul li {
-margin-bottom: 4px;
-} */
+:deep(.p-inputnumber-input) {
+  width: 100%;
+}
+</style>
+<!-- <input class=" p-component p-inputnumber-input" role="spinbutton" aria-valuenow="0" data-pc-name="input"
+  data-pc-extend="inputtext" data-pc-section="root" value="0" fdprocessedid="8e06uj"> -->
