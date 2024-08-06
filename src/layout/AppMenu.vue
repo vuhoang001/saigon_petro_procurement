@@ -13,50 +13,34 @@ const model = ref([
         to: { name: "dashboard" },
       },
       {
-        label: "Quản lý thông tin",
-        icon: "fa-solid fa-building",
+        label: "Quản lý nhà phân phối",
+        icon: "fa-solid fa-briefcase",
         items: [
           {
-            label: "Quản lý nhà phân phối",
-            icon: "fa-solid fa-briefcase",
-            items: [
-              {
-                label: "Danh mục nhà phân phối",
-                icon: "fa-solid fa-book",
-                to: { name: "agencyCategory" },
-              },
-              {
-                label: "Nhóm nhà phân phối",
-                icon: "fa-solid fa-crown",
-                to: { name: "agencyGroup" },
-              },
-            ],
+            label: "Danh mục nhà phân phối",
+            icon: "fa-solid fa-book",
+            to: { name: "agencyCategory" },
           },
           {
-            label: "Sản phẩm",
+            label: "Nhóm nhà phân phối",
+            icon: "fa-solid fa-crown",
+            to: { name: "agencyGroup" },
+          },
+        ],
+      },
+      {
+        label: "Sản phẩm",
+        icon: "fa-solid fa-box-archive",
+        items: [
+          {
+            label: "Danh mục sản phẩm",
             icon: "fa-solid fa-box-archive",
-            items: [
-              {
-                label: "Danh mục sản phẩm",
-                icon: "fa-solid fa-box-archive",
-                to: { name: "itemCategory" },
-              },
-              {
-                label: "Nhóm sản phẩm",
-                icon: "fa-solid fa-boxes-stacked",
-                to: { name: "itemGroup" },
-              },
-              // {
-              //   label: "Đơn vị tính",
-              //   icon: "fa-solid fa-ruler-combined",
-              //   to: { name: "unitOfMeasurement" },
-              // },
-              // {
-              //   label: "Nhóm đơn vị tính",
-              //   icon: "fa-solid fa-code-compare",
-              //   to: { name: "uomGroup" },
-              // },
-            ],
+            to: { name: "itemCategory" },
+          },
+          {
+            label: "Nhóm sản phẩm",
+            icon: "fa-solid fa-boxes-stacked",
+            to: { name: "itemGroup" },
           },
         ],
       },
