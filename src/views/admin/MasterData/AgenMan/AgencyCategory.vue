@@ -208,7 +208,7 @@
 import { ref, watch, onBeforeMount } from "vue";
 import API from "@/api/api-main";
 
-const API_URL = "business-partner";
+const API_URL = "business-partners";
 const dialogOnOff = ref(false);
 const selectedProducts = ref();
 const nameDialog = ref("");
