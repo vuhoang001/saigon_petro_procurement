@@ -1,6 +1,6 @@
 <script setup>
 import { useLayout } from '@/layout/composables/layout';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import AppConfig from '@/layout/AppConfig.vue';
 const { layoutConfig } = useLayout();
 import { useStore } from 'vuex';
@@ -15,10 +15,17 @@ const checked = ref(false);
 const logoUrl = computed(() => {
     return `https://foxai.com.vn/wp-content/uploads/2024/07/Logo_Original-1.png`;
 });
-
+onMounted(() => {
+    if (store.state.auth.status.loggedIn) {
+        router.push("/")
+    }
+})
 const handleSubmit = () => {
+    store.dispatch("auth/login", userCredentials.value).then((res) => {
+        if (!res.status) {
 
-    store.dispatch("auth/store", userCredentials.value)
+        }
+    })
 };
 </script>
 
