@@ -396,6 +396,83 @@
         </div>
       </div>
       <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
+        <div class="card h-14rem">
+          <label for="" class="text-xl font-bold">Điều kiện tối thiểu</label>
+          <div>
+            <div class="flex flex-column mt-3">
+              <div>
+                <RadioButton
+                  v-model="dataEdit2.discountCondition"
+                  value="Không yêu cầu"
+                ></RadioButton>
+                <label class="ml-2">Không yêu cầu</label>
+              </div>
+              <div class="mt-2">
+                <RadioButton
+                  inputId="minCondition2"
+                  v-model="dataEdit2.discountCondition"
+                  value="Giá trị mua tối thiểu"
+                >
+                </RadioButton>
+                <label for="minCondition2" class="ml-2">Giá trị mua tối thiểu</label>
+              </div>
+              <InputText type="text" class="mt-2" placeholder="0 đ" />
+              <div class="mt-2">
+                <RadioButton
+                  v-model="dataEdit2.discountCondition"
+                  value="Số lượng sản phẩm tối thiểu"
+                  inputId="minCondition3"
+                >
+                </RadioButton>
+                <label for="minCondition3" class="ml-2"
+                  >Số lượng sản phẩm tối thiểu</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
+        <div class="card h-14rem">
+          <label for="" class="text-xl font-bold">Đối tượng khách hàng</label>
+          <div>
+            <div class="flex flex-column mt-3">
+              <div>
+                <RadioButton
+                  v-model="objDiscount.CustomerAprove"
+                  value="Không giới hạn khách hàng"
+                ></RadioButton>
+                <label class="ml-2">Không giới hạn khách hàng</label>
+              </div>
+              <div class="mt-2">
+                <RadioButton
+                  inputId="minCondition2"
+                  v-model="objDiscount.CustomerAprove"
+                  value="Nhóm khách hàng"
+                >
+                </RadioButton>
+                <label for="minCondition2" class="ml-2">Nhóm khách hàng</label>
+              </div>
+              <div class="mt-2">
+                <RadioButton
+                  inputId="minCondition3"
+                  v-model="objDiscount.CustomerAprove"
+                  value="Tuỳ chọn khách hàng"
+                >
+                </RadioButton>
+                <label for="minCondition3" class="ml-2">Tuỳ chọn khách hàng</label>
+              </div>
+              <div class="mt-1">
+                <IconField iconPosition="left" class="mt-3">
+                  <InputIcon class="pi pi-search"> </InputIcon>
+                  <InputText placeholder="Tìm kiếm" class="w-full" />
+                </IconField>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
         <div class="card">
           <label for="" class="text-xl font-bold">Thời gian hiệu lực</label>
           <div class="grid mt-0">
@@ -445,9 +522,10 @@
                     ></Checkbox>
                     <span>{{ day }}</span>
                   </div>
+
                   <div class="col-9 pt-2">
                     <div
-                      v-if="showFullDay[dayIndex]"
+                      v-if="showFullDay[dayIndex] && checkLength(dayIndex)"
                       class="flex justify-content-between align-items-center mt-2"
                     >
                       <span
@@ -457,6 +535,7 @@
                       >
                         Cả ngày
                       </span>
+
                       <i
                         v-if="showDays[dayIndex]"
                         class="pi pi-plus-circle cursor-pointer"
@@ -539,7 +618,7 @@
               <div>
                 <RadioButton
                   inputId="applyProduct"
-                  v-model="objDiscount.productApprove"
+                  v-model="dataEdit2.discountProductApply"
                   value="Sản phẩm áp dụng"
                 >
                 </RadioButton>
@@ -562,91 +641,15 @@
           </div>
         </div>
       </div>
-      <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
-        <div class="card h-14rem">
-          <label for="" class="text-xl font-bold">Điều kiện tối thiểu</label>
-          <div>
-            <div class="flex flex-column mt-3">
-              <div>
-                <RadioButton
-                  v-model="objDiscount.MinCondition"
-                  value="Không yêu cầu"
-                ></RadioButton>
-                <label class="ml-2">Không yêu cầu</label>
-              </div>
-              <div class="mt-2">
-                <RadioButton
-                  inputId="minCondition2"
-                  v-model="objDiscount.MinCondition"
-                  value="Giá trị mua tối thiểu"
-                >
-                </RadioButton>
-                <label for="minCondition2" class="ml-2">Giá trị mua tối thiểu</label>
-              </div>
-              <InputText type="text" class="mt-2" placeholder="0 đ" />
-              <div class="mt-2">
-                <RadioButton
-                  v-model="objDiscount.MinCondition"
-                  value="Số lượng sản phẩm tối thiểu"
-                  inputId="minCondition3"
-                >
-                </RadioButton>
-                <label for="minCondition3" class="ml-2"
-                  >Số lượng sản phẩm tối thiểu</label
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
-        <div class="card h-14rem">
-          <label for="" class="text-xl font-bold">Đối tượng khách hàng</label>
-          <div>
-            <div class="flex flex-column mt-3">
-              <div>
-                <RadioButton
-                  v-model="objDiscount.CustomerAprove"
-                  value="Không giới hạn khách hàng"
-                ></RadioButton>
-                <label class="ml-2">Không giới hạn khách hàng</label>
-              </div>
-              <div class="mt-2">
-                <RadioButton
-                  inputId="minCondition2"
-                  v-model="objDiscount.CustomerAprove"
-                  value="Nhóm khách hàng"
-                >
-                </RadioButton>
-                <label for="minCondition2" class="ml-2">Nhóm khách hàng</label>
-              </div>
-              <div class="mt-2">
-                <RadioButton
-                  inputId="minCondition3"
-                  v-model="objDiscount.CustomerAprove"
-                  value="Tuỳ chọn khách hàng"
-                >
-                </RadioButton>
-                <label for="minCondition3" class="ml-2">Tuỳ chọn khách hàng</label>
-              </div>
-              <div class="mt-1">
-                <IconField iconPosition="left" class="mt-3">
-                  <InputIcon class="pi pi-search"> </InputIcon>
-                  <InputText placeholder="Tìm kiếm" class="w-full" />
-                </IconField>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </form>
   <div class="flex gap-2 card justify-content-end bg-gray-200">
     <router-link to="/admin/discount">
       <Button type="button" label="Huỷ" severity="secondary" />
     </router-link>
+
     <Button
-      :label="dataEdit.status == 'Fix' ? 'Cập nhật' : 'Thêm mới'"
+      :label="dataEdit2.id !== '' ? 'Cập nhật' : 'Thêm mới'"
       @click="SavePromotion"
     />
   </div>
@@ -658,6 +661,7 @@ import { format } from "date-fns";
 import { useGlobal } from "@/services/useGlobal";
 import { useRouter, useRoute } from "vue-router";
 import merge from "lodash/merge";
+import { daysInWeek } from "date-fns/constants";
 
 const router = useRouter();
 const route = useRoute();
@@ -947,8 +951,8 @@ let futureDate = new Date();
 futureDate.setMonth(futureDate.getMonth() + 6);
 const dataEdit2 = ref({
   discountCode: "",
-  discountName: "name",
-  discountDescription: "description",
+  discountName: "",
+  discountDescription: "",
   discountType: 1,
   discountSubType: "1-1",
   timeRange: {
@@ -960,7 +964,9 @@ const dataEdit2 = ref({
   isCondition: "Y",
   isProductAppyly: "Y",
   isCustomer: "Y",
-  discountCustomer: [],
+  discountCustomer: {
+    selected: "N",
+  },
   discountCondition: [],
   discountProductApply: [],
 });
@@ -1115,8 +1121,6 @@ const dataEdit = reactive({});
 function addDiv(dayIndex, index) {
   dataEdit2.value.timeRange.schedule[dayIndex].push({ startHour: "", endHour: "" });
   showFullDay.value[dayIndex] = false;
-  showDays.value[dayIndex] = true;
-  console.log(dataEdit2.value.timeRange.schedule);
 }
 
 function removeDiv(dayIndex, itemIndex) {
@@ -1126,50 +1130,72 @@ function removeDiv(dayIndex, itemIndex) {
   }
 }
 
+const checkLength = (index) => {
+  return dataEdit2.value.timeRange.schedule[index].length == 0 ? true : false;
+};
+
 onBeforeMount(() => {
   if (route.params.q != "new") {
-    dataEdit.status = "Fix";
-    dataEdit.id = route.params.q;
-    dataEdit.data = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
-    dataEdit.dataUpdate = dataEdit.data.filter((val) => {
-      return val.id == dataEdit.id;
+    // dataEdit.status = "Fix";
+    // dataEdit.id = route.params.q;
+    // dataEdit.data = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
+    // dataEdit.dataUpdate = dataEdit.data.filter((val) => {
+    //   return val.id == dataEdit.id;
+    // })[0];
+    // objDiscount.value = merge({}, objDiscount.value, dataEdit.dataUpdate);
+    // objDiscount.value.startDate = new Date(objDiscount.value.startDate);
+    // objDiscount.value.endDate = new Date(objDiscount.value.endDate);
+
+    // ///
+
+    dataEdit2.status = "Fix";
+    dataEdit2.id = route.params.q;
+    dataEdit2.data = JSON.parse(localStorage.getItem("dataTest") || "[]");
+    dataEdit2.updateData = dataEdit2.data.filter((val) => {
+      return val.id == dataEdit2.id;
     })[0];
-    objDiscount.value = merge({}, objDiscount.value, dataEdit.dataUpdate);
-    objDiscount.value.startDate = new Date(objDiscount.value.startDate);
-    objDiscount.value.endDate = new Date(objDiscount.value.endDate);
 
-    ///
+    dataEdit2.value = merge({}, dataEdit2.value, dataEdit2.updateData);
+    dataEdit2.value.timeRange.startDate = new Date(dataEdit2.value.timeRange.startDate);
+    dataEdit2.value.timeRange.endDate = new Date(dataEdit2.value.timeRange.endDate);
 
-    // dataEdit2.status = "Fix"
-    // dataEdit2.id = route.params.q
-    // dataEdit2.data = JSON.parse(localStorage.getItem("dataTest") || "[]")
-    // dataEdit2.updateData = dataEdit2.data.filter((val) => {
-    //   return val.id == dataEdit2.id
-    // })
+    setEmpty();
   }
 });
 
-const SavePromotion = () => {
-  const existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
-  if (dataEdit.status != "Fix") {
-    objDiscount.value.id = createId();
-    existingData.push(objDiscount.value);
-    localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
-    FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
-  } else {
-    existingData[findIndexById(dataEdit.id, existingData)] = objDiscount.value;
-    localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
-    FunctionGlobal.$notify("S", "Cập nhật thành công", toast);
+const setEmpty = () => {
+  for (let i = 0; i < 7; i++) {
+    if (dataEdit2.value.timeRange.schedule[i].length != 0) {
+      showDays.value[i] = true;
+    }
   }
+};
+
+const SavePromotion = () => {
+  // const existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
+  // if (dataEdit.status != "Fix") {
+  //   objDiscount.value.id = createId();
+  //   existingData.push(objDiscount.value);
+  //   localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
+  //   FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
+  // } else {
+  //   existingData[findIndexById(dataEdit.id, existingData)] = objDiscount.value;
+  //   localStorage.setItem("myDataPromotion", JSON.stringify(existingData));
+  //   FunctionGlobal.$notify("S", "Cập nhật thành công", toast);
+  // }
 
   const exitData = JSON.parse(localStorage.getItem("dataTest") || "[]");
-  if (exitData.status != "Fix") {
+  if (dataEdit2.status != "Fix") {
     dataEdit2.value.id = createId();
     exitData.push(dataEdit2.value);
     localStorage.setItem("dataTest", JSON.stringify(exitData));
     FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
   } else {
-    exitData[findIndexById()];
+    console.log(123);
+    exitData[findIndexById(dataEdit2.id, exitData)] = dataEdit2.value;
+    localStorage.setItem("dataTest", JSON.stringify(exitData));
+    console.log(exitData);
+    FunctionGlobal.$notify("S", "Cập nhật thành công", toast);
   }
 
   router.replace("/admin/discount");

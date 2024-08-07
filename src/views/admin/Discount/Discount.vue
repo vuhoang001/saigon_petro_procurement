@@ -9,7 +9,7 @@
 
     <div class="grid mt-3">
       <div class="col-12 h-screen bg-white">
-        <DataTable :value="existingData" tableStyle="min-width: 50rem;" header="surface-200" dataKey="id">
+        <DataTable :value="exitsData" tableStyle="min-width: 50rem;" header="surface-200" dataKey="id">
           <Column selectionMode="multiple" :style="{ width: '5%' }"></Column>
           <Column header="Tên khuyến mãi" :style="{ width: '20%' }">
             <template #body="slotProps">
@@ -20,24 +20,24 @@
           </Column>
           <Column field="discountType" header="Loại khuyến mãi" :style="{ width: '20%' }">
             <template #body="slotProps">
-              <span>{{ slotProps.data.discountType.name }}</span>
+              <span>{{ slotProps.data.discountType }}</span>
             </template>
           </Column>
           <Column field="startDate" header="Bắt đầu" :style="{ width: '12%' }">
             <template #body="slotProps">
-              <div>{{ format(slotProps.data.startDate, "dd/MM/yyyy") }}</div>
+              <div>{{ format(slotProps.data.timeRange.startDate, "dd/MM/yyyy") }}</div>
             </template>
           </Column>
           <Column field="endDate" header="Kết thúc" :style="{ width: '12%' }">
             <template #body="slotProps">
-              <div>{{ format(slotProps.data.endDate, "dd/MM/yyyy") }}</div>
+              <div>{{ format(slotProps.data.timeRange.endDate, "dd/MM/yyyy") }}</div>
             </template>
           </Column>
           <Column header="Trạng thái" :style="{ width: '12%' }">
             <template #body="slotProps">
               <div>
                 {{
-                  new Date(slotProps.data.startDate) <= new Date() && new Date(slotProps.data.endDate) >= new Date()
+                  new Date(slotProps.data.timeRange.startDate) <= new Date() && new Date(slotProps.data.timeRange.endDate) >= new Date()
                     ? "Đang hoạt động"
                     : "Chưa hoạt động"
                 }}
@@ -94,7 +94,7 @@ const page = ref({
 });
 
 let existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
-
+let exitsData = JSON.parse(localStorage.getItem("dataTest") || "[]")
 onBeforeMount(() => {
   getData();
   window.scrollTo(0, 0);
@@ -103,6 +103,10 @@ onBeforeMount(() => {
 watch(() => {
   if (existingData) {
     existingData = JSON.parse(localStorage.getItem("myDataPromotion") || "[]");
+  }
+
+  if (exitsData) {
+    exitsData = JSON.parse(localStorage.getItem("dataTest") || "[]")
   }
 });
 const getData = () => { };
