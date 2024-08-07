@@ -1,150 +1,3 @@
-<script setup>
-import { ref, watch } from "vue";
-
-const dialogOnOff = ref(false);
-const selectedProducts = ref();
-const nameDialog = ref("");
-
-watch(dialogOnOff, (newValue) => {
-  if (newValue == false) {
-    clearProduct();
-  }
-});
-
-const product = ref({
-  vendorCode: "",
-  vendorName: "",
-  email: "",
-  phone: "",
-  status: true,
-  statusSelected: true,
-});
-
-const openDialog = (value) => {
-  dialogOnOff.value = true;
-  nameDialog.value = "CHỈNH SỬA NHÀ PHÂN PHỐI";
-  product.value.vendorCode = value.id;
-  product.value.vendorName = value.distrName;
-  product.value.email = value.email;
-  product.value.phone = value.phone;
-  product.value.status = value.status;
-  product.value.statusSelected = value.activeStatus;
-};
-
-const newProduct = () => {
-  dialogOnOff.value = true;
-  nameDialog.value = "THÊM MỚI NHÀ PHÂN PHỐI";
-};
-
-const clearProduct = () => {
-  dialogOnOff.value = false;
-  (product.value.vendorCode = ""),
-    (product.value.vendorName = ""),
-    (product.value.email = ""),
-    (product.value.phone = ""),
-    (product.value.status = ""),
-    (product.value.statusSelected = "");
-};
-
-const products = ref([
-  {
-    id: "NPP0000001",
-    distrName: "Công ty TNHH Đức Phượng",
-    email: "info@ducphuongpetro.com",
-    phone: "0987654321",
-    status: true,
-    activeStatus: true,
-  },
-  {
-    id: "NPP0000002",
-    distrName: "Công ty Cổ phần thương mại Nhân Hòa",
-    email: "contact@nhanhoa.com.vn",
-    phone: "0988776655",
-    status: false,
-    activeStatus: false,
-  },
-  {
-    id: "NPP0000003",
-    distrName: "Công ty TNHH HBG",
-    email: "hbggroup@gmail.com",
-    phone: "0988776655",
-    status: true,
-    activeStatus: false,
-  },
-  {
-    id: "NPP0000004",
-    distrName: "Công ty Cổ phần Xăng dầu An Phước",
-    email: "lienhe@xangdauanphuoc.com",
-    phone: "02412345678",
-    status: false,
-    activeStatus: true,
-  },
-  {
-    id: "NPP0000005",
-    distrName: "Công ty Cổ phần Xăng dầu Nhơn Trạch 1",
-    email: "kinhdoanh@xangdaunhontrach.vn",
-    phone: "02413478568",
-    status: false,
-    activeStatus: true,
-  },
-  {
-    id: "0NPP0000006",
-    distrName: "Công ty TNHH Alimex",
-    email: "lienhe@alimex.vn",
-    phone: "02498475824",
-    status: false,
-    activeStatus: true,
-  },
-  {
-    id: "NPP0000007",
-    distrName: "Công ty Thương mại cổ phần xăng dầu Tuấn Tú",
-    email: "tuantupetro@gmail.com",
-    phone: "0989123321",
-    status: false,
-    activeStatus: false,
-  },
-  {
-    id: "NPP0000008",
-    distrName: "Công ty TNHH Thành Phát",
-    email: "thanhphatgroup@gmail.com",
-    phone: "0834523756",
-    status: false,
-    activeStatus: false,
-  },
-  {
-    id: "NPP0000009",
-    distrName: "Công ty TNHH Xăng dầu Thủ đô",
-    email: "thudopetro@gmail.com",
-    phone: "0989123321",
-    status: false,
-    activeStatus: false,
-  },
-  {
-    id: "NPP0000010",
-    distrName: "Công ty Cổ phần APS",
-    email: "info@aps.com.vn",
-    phone: "0989123321",
-    status: false,
-    activeStatus: false,
-  },
-]);
-
-const saveEditProduct = (event) => {
-  console.log(event);
-};
-
-const styleActiveStatus = (value) => {
-  switch (value) {
-    case true:
-      return "text-green-400";
-    case false:
-      return "text-red-400";
-    default:
-      return null;
-  }
-};
-</script>
-
 <template>
   <div class="flex justify-content-between align-items-center mb-4">
     <div class="text-2xl font-semibold uppercase">Danh mục nhà phân phối</div>
@@ -351,3 +204,79 @@ const styleActiveStatus = (value) => {
   text-align: center;
 }
 </style>
+<script setup>
+import { ref, watch, onBeforeMount } from "vue";
+import API from "@/api/api-main";
+
+const API_URL = "business-partner";
+const dialogOnOff = ref(false);
+const selectedProducts = ref();
+const nameDialog = ref("");
+const products = ref([]);
+
+onBeforeMount(() => {
+  fetchAllDistributor();
+});
+watch(dialogOnOff, (newValue) => {
+  if (newValue == false) {
+    clearProduct();
+  }
+});
+
+const product = ref({
+  vendorCode: "",
+  vendorName: "",
+  email: "",
+  phone: "",
+  status: true,
+  statusSelected: true,
+});
+
+const openDialog = (value) => {
+  dialogOnOff.value = true;
+  nameDialog.value = "CHỈNH SỬA NHÀ PHÂN PHỐI";
+  product.value.vendorCode = value.id;
+  product.value.vendorName = value.distrName;
+  product.value.email = value.email;
+  product.value.phone = value.phone;
+  product.value.status = value.status;
+  product.value.statusSelected = value.activeStatus;
+};
+
+const newProduct = () => {
+  dialogOnOff.value = true;
+  nameDialog.value = "THÊM MỚI NHÀ PHÂN PHỐI";
+};
+
+const clearProduct = () => {
+  dialogOnOff.value = false;
+  (product.value.vendorCode = ""),
+    (product.value.vendorName = ""),
+    (product.value.email = ""),
+    (product.value.phone = ""),
+    (product.value.status = ""),
+    (product.value.statusSelected = "");
+};
+
+const saveEditProduct = (event) => {
+  console.log(event);
+};
+
+const styleActiveStatus = (value) => {
+  switch (value) {
+    case true:
+      return "text-green-400";
+    case false:
+      return "text-red-400";
+    default:
+      return null;
+  }
+};
+
+const fetchAllDistributor = async () => {
+  try {
+    const res = await API.get(API_URL);
+    console.log(res.data);
+  } catch (error) {}
+};
+</script>
