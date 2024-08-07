@@ -17,7 +17,7 @@ export const auth = {
                 (error) => {
                     commit('loginFailure');
                     let mes = ERROR.find((val) => val.code === error.response.data.status)?.mes;
-                    if (error.response.status == 400) mes = 'Mật khẩu không chính xác';
+                    if (error.response.status == 404) mes = 'Mật khẩu không chính xác';
                     return Promise.reject(mes);
                 }
             );
