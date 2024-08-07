@@ -5,7 +5,7 @@ import AppMenuItem from "./AppMenuItem.vue";
 
 const model = ref([
   {
-    label: "",
+    label: "Hệ thống",
     items: [
       {
         label: "Tổng quan",
@@ -80,6 +80,16 @@ const model = ref([
             icon: "fa-solid fa-bell",
           },
         ],
+      },
+    ],
+  },
+  {
+    label: "Kênh bán hàng",
+    items: [
+      {
+        label: "Website",
+        icon: "fa-solid fa-globe",
+        to: { name: "home" },
       },
     ],
   },

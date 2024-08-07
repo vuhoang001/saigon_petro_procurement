@@ -10,11 +10,21 @@
       <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
         <div class="card h-23rem">
           <label class="mb-3 text-xl font-bold">Tên chương trình khuyến mãi</label>
-          <InputText v-model="dataEdit2.discountName" class="w-full my-3" type="text"
-            placeholder="Nhập tên chương trình khuyến mãi" />
+          <InputText
+            v-model="dataEdit2.discountName"
+            class="w-full my-3"
+            type="text"
+            placeholder="Nhập tên chương trình khuyến mãi"
+          />
           <label class="font-bold">Mô tả</label>
-          <Textarea v-model="dataEdit2.discountDescription" class="w-full my-3" type="text" placeholder="Nhập mô tả"
-            rows="7" cols="30" />
+          <Textarea
+            v-model="dataEdit2.discountDescription"
+            class="w-full my-3"
+            type="text"
+            placeholder="Nhập mô tả"
+            rows="7"
+            cols="30"
+          />
         </div>
       </div>
       <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
@@ -32,7 +42,6 @@
             <div class="mt-3">
               <label class="text-base font-bold">Loại khuyến mãi</label>
               <div class="mt-3 ml-2">{{ dataEdit2.discountType }}</div>
-
             </div>
             <div class="mt-3">
               <label class="text-base font-bold">Thời hạn</label>
@@ -63,7 +72,9 @@
               <div class="p-2">{{ dataEdit2.discountCustomer }}</div>
             </div>
             <Divider></Divider>
-            <span class="text-base">Chương trình khuyến mãi được tạo bảo Admin vào ngày {{}}</span>
+            <span class="text-base"
+              >Chương trình khuyến mãi được tạo bảo Admin vào ngày {{}}</span
+            >
           </div>
         </div>
       </div>
@@ -78,116 +89,206 @@
                 <span class="font-semibold w-5 white-space-nowrap">Khuyến mãi theo</span>
               </div>
 
-              <Dropdown class="w-full" :options="saleOffData.promo" optionLabel="name" optionValue="id"
-                v-model="dataEdit2.discountType" @change="changeSubType()"></Dropdown>
+              <Dropdown
+                class="w-full"
+                :options="saleOffData.promo"
+                optionLabel="name"
+                optionValue="id"
+                v-model="dataEdit2.discountType"
+                @change="changeSubType()"
+              ></Dropdown>
             </div>
             <div class="col-6">
               <div class="my-2">
                 <div>
-                  <span class="font-semibold w-5 white-space-nowrap my-2 ">
+                  <span class="font-semibold w-5 white-space-nowrap my-2">
                     Hình thức
                   </span>
                 </div>
               </div>
               <div class="flex gap-2">
-                <Dropdown class="w-full" :options="checkCondition()" optionLabel="name" optionValue="id"
-                  v-model="dataEdit2.discountSubType"></Dropdown>
-                <div v-if="['2-1', '2-2', '2-4'].includes(dataEdit2.discountSubType)"
-                  class="w-full flex align-items-center ">
-                  <Checkbox v-model="checkCondition().filter((val) => {
-                    return val.id == dataEdit2.discountSubType
-                  })[0].isMulti" trueValue="Y" falseValue="N" :binary="true" class="mx-2"></Checkbox>
+                <Dropdown
+                  class="w-full"
+                  :options="checkCondition()"
+                  optionLabel="name"
+                  optionValue="id"
+                  v-model="dataEdit2.discountSubType"
+                ></Dropdown>
+                <div
+                  v-if="['2-1', '2-2', '2-4'].includes(dataEdit2.discountSubType)"
+                  class="w-full flex align-items-center"
+                >
+                  <Checkbox
+                    v-model="
+                      checkCondition().filter((val) => {
+                        return val.id == dataEdit2.discountSubType;
+                      })[0].isMulti
+                    "
+                    trueValue="Y"
+                    falseValue="N"
+                    :binary="true"
+                    class="mx-2"
+                  ></Checkbox>
                   <span>{{
                     dataEdit.discountSubType == "2-1"
-                      ? "Hàng giảm giá không nhân theo SL mua." : dataEdit2.discountSubType == "2-2" ?
-                        "Hàng tặng không nhận theo số lượng mua." : "Số lượng voucher không nhận theo SL mua."
+                      ? "Hàng giảm giá không nhân theo SL mua."
+                      : dataEdit2.discountSubType == "2-2"
+                      ? "Hàng tặng không nhận theo số lượng mua."
+                      : "Số lượng voucher không nhận theo SL mua."
                   }}</span>
                 </div>
               </div>
-
             </div>
             <div class="col-12" v-if="checkFormality()">
-              <DataTable :value="checkFormality().condition" tableStyle="min-width: 50rem">
-                <Column header="Tổng tiền hàng" headerStyle="min-width:10rem" v-if="
-                  ['1-1', '1-2', '1-3', '1-4', '3-1', '3-2', '3-3'].includes(
-                    dataEdit2.discountSubType
-                  )
-                ">
+              <DataTable
+                :value="checkFormality().condition"
+                tableStyle="min-width: 50rem"
+              >
+                <Column
+                  header="Tổng tiền hàng"
+                  headerStyle="min-width:10rem"
+                  v-if="
+                    ['1-1', '1-2', '1-3', '1-4', '3-1', '3-2', '3-3'].includes(
+                      dataEdit2.discountSubType
+                    )
+                  "
+                >
                   <template #body="slotProps">
                     <div class="flex align-items-center gap-2">
                       <span>Từ</span>
-                      <InputNumber class="w-3" id="inputNumber1" v-model="slotProps.data.amount">
+                      <InputNumber
+                        class="w-3"
+                        id="inputNumber1"
+                        v-model="slotProps.data.amount"
+                      >
                       </InputNumber>
                     </div>
                   </template>
                 </Column>
 
-                <Column header="Giá trị khuyến mãi"
-                  v-if="['1-1', '1-3', '2-1', '3-1', '3-3'].includes(dataEdit2.discountSubType)">
+                <Column
+                  header="Giá trị khuyến mãi"
+                  v-if="
+                    ['1-1', '1-3', '2-1', '3-1', '3-3'].includes(
+                      dataEdit2.discountSubType
+                    )
+                  "
+                >
                   <template #body="slotProps">
                     <div class="flex gap-2">
-                      <InputNumber class="w-4" v-if="slotProps.data.typeDiscount == 1" v-model="slotProps.data.discount"
-                        inputId="integeronly" />
-                      <InputNumber class="w-4" v-if="slotProps.data.typeDiscount != 1"
-                        v-model="slotProps.data.discountAmount" inputId="integeronly" />
+                      <InputNumber
+                        class="w-4"
+                        v-if="slotProps.data.typeDiscount == 1"
+                        v-model="slotProps.data.discount"
+                        inputId="integeronly"
+                      />
+                      <InputNumber
+                        class="w-4"
+                        v-if="slotProps.data.typeDiscount != 1"
+                        v-model="slotProps.data.discountAmount"
+                        inputId="integeronly"
+                      />
                       <div class="flex gap-2">
-                        <Button label="VND" @click="slotProps.data.typeDiscount = 1"
-                          :severity="slotProps.data.typeDiscount == 1 ? 'primary' : 'secondary'" />
-                        <Button label="%" @click="slotProps.data.typeDiscount = 2"
-                          :severity="slotProps.data.typeDiscount == 2 ? 'primary' : 'secondary'" />
+                        <Button
+                          label="VND"
+                          @click="slotProps.data.typeDiscount = 1"
+                          :severity="
+                            slotProps.data.typeDiscount == 1 ? 'primary' : 'secondary'
+                          "
+                        />
+                        <Button
+                          label="%"
+                          @click="slotProps.data.typeDiscount = 2"
+                          :severity="
+                            slotProps.data.typeDiscount == 2 ? 'primary' : 'secondary'
+                          "
+                        />
                       </div>
                     </div>
                   </template>
                 </Column>
 
-                <Column :header="getLabelItem(dataEdit2.discountSubType, 1)" v-if="
-                  ['1-2', '1-3', '2-2', '2-1', '2-4', '3-1', '3-2', '3-3'].includes(
-                    dataEdit2.discountSubType
-                  )
-                ">
+                <Column
+                  :header="getLabelItem(dataEdit2.discountSubType, 1)"
+                  v-if="
+                    ['1-2', '1-3', '2-2', '2-1', '2-4', '3-1', '3-2', '3-3'].includes(
+                      dataEdit2.discountSubType
+                    )
+                  "
+                >
                   <template #body="slotProps">
                     <div class="flex gap-1">
-                      <InputNumber class="w-2" v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 1)[0]]">
-                        <template #body="slotProps">
-
-                        </template>
+                      <InputNumber
+                        class="w-2"
+                        v-model="
+                          slotProps.data[setValueField(dataEdit2.discountSubType, 1)[0]]
+                        "
+                      >
                       </InputNumber>
                       <IconField>
                         <InputIcon class="pi pi-align-justify"> </InputIcon>
-                        <InputText v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 1)[1]]"
-                          placeholder="Chọn hàng mua" />
+                        <InputText
+                          v-model="
+                            slotProps.data[setValueField(dataEdit2.discountSubType, 1)[1]]
+                          "
+                          placeholder="Chọn hàng mua"
+                        />
                       </IconField>
                     </div>
                   </template>
                 </Column>
 
-                <Column :header="getLabelItem(dataEdit2.discountSubType, 2)"
-                  v-if="['2-1', '2-2', '3-2', '3-3'].includes(dataEdit2.discountSubType)">
+                <Column
+                  :header="getLabelItem(dataEdit2.discountSubType, 2)"
+                  v-if="['2-1', '2-2', '3-2', '3-3'].includes(dataEdit2.discountSubType)"
+                >
                   <template #body="slotProps">
                     <div class="flex gap-1">
-                      <InputNumber class="w-2" v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 2)[0]]">
+                      <InputNumber
+                        class="w-2"
+                        v-model="
+                          slotProps.data[setValueField(dataEdit2.discountSubType, 2)[0]]
+                        "
+                      >
                       </InputNumber>
                       <IconField>
                         <InputIcon class="pi pi-align-justify"> </InputIcon>
-                        <InputText v-model="slotProps.data[setValueField(dataEdit2.discountSubType, 2)[1]]"
-                          placeholder="Chọn hàng mua" />
+                        <InputText
+                          v-model="
+                            slotProps.data[setValueField(dataEdit2.discountSubType, 2)[1]]
+                          "
+                          placeholder="Chọn hàng mua"
+                        />
                       </IconField>
                     </div>
                   </template>
                 </Column>
 
-                <Column header="Tặng tổng" v-if="['1-4', '2-4'].includes(dataEdit2.discountSubType)">
+                <Column
+                  header="Tặng tổng"
+                  v-if="['1-4', '2-4'].includes(dataEdit2.discountSubType)"
+                >
                   <template #body="slotProps">
-                    <InputNumber class="w-6" v-model="slotProps.data.quantityAdd"></InputNumber>
+                    <InputNumber
+                      class="w-6"
+                      v-model="slotProps.data.quantityAdd"
+                    ></InputNumber>
                   </template>
                 </Column>
 
                 <Column header=""></Column>
 
-                <Column header="Voucher" v-if="['1-4', '2-4'].includes(dataEdit2.discountSubType)">
+                <Column
+                  header="Voucher"
+                  v-if="['1-4', '2-4'].includes(dataEdit2.discountSubType)"
+                >
                   <template #body="slotProps">
-                    <AutoComplete class="w-full" dropdown placeholder="Chọn đợt phát hành"
-                      v-model="slotProps.data.promotionVoucherLine"></AutoComplete>
+                    <AutoComplete
+                      class="w-full"
+                      dropdown
+                      placeholder="Chọn đợt phát hành"
+                      v-model="slotProps.data.promotionVoucherLine"
+                    ></AutoComplete>
                   </template>
                 </Column>
                 <Column v-if="dataEdit2.discountSubType == '2-3'">
@@ -195,41 +296,78 @@
                     <div class="card">
                       <div class="grid">
                         <div class="col-2">
-                          <span>
-                            Khi mua
-                          </span>
+                          <span> Khi mua </span>
                         </div>
                         <div class="col-10">
                           <IconField>
                             <InputIcon class="pi pi-align-justify"> </InputIcon>
-                            <InputText v-model="slotProps.data.discountSubType" class="w-full"
-                              placeholder="Chọn hàng mua" />
+                            <InputText
+                              v-model="slotProps.data.discountSubType"
+                              class="w-full"
+                              placeholder="Chọn hàng mua"
+                            />
                           </IconField>
 
-                          <div class="flex gap-2 align-items-center mt-3"
-                            v-for="(item, index) in slotProps.data.promotionDiscountLine.filter((val) => { return val.status != 'D' })"
-                            :key="index">
+                          <div
+                            class="flex gap-2 align-items-center mt-3"
+                            v-for="(
+                              item, index
+                            ) in slotProps.data.promotionDiscountLine.filter((val) => {
+                              return val.status != 'D';
+                            })"
+                            :key="index"
+                          >
                             <span>Số lượng</span>
                             <InputNumber v-model="item.quantity"></InputNumber>
-                            <Dropdown v-model="item.type" optionValue="code" optionLabel="name" :options="dataPrice"
-                              class="w-2" />
-                            <InputNumber v-model="item.price" v-if="item.type == 'GB'"></InputNumber>
-                            <InputNumber v-model="item.discountAmount"
-                              v-if="item.type == 'GG' && item.typeDiscount == 1"></InputNumber>
-                            <InputNumber v-model="item.discount" v-if="item.type == 'GG' && item.typeDiscount != 1">
+                            <Dropdown
+                              v-model="item.type"
+                              optionValue="code"
+                              optionLabel="name"
+                              :options="dataPrice"
+                              class="w-2"
+                            />
+                            <InputNumber
+                              v-model="item.price"
+                              v-if="item.type == 'GB'"
+                            ></InputNumber>
+                            <InputNumber
+                              v-model="item.discountAmount"
+                              v-if="item.type == 'GG' && item.typeDiscount == 1"
+                            ></InputNumber>
+                            <InputNumber
+                              v-model="item.discount"
+                              v-if="item.type == 'GG' && item.typeDiscount != 1"
+                            >
                             </InputNumber>
                             <div class="flex gap-2" v-if="item.type == 'GG'">
-                              <Button label="VND" @click="item.typeDiscount = 1"
-                                :severity="item.typeDiscount == 1 ? 'primary' : 'secondary'" />
-                              <Button label="%" @click="item.typeDiscount = 2"
-                                :severity="item.typeDiscount == 2 ? 'primary' : 'secondary'" />
+                              <Button
+                                label="VND"
+                                @click="item.typeDiscount = 1"
+                                :severity="
+                                  item.typeDiscount == 1 ? 'primary' : 'secondary'
+                                "
+                              />
+                              <Button
+                                label="%"
+                                @click="item.typeDiscount = 2"
+                                :severity="
+                                  item.typeDiscount == 2 ? 'primary' : 'secondary'
+                                "
+                              />
                             </div>
-                            <Button icon="pi pi-times cursor-pointer" text severity="danger"
-                              @click="RemoveSubCondition(item)"></Button>
+                            <Button
+                              icon="pi pi-times cursor-pointer"
+                              text
+                              severity="danger"
+                              @click="RemoveSubCondition(item)"
+                            ></Button>
                           </div>
-                          <a class="mt-3 block cursor-pointer "
-                            @click="AddSubCondition(slotProps.data.promotionDiscountLine)"><i
-                              class="pi pi-plus mr-2 hover:color-green-500"></i>Thêm dòng</a>
+                          <a
+                            class="mt-3 block cursor-pointer"
+                            @click="AddSubCondition(slotProps.data.promotionDiscountLine)"
+                            ><i class="pi pi-plus mr-2 hover:color-green-500"></i>Thêm
+                            dòng</a
+                          >
                         </div>
                       </div>
                     </div>
@@ -237,13 +375,22 @@
                 </Column>
                 <Column>
                   <template #body="slotProps">
-                    <Button text icon="pi pi-trash" @click="RemoveCondition(slotProps.data)"></Button>
+                    <Button
+                      text
+                      icon="pi pi-trash"
+                      @click="RemoveCondition(slotProps.data)"
+                    ></Button>
                   </template>
                 </Column>
               </DataTable>
             </div>
             <div class="flex align-items-center justify-content-start">
-              <Button text icon="pi pi-plus-circle" label="Thêm điều kiện" @click="addCondition()"></Button>
+              <Button
+                text
+                icon="pi pi-plus-circle"
+                label="Thêm điều kiện"
+                @click="addCondition()"
+              ></Button>
             </div>
           </div>
         </div>
@@ -256,23 +403,34 @@
               <div class="mb-3">
                 <label for="">Thời gian bắt đầu</label>
               </div>
-              <Calendar dateFormat="dd/mm/yy" showIcon iconDisplay="input" v-model="dataEdit2.timeRange.startDate" />
+              <Calendar
+                dateFormat="dd/mm/yy"
+                showIcon
+                iconDisplay="input"
+                v-model="dataEdit2.timeRange.startDate"
+              />
             </div>
             <div class="col-6">
               <div class="mb-3">
                 <Checkbox v-model="value" :binary="true" />
                 <span class="ml-3">Có thời gian kết thúc</span>
               </div>
-              <Calendar dateFormat="dd/mm/yy" v-if="value" showIcon iconDisplay="input"
-                v-model="dataEdit2.timeRange.endDate" />
-
+              <Calendar
+                dateFormat="dd/mm/yy"
+                v-if="value"
+                showIcon
+                iconDisplay="input"
+                v-model="dataEdit2.timeRange.endDate"
+              />
             </div>
             <div class="col-12">
               <div>
-                <Checkbox v-model="dataEdit2.timeRange.limitTime" :binary="true" class="mr-2"></Checkbox>
-                <span>
-                  Giới hạn ngày và giờ áp dụng trong tuần
-                </span>
+                <Checkbox
+                  v-model="dataEdit2.timeRange.limitTime"
+                  :binary="true"
+                  class="mr-2"
+                ></Checkbox>
+                <span> Giới hạn ngày và giờ áp dụng trong tuần </span>
               </div>
             </div>
 
@@ -280,44 +438,74 @@
               <div v-for="(day, dayIndex) in weekDays" :key="dayIndex" class="">
                 <div class="grid flex mt-2">
                   <div class="col-3">
-                    <Checkbox v-model="showDays[dayIndex]" :binary="true" class="mr-2"></Checkbox>
+                    <Checkbox
+                      v-model="showDays[dayIndex]"
+                      :binary="true"
+                      class="mr-2"
+                    ></Checkbox>
                     <span>{{ day }}</span>
                   </div>
                   <div class="col-9 pt-2">
-                    <div v-if="showFullDay[dayIndex]" class="flex justify-content-between align-items-center mt-2">
-                      <span :class="{
-                        'text-gray-400 font-italic': !showDays[dayIndex]
-                      }">
+                    <div
+                      v-if="showFullDay[dayIndex]"
+                      class="flex justify-content-between align-items-center mt-2"
+                    >
+                      <span
+                        :class="{
+                          'text-gray-400 font-italic': !showDays[dayIndex],
+                        }"
+                      >
                         Cả ngày
                       </span>
-                      <i v-if="showDays[dayIndex]" class="pi pi-plus-circle cursor-pointer"
-                        @click="addDiv(dayIndex)"></i>
+                      <i
+                        v-if="showDays[dayIndex]"
+                        class="pi pi-plus-circle cursor-pointer"
+                        @click="addDiv(dayIndex)"
+                      ></i>
                     </div>
 
-                    <div v-for="(item, index) in dataEdit2.timeRange.schedule[dayIndex]" :key="index"
-                      class="flex justify-content-between align-items-center mb-3">
-                      <div class="flex align-items-center" :class="{ 'additional-class': showDays[dayIndex] }
-                        ">
-                        <Dropdown class="w-11rem" :options="times" optionLabel="name" v-model="item.startHour" />
+                    <div
+                      v-for="(item, index) in dataEdit2.timeRange.schedule[dayIndex]"
+                      :key="index"
+                      class="flex justify-content-between align-items-center mb-3"
+                    >
+                      <div
+                        class="flex align-items-center"
+                        :class="{ 'additional-class': showDays[dayIndex] }"
+                      >
+                        <Dropdown
+                          class="w-11rem"
+                          :options="times"
+                          optionLabel="name"
+                          v-model="item.startHour"
+                        />
                         <span class="mx-2">-</span>
-                        <Dropdown class="w-11rem mr-2" :options="times" optionLabel="name" v-model="item.endHour" />
-                        <i class="pi pi-times text-sm cursor-pointer" @click="removeDiv(dayIndex, index)"></i>
+                        <Dropdown
+                          class="w-11rem mr-2"
+                          :options="times"
+                          optionLabel="name"
+                          v-model="item.endHour"
+                        />
+                        <i
+                          class="pi pi-times text-sm cursor-pointer"
+                          @click="removeDiv(dayIndex, index)"
+                        ></i>
                       </div>
-                      <i v-if="showDays[dayIndex]" class="pi pi-plus-circle cursor-pointer"
-                        @click="addDiv(dayIndex, index)"></i>
+                      <i
+                        v-if="showDays[dayIndex]"
+                        class="pi pi-plus-circle cursor-pointer"
+                        @click="addDiv(dayIndex, index)"
+                      ></i>
                     </div>
                   </div>
                 </div>
                 <Divider></Divider>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-      <div>
-
-      </div>
+      <div></div>
       <!-- <div class="xl:col-6 lg:col-12 md:col-12 sm:12">
         <div class="card h-11rem">
           <label for="" class="text-xl font-bold">Loại khuyến mãi</label>
@@ -349,12 +537,20 @@
           <div class="mt-2">
             <div class="flex flex-column pt-2">
               <div>
-                <RadioButton inputId="applyProduct" v-model="objDiscount.productApprove" value="Sản phẩm áp dụng">
+                <RadioButton
+                  inputId="applyProduct"
+                  v-model="objDiscount.productApprove"
+                  value="Sản phẩm áp dụng"
+                >
                 </RadioButton>
                 <label for="applyProduct" class="ml-2">Nhóm sản phẩm</label>
               </div>
               <div class="mt-2">
-                <RadioButton inputId="applyProduct" v-model="objDiscount.productApprove" value="Nhóm sản phẩm">
+                <RadioButton
+                  inputId="applyProduct"
+                  v-model="objDiscount.productApprove"
+                  value="Nhóm sản phẩm"
+                >
                 </RadioButton>
                 <label for="applyProduct" class="ml-2">Sản phẩm</label>
               </div>
@@ -372,20 +568,32 @@
           <div>
             <div class="flex flex-column mt-3">
               <div>
-                <RadioButton v-model="objDiscount.MinCondition" value="Không yêu cầu"></RadioButton>
+                <RadioButton
+                  v-model="objDiscount.MinCondition"
+                  value="Không yêu cầu"
+                ></RadioButton>
                 <label class="ml-2">Không yêu cầu</label>
               </div>
               <div class="mt-2">
-                <RadioButton inputId="minCondition2" v-model="objDiscount.MinCondition" value="Giá trị mua tối thiểu">
+                <RadioButton
+                  inputId="minCondition2"
+                  v-model="objDiscount.MinCondition"
+                  value="Giá trị mua tối thiểu"
+                >
                 </RadioButton>
                 <label for="minCondition2" class="ml-2">Giá trị mua tối thiểu</label>
               </div>
               <InputText type="text" class="mt-2" placeholder="0 đ" />
               <div class="mt-2">
-                <RadioButton v-model="objDiscount.MinCondition" value="Số lượng sản phẩm tối thiểu"
-                  inputId="minCondition3">
+                <RadioButton
+                  v-model="objDiscount.MinCondition"
+                  value="Số lượng sản phẩm tối thiểu"
+                  inputId="minCondition3"
+                >
                 </RadioButton>
-                <label for="minCondition3" class="ml-2">Số lượng sản phẩm tối thiểu</label>
+                <label for="minCondition3" class="ml-2"
+                  >Số lượng sản phẩm tối thiểu</label
+                >
               </div>
             </div>
           </div>
@@ -397,16 +605,27 @@
           <div>
             <div class="flex flex-column mt-3">
               <div>
-                <RadioButton v-model="objDiscount.CustomerAprove" value="Không giới hạn khách hàng"></RadioButton>
+                <RadioButton
+                  v-model="objDiscount.CustomerAprove"
+                  value="Không giới hạn khách hàng"
+                ></RadioButton>
                 <label class="ml-2">Không giới hạn khách hàng</label>
               </div>
               <div class="mt-2">
-                <RadioButton inputId="minCondition2" v-model="objDiscount.CustomerAprove" value="Nhóm khách hàng">
+                <RadioButton
+                  inputId="minCondition2"
+                  v-model="objDiscount.CustomerAprove"
+                  value="Nhóm khách hàng"
+                >
                 </RadioButton>
                 <label for="minCondition2" class="ml-2">Nhóm khách hàng</label>
               </div>
               <div class="mt-2">
-                <RadioButton inputId="minCondition3" v-model="objDiscount.CustomerAprove" value="Tuỳ chọn khách hàng">
+                <RadioButton
+                  inputId="minCondition3"
+                  v-model="objDiscount.CustomerAprove"
+                  value="Tuỳ chọn khách hàng"
+                >
                 </RadioButton>
                 <label for="minCondition3" class="ml-2">Tuỳ chọn khách hàng</label>
               </div>
@@ -426,10 +645,12 @@
     <router-link to="/admin/discount">
       <Button type="button" label="Huỷ" severity="secondary" />
     </router-link>
-    <Button :label="dataEdit.status == 'Fix' ? 'Cập nhật' : 'Thêm mới'" @click="SavePromotion" />
+    <Button
+      :label="dataEdit.status == 'Fix' ? 'Cập nhật' : 'Thêm mới'"
+      @click="SavePromotion"
+    />
   </div>
 </template>
-
 
 <script setup>
 import { ref, reactive, onBeforeMount } from "vue";
@@ -444,33 +665,70 @@ const route = useRoute();
 const { toast, FunctionGlobal } = useGlobal();
 
 const value = ref(true);
-const limitTime = ref(false)
+const limitTime = ref(false);
 
 const dataPrice = ref([
   {
     code: "GB",
-    name: 'Giá bán'
-  }, {
+    name: "Giá bán",
+  },
+  {
     code: "GG",
-    name: 'Giảm giá'
-  }
-])
-const weekDays = ref(['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật']);
+    name: "Giảm giá",
+  },
+]);
+const weekDays = ref(["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"]);
 const showFullDay = ref(Array(weekDays.value.length).fill(true));
-const showDays = ref(Array(weekDays.value.length).fill(false))
+const showDays = ref(Array(weekDays.value.length).fill(false));
 const times = ref([
-  { name: '0:00' }, { name: '0:30' }, { name: '1:00' }, { name: '1:30' },
-  { name: '2:00' }, { name: '2:30' }, { name: '3:00' }, { name: '3:30' },
-  { name: '4:00' }, { name: '4:30' }, { name: '5:00' }, { name: '5:30' },
-  { name: '6:00' }, { name: '6:30' }, { name: '7:00' }, { name: '7:30' },
-  { name: '8:00' }, { name: '8:30' }, { name: '9:00' }, { name: '9:30' },
-  { name: '10:00' }, { name: '10:30' }, { name: '11:00' }, { name: '11:30' },
-  { name: '12:00' }, { name: '12:30' }, { name: '13:00' }, { name: '13:30' },
-  { name: '14:00' }, { name: '14:30' }, { name: '15:00' }, { name: '15:30' },
-  { name: '16:00' }, { name: '16:30' }, { name: '17:00' }, { name: '17:30' },
-  { name: '18:00' }, { name: '18:30' }, { name: '19:00' }, { name: '19:30' },
-  { name: '20:00' }, { name: '20:30' }, { name: '21:00' }, { name: '21:30' },
-  { name: '22:00' }, { name: '22:30' }, { name: '23:00' }, { name: '23:30' }
+  { name: "0:00" },
+  { name: "0:30" },
+  { name: "1:00" },
+  { name: "1:30" },
+  { name: "2:00" },
+  { name: "2:30" },
+  { name: "3:00" },
+  { name: "3:30" },
+  { name: "4:00" },
+  { name: "4:30" },
+  { name: "5:00" },
+  { name: "5:30" },
+  { name: "6:00" },
+  { name: "6:30" },
+  { name: "7:00" },
+  { name: "7:30" },
+  { name: "8:00" },
+  { name: "8:30" },
+  { name: "9:00" },
+  { name: "9:30" },
+  { name: "10:00" },
+  { name: "10:30" },
+  { name: "11:00" },
+  { name: "11:30" },
+  { name: "12:00" },
+  { name: "12:30" },
+  { name: "13:00" },
+  { name: "13:30" },
+  { name: "14:00" },
+  { name: "14:30" },
+  { name: "15:00" },
+  { name: "15:30" },
+  { name: "16:00" },
+  { name: "16:30" },
+  { name: "17:00" },
+  { name: "17:30" },
+  { name: "18:00" },
+  { name: "18:30" },
+  { name: "19:00" },
+  { name: "19:30" },
+  { name: "20:00" },
+  { name: "20:30" },
+  { name: "21:00" },
+  { name: "21:30" },
+  { name: "22:00" },
+  { name: "22:30" },
+  { name: "23:00" },
+  { name: "23:30" },
 ]);
 const saleOffData = ref({
   total: "1",
@@ -685,12 +943,12 @@ const setValueField = (id, index) => {
   return field[`${id}_${index}`];
 };
 
-let futureDate = new Date()
-futureDate.setMonth(futureDate.getMonth() + 6)
+let futureDate = new Date();
+futureDate.setMonth(futureDate.getMonth() + 6);
 const dataEdit2 = ref({
   discountCode: "",
   discountName: "name",
-  discountDescription: 'description',
+  discountDescription: "description",
   discountType: 1,
   discountSubType: "1-1",
   timeRange: {
@@ -699,13 +957,13 @@ const dataEdit2 = ref({
     limitTime: false,
     schedule: [[], [], [], [], [], [], []],
   },
-  isCondition: 'Y',
-  isProductAppyly: 'Y',
-  isCustomer: 'Y',
+  isCondition: "Y",
+  isProductAppyly: "Y",
+  isCustomer: "Y",
   discountCustomer: [],
   discountCondition: [],
-  discountProductApply: []
-})
+  discountProductApply: [],
+});
 
 const AddSubCondition = (data) => {
   data.push({
@@ -716,20 +974,19 @@ const AddSubCondition = (data) => {
     discountAmount: 0,
     typeDiscount: 1,
     status: "A",
-  })
-}
+  });
+};
 
 const RemoveSubCondition = (item) => {
-  item.status = 'D'
-}
+  item.status = "D";
+};
 
 const RemoveCondition = (data) => {
   // checkFormality().condition = checkFormality().condition.filter((val) => {
   //   return val != data;
   // });
   data.status = "D";
-}
-
+};
 
 const getConditionData = (id) => {
   const conditions = {
@@ -837,38 +1094,36 @@ const objDiscount = ref({
   MinConditionValue: 0,
 });
 
-
 const checkCondition = () => {
   return saleOffData.value.promo.filter((val) => {
-    return val.id == dataEdit2.value.discountType
-  })[0].formality
-}
+    return val.id == dataEdit2.value.discountType;
+  })[0].formality;
+};
 
 const checkFormality = () => {
   return checkCondition().filter((val) => {
-    return val.id == dataEdit2.value.discountSubType
-  })[0]
-}
+    return val.id == dataEdit2.value.discountSubType;
+  })[0];
+};
 
 const changeSubType = () => {
-  dataEdit2.value.discountSubType = checkCondition()[0].id
-}
+  dataEdit2.value.discountSubType = checkCondition()[0].id;
+};
 
 const dataEdit = reactive({});
 
 function addDiv(dayIndex, index) {
-  dataEdit2.value.timeRange.schedule[dayIndex].push({ startHour: '', endHour: '' })
+  dataEdit2.value.timeRange.schedule[dayIndex].push({ startHour: "", endHour: "" });
   showFullDay.value[dayIndex] = false;
-  showDays.value[dayIndex] = true
-  console.log(dataEdit2.value.timeRange.schedule)
+  showDays.value[dayIndex] = true;
+  console.log(dataEdit2.value.timeRange.schedule);
 }
 
 function removeDiv(dayIndex, itemIndex) {
-  dataEdit2.value.timeRange.schedule[dayIndex].splice(itemIndex, 1)
+  dataEdit2.value.timeRange.schedule[dayIndex].splice(itemIndex, 1);
   if (dataEdit2.value.timeRange.schedule[dayIndex].length === 0) {
     showFullDay.value[dayIndex] = true;
   }
-
 }
 
 onBeforeMount(() => {
@@ -907,15 +1162,14 @@ const SavePromotion = () => {
     FunctionGlobal.$notify("S", "Cập nhật thành công", toast);
   }
 
-
-  const exitData = JSON.parse(localStorage.getItem("dataTest") || "[]")
+  const exitData = JSON.parse(localStorage.getItem("dataTest") || "[]");
   if (exitData.status != "Fix") {
-    dataEdit2.value.id = createId()
-    exitData.push(dataEdit2.value)
-    localStorage.setItem("dataTest", JSON.stringify(exitData))
+    dataEdit2.value.id = createId();
+    exitData.push(dataEdit2.value);
+    localStorage.setItem("dataTest", JSON.stringify(exitData));
     FunctionGlobal.$notify("S", "Đã thêm thành công", toast);
   } else {
-    exitData[findIndexById()]
+    exitData[findIndexById()];
   }
 
   router.replace("/admin/discount");
@@ -945,7 +1199,6 @@ const findIndexById = (id, data) => {
   return index;
 };
 </script>
-
 
 <style scoped>
 .additional-class {

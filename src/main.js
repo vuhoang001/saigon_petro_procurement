@@ -120,12 +120,8 @@ import '@/assets/main.css';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
 
-
 const app = createApp(App);
 
-app.config.globalProperties.$myFunction = function() {
-    console.log('This is a global function');
-  };
 
 app.use(router);
 app.use(store);
