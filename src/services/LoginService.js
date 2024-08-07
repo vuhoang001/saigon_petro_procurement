@@ -8,7 +8,7 @@ class AuthService {
             username: user.username,
             password: user.password
         };
-        return axios.post(VITE_APP_API + 'auth/login', data).then((res) => {
+        return axios.post(VITE_APP_API + 'login', data).then((res) => {
             if (res.data) {
                 const currentDate = new Date();
                 const expireTokenTime = new Date(currentDate.getTime() + res.data['ExpiresIn'] * 60 * 1000).toString();
