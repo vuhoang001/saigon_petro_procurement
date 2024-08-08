@@ -1,5 +1,4 @@
 import AuthService from '../services/LoginService.js';
-import ERROR from '../helpers/StatusCode.json';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { status: { loggedIn: true }, user } : { status: { loggedIn: false }, user: null };
@@ -12,13 +11,11 @@ export const auth = {
             return AuthService.login(user).then(
                 (user) => {
                     commit('loginSuccess', user);
-                    return Promise.resolve(user);
+                    return Promise.resolve({status:true,user:user});
                 },
                 (error) => {
                     commit('loginFailure');
-                    let mes = ERROR.find((val) => val.code === error.response.data.status)?.mes;
-                    if (error.response.status == 404) mes = 'Mật khẩu không chính xác';
-                    return Promise.reject(mes);
+                    return Promise.resolve({status:false,message:error.response.data.error.message});
                 }
             );
         },
